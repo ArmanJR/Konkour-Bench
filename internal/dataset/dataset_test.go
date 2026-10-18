@@ -102,7 +102,7 @@ func TestCorruptImage(t *testing.T) {
 	}
 }
 func TestSuppliedSample(t *testing.T) {
-	s, err := Load("../../benchmark.json")
+	s, err := Load("../../benchmark.sample.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -114,5 +114,43 @@ func TestSuppliedSample(t *testing.T) {
 	}
 	if len(s.Questions) != 15 || images != 2 || len(s.Config.Models) != 15 {
 		t.Fatalf("unexpected sample: %d questions, %d images", len(s.Questions), images)
+	}
+}
+
+func TestHumanities1405Booklet(t *testing.T) {
+	s, err := Load("../../benchmark.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(s.Questions) != 80 || len(s.Config.Models) != 15 {
+		t.Fatalf("unexpected booklet/model count: %d/%d", len(s.Questions), len(s.Config.Models))
+	}
+	wantImages := map[int]bool{1: true, 9: true, 14: true, 39: true, 52: true, 64: true}
+	categories := map[string]int{}
+	assets := 0
+	for _, q := range s.Questions {
+		if q.Dataset != "humanities-1405-booklet-1" || q.Number < 1 || q.Number > 80 || q.HasImage() != wantImages[q.Number] {
+			t.Fatalf("unexpected question: %s, image=%v", q.ID(), q.HasImage())
+		}
+		categories[q.Category]++
+		if q.Asset != nil {
+			assets++
+		}
+		for _, option := range q.Options {
+			if option.Asset != nil {
+				assets++
+			}
+		}
+		if q.Number == 15 && (q.Options[1].Text != `$\frac{3}{8}$` || q.Correct != 1) {
+			t.Fatal("question 15 must preserve the source PDF's option 2 and supplied answer key")
+		}
+	}
+	for category, want := range map[string]int{"ریاضی": 20, "زبان و ادبیات فارسی": 30, "علوم اجتماعی": 15, "روان‌شناسی": 15} {
+		if categories[category] != want {
+			t.Errorf("category %s: got %d, want %d", category, categories[category], want)
+		}
+	}
+	if assets != 12 || len(s.Warnings) != 1 || !strings.Contains(s.Warnings[0], "120 extra") {
+		t.Fatalf("assets=%d warnings=%v", assets, s.Warnings)
 	}
 }

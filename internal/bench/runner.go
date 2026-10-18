@@ -4,11 +4,13 @@ package bench
 import (
 	"context"
 	"crypto/rand"
+	"database/sql"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log/slog"
-	"net/http"
+	"math"
 	"slices"
 	"strings"
 	"sync"
@@ -34,6 +36,9 @@ type Options struct {
 	Concurrency  int
 	Timeout      time.Duration
 	RetryUnknown bool
+	BudgetUSD    float64
+	WarnAfter    time.Duration
+	budget       *spendingBudget
 }
 type Runner struct {
 	Store  *storage.Store
@@ -46,6 +51,7 @@ type Summary struct {
 	RunID                                                       string `json:"run_id"`
 	Complete, Cached, Unsupported, Skipped, Failed, NewAttempts int
 	NewCost                                                     *float64 `json:"new_cost_usd"`
+	KnownCost                                                   float64  `json:"known_cost_usd"`
 	UnknownCostAttempts                                         int      `json:"unknown_cost_attempts"`
 }
 
@@ -67,6 +73,10 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	if r.Sleep == nil {
 		r.Sleep = Wait
 	}
+	if opts.BudgetUSD < 0 || math.IsNaN(opts.BudgetUSD) || math.IsInf(opts.BudgetUSD, 0) || opts.Timeout < 0 || opts.WarnAfter < 0 {
+		return Summary{}, fmt.Errorf("invalid budget or duration")
+	}
+	opts.budget = &spendingBudget{limit: opts.BudgetUSD}
 	if opts.Concurrency < 1 {
 		return Summary{}, fmt.Errorf("concurrency must be positive")
 	}
@@ -112,6 +122,14 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	for _, q := range questions {
 		sel.Questions = append(sel.Questions, q.ID())
 	}
+	if _, err := r.Store.RecoverStale(); err != nil {
+		return Summary{}, err
+	}
+	lock, err := r.Store.AcquireRunner()
+	if err != nil {
+		return Summary{}, err
+	}
+	defer lock.Close()
 	cat, err := r.Client.Discover(ctx, sel.Models)
 	if err != nil {
 		return Summary{}, err
@@ -120,10 +138,23 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	if _, err := rand.Read(random[:]); err != nil {
 		return Summary{}, err
 	}
-	run := storage.Run{ID: time.Now().UTC().Format("20060102T150405") + "-" + hex.EncodeToString(random[:]), Created: time.Now().UTC(), Protocol: Protocol(), Snapshot: snapshot, Catalog: cat, Selection: sel, BaseURL: r.Client.BaseURL}
+	run := storage.Run{ID: time.Now().UTC().Format("20060102T150405") + "-" + hex.EncodeToString(random[:]), Created: time.Now().UTC(), Protocol: Protocol(), Snapshot: snapshot, Catalog: cat, Selection: sel, BaseURL: r.Client.BaseURL, Timeout: opts.Timeout, BudgetUSD: opts.BudgetUSD}
 	if err := r.Store.AddRun(run); err != nil {
 		return Summary{}, err
 	}
+	worker, err := r.Store.StartWorker(run.ID)
+	if err != nil {
+		return Summary{}, err
+	}
+	defer worker.Close()
+	if _, err := r.Store.RecoverStale(); err != nil {
+		return Summary{}, err
+	}
+	defer func() {
+		if err := r.Store.Worker(run.ID, "stopped"); err != nil {
+			r.Log.Error("record runner stop", "error", err)
+		}
+	}()
 	r.Log.Info("benchmark started", "run", run.ID, "models", len(sel.Models), "questions", len(questions), "efforts", sel.Efforts)
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
@@ -169,7 +200,9 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 								firstErr = callErr
 							}
 							mu.Unlock()
-							cancel()
+							if !errors.Is(callErr, ErrBudget) {
+								cancel()
+							}
 							return
 						}
 						if j.Status == "complete" {
@@ -222,13 +255,14 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	summary.NewAttempts = len(attempts)
 	var cost float64
 	for _, a := range attempts {
-		var g openrouter.Generation
-		if json.Unmarshal([]byte(a.Response), &g) == nil && g.Usage.Cost != nil {
-			cost += *g.Usage.Cost
+		u := a.Usage()
+		if u.Cost != nil {
+			cost += *u.Cost
 		} else {
 			summary.UnknownCostAttempts++
 		}
 	}
+	summary.KnownCost = cost
 	if summary.UnknownCostAttempts == 0 {
 		summary.NewCost = &cost
 	}
@@ -247,12 +281,66 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, candidates []string, opts Options) (storage.Job, error) {
 	for _, effort := range candidates {
 		j.Effort = effort
-		body, err := openrouter.Build(q, j.Model, effort)
+		body, err := openrouter.BuildStream(q, j.Model, effort)
 		if err != nil {
 			return j, err
 		}
 		j.Hash = RequestHash(r.Client.BaseURL, body)
+		if cached, err := r.Store.Request(j.Hash); err == nil && cached.State == "complete" {
+			j.Status = "complete"
+			j.Cached = true
+			return j, nil
+		} else if err != nil && !errors.Is(err, sql.ErrNoRows) {
+			return j, err
+		}
+		// Preserve historical completed generations. An uncertain legacy request
+		// must not be bypassed merely by switching transport to streaming.
+		legacy, err := openrouter.Build(q, j.Model, effort)
+		if err != nil {
+			return j, err
+		}
+		legacyHash := RequestHash(r.Client.BaseURL, legacy)
+		old, oldErr := r.Store.Request(legacyHash)
+		if oldErr != nil && !errors.Is(oldErr, sql.ErrNoRows) {
+			return j, oldErr
+		}
+		if oldErr == nil {
+			switch old.State {
+			case "complete":
+				j.Hash = legacyHash
+				j.Status = "complete"
+				j.Cached = true
+				return j, nil
+			case "rejected":
+				continue
+			case "pending":
+				j.Hash = legacyHash
+				j.Status = "infra_error"
+				j.Note = "legacy request still owned or unverified"
+				return j, nil
+			case "unknown":
+				if !opts.RetryUnknown {
+					j.Hash = legacyHash
+					j.Status = "infra_error"
+					j.Note = "legacy outcome unknown; explicit retry required"
+					return j, nil
+				}
+			}
+		}
 		for attempt := 0; attempt < 3; attempt++ {
+			if cached, err := r.Store.Request(j.Hash); err == nil && cached.State == "complete" {
+				j.Status = "complete"
+				j.Cached = true
+				return j, nil
+			} else if err != nil && !errors.Is(err, sql.ErrNoRows) {
+				return j, err
+			}
+			if err := opts.budget.check(); err != nil {
+				return j, err
+			}
+			if err := ctx.Err(); err != nil {
+				return j, err
+			}
 			req, claimed, err := r.Store.Claim(j.RunID, j.Hash, body, opts.RetryUnknown && attempt == 0)
 			if err != nil {
 				return j, err
@@ -270,19 +358,43 @@ func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, 
 				j.Note = req.State + ": " + req.Note
 				return j, nil
 			}
+			if err := r.Store.StartAttempt(req, j); err != nil {
+				return j, err
+			}
+			j.AttemptID = req.AttemptID
+			j.Status = "pending"
+			if err := r.Store.AddJob(j); err != nil {
+				return j, err
+			}
 			callCtx := ctx
 			cancel := func() {}
 			if opts.Timeout > 0 {
 				callCtx, cancel = context.WithTimeout(ctx, opts.Timeout)
 			}
-			response := r.Client.Do(callCtx, http.MethodPost, "/chat/completions", body)
+			var warning *time.Timer
+			if opts.WarnAfter > 0 {
+				warning = time.AfterFunc(opts.WarnAfter, func() {
+					r.Log.Warn("request taking longer than warning threshold", "attempt", req.AttemptID, "question", q.ID(), "model", j.Model, "tier", j.Tier, "threshold", opts.WarnAfter.String())
+				})
+			}
+			response := r.Client.Complete(callCtx, body, func(p openrouter.Progress) error { return r.Store.Progress(req, p) })
+			deadline := errors.Is(callCtx.Err(), context.DeadlineExceeded)
+			if warning != nil {
+				warning.Stop()
+			}
 			cancel()
 			state, note := "retryable", ""
 			var result storage.Result
+			if response.GenerationID != "" {
+				result.Generation.ID = response.GenerationID
+			}
 			switch {
 			case response.Error != "":
 				state = "unknown"
 				note = response.Error
+				if deadline {
+					note = "deadline_exceeded: provider outcome unknown"
+				}
 			case openrouter.EffortRejected(response):
 				state = "rejected"
 				note = string(response.Body)
@@ -302,6 +414,7 @@ func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, 
 			if err := r.Store.Finish(req, state, response, result, note); err != nil {
 				return j, err
 			}
+			opts.budget.record(response, state)
 			if state == "complete" {
 				j.Status = "complete"
 				return j, nil
@@ -331,56 +444,4 @@ func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, 
 	j.Status = "unsupported"
 	j.Note = "all allowed effort values explicitly rejected"
 	return j, nil
-}
-
-func Reconcile(ctx context.Context, s *storage.Store, c *openrouter.Client) (int, error) {
-	requests, err := s.MissingUsage()
-	if err != nil {
-		return 0, err
-	}
-	n := 0
-	for _, r := range requests {
-		response := c.Generation(ctx, r.Result.Generation.ID)
-		if response.Error != "" || response.Status != 200 {
-			return n, fmt.Errorf("reconcile %s: HTTP %d %s %s", r.Result.Generation.ID, response.Status, response.Error, response.Body)
-		}
-		var envelope struct {
-			Data struct {
-				Cost       *float64 `json:"total_cost"`
-				Prompt     *int64   `json:"native_tokens_prompt"`
-				Completion *int64   `json:"native_tokens_completion"`
-				Reasoning  *int64   `json:"native_tokens_reasoning"`
-				Provider   string   `json:"provider_name"`
-			} `json:"data"`
-		}
-		if err := json.Unmarshal(response.Body, &envelope); err != nil {
-			return n, err
-		}
-		u := &r.Result.Generation.Usage
-		d := envelope.Data
-		if u.Cost == nil {
-			u.Cost = d.Cost
-		}
-		if u.Prompt == nil {
-			u.Prompt = d.Prompt
-		}
-		if u.Completion == nil {
-			u.Completion = d.Completion
-		}
-		if u.CompletionDetails.Reasoning == nil {
-			u.CompletionDetails.Reasoning = d.Reasoning
-		}
-		if u.Total == nil && u.Prompt != nil && u.Completion != nil {
-			v := *u.Prompt + *u.Completion
-			u.Total = &v
-		}
-		if r.Result.Generation.Provider == "" {
-			r.Result.Generation.Provider = d.Provider
-		}
-		if err := s.Reconcile(r, response.Body); err != nil {
-			return n, err
-		}
-		n++
-	}
-	return n, nil
 }

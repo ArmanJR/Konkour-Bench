@@ -1,0 +1,20 @@
+{
+  "datasets": [{"id": "sample", "questions": "questions.json", "answers": "answers.json"}],
+  "models": [
+    "deepseek/deepseek-v4.1-flash-1017",
+    "deepseek/deepseek-v4-pro-0813",
+    "google/gemini-4-argon",
+    "google/gemini-3.8-flash",
+    "openai/gpt-6.1-sol",
+    "openai/gpt-6-luna",
+    "anthropic/claude-opus-5.5",
+    "anthropic/claude-sonnet-5.5",
+    "qwen/qwen3.8-27b",
+    "qwen/qwen3.8-max-0902",
+    "x-ai/grok-4.7",
+    "xiaomi/mimo-v2.6-pro",
+    "xiaomi/mimo-v2.6-flash",
+    "z-ai/glm-5.3",
+    "z-ai/glm-5.3-flash"
+  ]
+}

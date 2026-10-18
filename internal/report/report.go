@@ -85,6 +85,9 @@ type RunSpending struct {
 
 func Build(s *storage.Store, snap dataset.Snapshot, runID, baseURL string, sel storage.Selection) (Document, error) {
 	d := Document{Generated: time.Now().UTC(), ScoringRevision: dataset.Hash(snap), Protocol: bench.Protocol(), RunID: runID, Snapshot: snap}
+	if _, err := s.RecoverStale(); err != nil {
+		return d, err
+	}
 	if len(sel.Models) == 0 {
 		sel.Models = snap.Config.Models
 	}
@@ -121,14 +124,32 @@ func Build(s *storage.Store, snap dataset.Snapshot, runID, baseURL string, sel s
 							return d, err
 						}
 						if bench.RequestHash(baseURL, body) != j.Hash {
-							continue
+							streamBody, err := openrouter.BuildStream(q, model, j.Effort)
+							if err != nil {
+								return d, err
+							}
+							if bench.RequestHash(baseURL, streamBody) != j.Hash {
+								continue
+							}
 						}
 					}
 					if j.Status == "skipped" && !q.HasImage() {
 						continue
 					}
 					o.Job = j
-					if j.Status == "complete" {
+					if j.Status == "pending" {
+						req, err := s.Request(j.Hash)
+						if err != nil {
+							return d, err
+						}
+						if req.State == "complete" && j.AttemptID != 0 && j.AttemptID == req.AttemptID {
+							o.Status = "complete"
+						} else if req.State != "pending" {
+							o.Status = "infra_error"
+							o.Note = req.Note
+						}
+					}
+					if o.Status == "complete" {
 						req, err := s.Request(j.Hash)
 						if err != nil {
 							return d, err
@@ -200,18 +221,18 @@ func Build(s *storage.Store, snap dataset.Snapshot, runID, baseURL string, sel s
 			ledger[a.RunID] = entry
 		}
 		entry.Attempts++
-		var g openrouter.Generation
-		if json.Unmarshal([]byte(a.Response), &g) != nil || g.Usage.Cost == nil {
+		u := a.Usage()
+		if u.Cost == nil {
 			entry.UnknownCost++
 			continue
 		}
-		entry.KnownCost += *g.Usage.Cost
+		entry.KnownCost += *u.Cost
 		req, err := s.Request(a.Hash)
 		if err != nil {
 			return d, err
 		}
 		if a.ID != req.AttemptID {
-			entry.KnownRetryCost += *g.Usage.Cost
+			entry.KnownRetryCost += *u.Cost
 		}
 	}
 	for _, entry := range ledger {

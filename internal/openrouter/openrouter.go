@@ -86,10 +86,12 @@ func New(baseURL, key string) *Client {
 }
 
 type HTTPResult struct {
-	Status     int             `json:"status"`
-	Body       json.RawMessage `json:"body"`
-	RetryAfter time.Duration   `json:"-"`
-	Error      string          `json:"error,omitempty"`
+	Status       int             `json:"status"`
+	Body         json.RawMessage `json:"body"`
+	RetryAfter   time.Duration   `json:"-"`
+	Error        string          `json:"error,omitempty"`
+	GenerationID string          `json:"generation_id,omitempty"`
+	RequestID    string          `json:"request_id,omitempty"`
 }
 
 func (c *Client) Do(ctx context.Context, method, path string, body []byte) HTTPResult {
@@ -210,6 +212,20 @@ func Build(q dataset.Question, model, effort string) ([]byte, error) {
 		addImage(fmt.Sprintf("تصویر گزینهٔ %d", o.Number), o.Asset)
 	}
 	r.Messages = []Message{{Role: "system", Content: Prompt}, {Role: "user", Content: parts}}
+	return json.Marshal(r)
+}
+
+// BuildStream keeps the historical non-streaming encoding available for cache lookup.
+func BuildStream(q dataset.Question, model, effort string) ([]byte, error) {
+	b, err := Build(q, model, effort)
+	if err != nil {
+		return nil, err
+	}
+	var r Request
+	if err := json.Unmarshal(b, &r); err != nil {
+		return nil, err
+	}
+	r.Stream = true
 	return json.Marshal(r)
 }
 

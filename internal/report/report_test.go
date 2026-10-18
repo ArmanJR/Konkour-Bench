@@ -109,7 +109,7 @@ func TestArtifactsAndEscaping(t *testing.T) {
 }
 
 func TestReportRescoresWithoutInferenceAndPreservesHistory(t *testing.T) {
-	snap, err := dataset.Load("../../benchmark.json")
+	snap, err := dataset.Load("../../benchmark.sample.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -201,5 +201,86 @@ func TestReportRescoresWithoutInferenceAndPreservesHistory(t *testing.T) {
 	attempts, err := s.Attempts("", "")
 	if err != nil || len(attempts) != 2 {
 		t.Fatalf("rescore created inference attempts: %d %v", len(attempts), err)
+	}
+}
+
+func TestStreamHistoryAndInterruptedCostStaySeparate(t *testing.T) {
+	snap := dataset.Snapshot{Config: dataset.Config{Models: []string{"test/model"}}, Questions: []dataset.Question{{Dataset: "exam", Number: 1, Text: "question", Correct: 4}}}
+	sel := storage.Selection{Models: snap.Config.Models, Efforts: []string{"max"}}
+	s, err := storage.Open(filepath.Join(t.TempDir(), "bench.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer s.Close()
+	base := "https://test.invalid"
+	if err := s.AddRun(storage.Run{ID: "run", Protocol: bench.Protocol(), Snapshot: snap, Selection: sel, BaseURL: base}); err != nil {
+		t.Fatal(err)
+	}
+	body, err := openrouter.BuildStream(snap.Questions[0], "test/model", "max")
+	if err != nil {
+		t.Fatal(err)
+	}
+	hash := bench.RequestHash(base, body)
+	req, _, err := s.Claim("run", hash, body, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	j := storage.Job{RunID: "run", Question: "exam:1", Model: "test/model", Tier: "max", Effort: "max", Hash: hash, Status: "pending", AttemptID: req.AttemptID}
+	if err := s.Finish(req, "unknown", openrouter.HTTPResult{Error: "disconnected"}, storage.Result{}, "unknown"); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.AddJob(j); err != nil {
+		t.Fatal(err)
+	}
+	attempts, err := s.Attempts(hash, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	a := attempts[0]
+	a.Details.GenerationID = "gen-interrupted"
+	if err := s.ReconcileAttempt(a, openrouter.Usage{Cost: ptr(0.11)}, []byte(`{"data":{"cancelled":true}}`)); err != nil {
+		t.Fatal(err)
+	}
+	doc, err := Build(s, snap, "run", base, sel)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(doc.Outcomes) != 1 || doc.Outcomes[0].Status != "infra_error" || doc.Outcomes[0].Answer != 0 || doc.Spending[0].KnownCost != 0.11 || doc.Spending[0].UnknownCost != 0 {
+		t.Fatalf("interrupted accounting/scoring %+v %+v", doc.Outcomes, doc.Spending)
+	}
+	for _, row := range doc.Rows {
+		if row.Accuracy != nil || row.Status != "incomplete" {
+			t.Fatal("interrupted answer ranked", row)
+		}
+	}
+	retry, _, err := s.Claim("run", hash, body, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	result := storage.Result{Answer: 4, Generation: openrouter.Generation{Usage: openrouter.Usage{Cost: ptr(0.2)}}}
+	raw, err := json.Marshal(result.Generation)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Finish(retry, "complete", openrouter.HTTPResult{Status: 200, Body: raw}, result, ""); err != nil {
+		t.Fatal(err)
+	}
+	// A later retry cannot retroactively complete the original pending job.
+	doc, err = Build(s, snap, "run", base, sel)
+	if err != nil || doc.Outcomes[0].Status != "infra_error" {
+		t.Fatalf("old attempt upgraded by retry: %+v %v", doc.Outcomes, err)
+	}
+	// Conversely, a crash after persisting the final response but before the
+	// final job event must not discard that same attempt's completed answer.
+	j.AttemptID = retry.AttemptID
+	if err := s.AddJob(j); err != nil {
+		t.Fatal(err)
+	}
+	doc, err = Build(s, snap, "run", base, sel)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !doc.Outcomes[0].Correct || doc.Spending[0].KnownRetryCost != 0.11 || doc.Spending[0].KnownCost != 0.31 {
+		t.Fatalf("retry accounting %+v %+v", doc.Outcomes, doc.Spending)
 	}
 }

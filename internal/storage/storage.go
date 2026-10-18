@@ -17,7 +17,10 @@ import (
 	_ "modernc.org/sqlite"
 )
 
-type Store struct{ db *sql.DB }
+type Store struct {
+	db   *sql.DB
+	path string
+}
 type Selection struct{ Models, Efforts, Questions []string }
 type Run struct {
 	ID        string             `json:"id"`
@@ -27,17 +30,20 @@ type Run struct {
 	Catalog   openrouter.Catalog `json:"catalog"`
 	Selection Selection          `json:"selection"`
 	BaseURL   string             `json:"base_url"`
+	Timeout   time.Duration      `json:"request_timeout_ns,omitempty"`
+	BudgetUSD float64            `json:"budget_usd,omitempty"`
 }
 type Job struct {
-	RunID    string `json:"run_id"`
-	Question string `json:"question"`
-	Model    string `json:"model"`
-	Tier     string `json:"tier"`
-	Effort   string `json:"sent_effort,omitempty"`
-	Hash     string `json:"request_hash,omitempty"`
-	Status   string `json:"status"`
-	Note     string `json:"note,omitempty"`
-	Cached   bool   `json:"cached"`
+	AttemptID int64  `json:"attempt_id,omitempty"`
+	RunID     string `json:"run_id"`
+	Question  string `json:"question"`
+	Model     string `json:"model"`
+	Tier      string `json:"tier"`
+	Effort    string `json:"sent_effort,omitempty"`
+	Hash      string `json:"request_hash,omitempty"`
+	Status    string `json:"status"`
+	Note      string `json:"note,omitempty"`
+	Cached    bool   `json:"cached"`
 }
 type Result struct {
 	Generation openrouter.Generation `json:"generation"`
@@ -53,14 +59,37 @@ type Request struct {
 	Note      string          `json:"note,omitempty"`
 }
 type Attempt struct {
-	ID         int64  `json:"id"`
-	Hash       string `json:"request_hash"`
-	RunID      string `json:"run_id"`
-	Started    string `json:"started"`
-	Finished   string `json:"finished,omitempty"`
-	HTTPStatus int    `json:"http_status"`
-	Response   string `json:"response"`
-	Error      string `json:"error,omitempty"`
+	ID         int64          `json:"id"`
+	Hash       string         `json:"request_hash"`
+	RunID      string         `json:"run_id"`
+	Started    string         `json:"started"`
+	Finished   string         `json:"finished,omitempty"`
+	HTTPStatus int            `json:"http_status"`
+	Response   string         `json:"response"`
+	Error      string         `json:"error,omitempty"`
+	Details    AttemptDetails `json:"details"`
+}
+
+type AttemptDetails struct {
+	GenerationID string            `json:"generation_id,omitempty"`
+	RequestID    string            `json:"request_id,omitempty"`
+	Provider     string            `json:"provider,omitempty"`
+	Question     string            `json:"question,omitempty"`
+	Tier         string            `json:"tier,omitempty"`
+	LastEvent    string            `json:"last_event,omitempty"`
+	Reconciled   bool              `json:"reconciled,omitempty"`
+	Usage        *openrouter.Usage `json:"usage,omitempty"`
+}
+
+func (a Attempt) Usage() openrouter.Usage {
+	if a.Details.Usage != nil {
+		return *a.Details.Usage
+	}
+	var g openrouter.Generation
+	if a.Finished != "" && a.Error == "" {
+		_ = json.Unmarshal([]byte(a.Response), &g)
+	}
+	return g.Usage
 }
 
 func Open(path string) (*Store, error) {
@@ -79,15 +108,18 @@ func Open(path string) (*Store, error) {
 		return nil, err
 	}
 	db.SetMaxOpenConns(1)
-	s := &Store{db: db}
+	s := &Store{db: db, path: path}
 	_, err = db.Exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;
 CREATE TABLE IF NOT EXISTS runs (id TEXT PRIMARY KEY, protocol TEXT NOT NULL, data BLOB NOT NULL);
 CREATE TABLE IF NOT EXISTS requests (hash TEXT PRIMARY KEY, body BLOB NOT NULL, state TEXT NOT NULL, result BLOB, attempt_id INTEGER NOT NULL DEFAULT 0, note TEXT NOT NULL DEFAULT '', owner INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS attempts (id INTEGER PRIMARY KEY AUTOINCREMENT, hash TEXT NOT NULL REFERENCES requests(hash), run_id TEXT NOT NULL REFERENCES runs(id), started TEXT NOT NULL, finished TEXT NOT NULL DEFAULT '', http_status INTEGER NOT NULL DEFAULT 0, response BLOB, error TEXT NOT NULL DEFAULT '');
 CREATE TABLE IF NOT EXISTS jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, run_id TEXT NOT NULL REFERENCES runs(id), data BLOB NOT NULL);
-CREATE TABLE IF NOT EXISTS reconciliations (id INTEGER PRIMARY KEY AUTOINCREMENT, hash TEXT NOT NULL REFERENCES requests(hash), created TEXT NOT NULL, response BLOB NOT NULL);
-PRAGMA user_version=1;`)
+CREATE TABLE IF NOT EXISTS reconciliations (id INTEGER PRIMARY KEY AUTOINCREMENT, hash TEXT NOT NULL REFERENCES requests(hash), created TEXT NOT NULL, response BLOB NOT NULL);`)
 	if err != nil {
+		db.Close()
+		return nil, err
+	}
+	if err := s.migrate(); err != nil {
 		db.Close()
 		return nil, err
 	}
@@ -159,14 +191,16 @@ func (s *Store) Jobs(runID, protocol string) ([]Job, error) {
 func scanRequest(row interface{ Scan(...any) error }) (Request, int, error) {
 	var r Request
 	var data []byte
+	var body []byte
 	var owner int
-	err := row.Scan(&r.Hash, &r.Body, &r.State, &data, &r.AttemptID, &r.Note, &owner)
+	err := row.Scan(&r.Hash, &body, &r.State, &data, &r.AttemptID, &r.Note, &owner)
 	if err != nil {
 		return r, owner, err
 	}
 	if len(data) > 0 {
 		err = json.Unmarshal(data, &r.Result)
 	}
+	r.Body = body
 	return r, owner, err
 }
 
@@ -196,10 +230,16 @@ func (s *Store) Claim(runID, hash string, body []byte, retryUnknown bool) (Reque
 	if r.State == "pending" && !processAlive(owner) {
 		r.State = "unknown"
 		r.Note = "previous process exited after claiming the request"
+		if _, err := tx.Exec("UPDATE requests SET state='unknown',note=? WHERE hash=?", r.Note, hash); err != nil {
+			return r, false, err
+		}
+		if _, err := tx.Exec("UPDATE attempts SET finished=?,error=? WHERE id=? AND finished=''", time.Now().UTC().Format(time.RFC3339Nano), r.Note, r.AttemptID); err != nil {
+			return r, false, err
+		}
 	}
 	allowed := r.State == "ready" || r.State == "retryable" || (r.State == "unknown" && retryUnknown)
 	if !allowed {
-		return r, false, nil
+		return r, false, tx.Commit()
 	}
 	res, err := tx.Exec("INSERT INTO attempts(hash,run_id,started) VALUES(?,?,?)", hash, runID, time.Now().UTC().Format(time.RFC3339Nano))
 	if err != nil {
@@ -209,14 +249,18 @@ func (s *Store) Claim(runID, hash string, body []byte, retryUnknown bool) (Reque
 	if err != nil {
 		return r, false, err
 	}
-	_, err = tx.Exec("UPDATE requests SET state='pending',owner=?,attempt_id=?,note='' WHERE hash=?", os.Getpid(), r.AttemptID, hash)
+	_, err = tx.Exec("UPDATE requests SET state='pending',owner=?,attempt_id=?,note='',result=NULL WHERE hash=?", os.Getpid(), r.AttemptID, hash)
 	if err != nil {
 		return r, false, err
 	}
 	r.State = "pending"
+	r.Result = Result{}
 	return r, true, tx.Commit()
 }
 func processAlive(pid int) bool {
+	if pid <= 0 {
+		return false
+	}
 	p, err := os.FindProcess(pid)
 	if err != nil {
 		return false
@@ -253,7 +297,7 @@ func (s *Store) Finish(r Request, state string, response openrouter.HTTPResult, 
 	return tx.Commit()
 }
 func (s *Store) Attempts(hash, runID string) ([]Attempt, error) {
-	query := "SELECT id,hash,run_id,started,finished,http_status,coalesce(response,''),error FROM attempts WHERE 1=1"
+	query := "SELECT id,hash,run_id,started,finished,http_status,coalesce(response,''),error,details FROM attempts WHERE 1=1"
 	var args []any
 	if hash != "" {
 		query += " AND hash=?"
@@ -272,49 +316,20 @@ func (s *Store) Attempts(hash, runID string) ([]Attempt, error) {
 	var out []Attempt
 	for rows.Next() {
 		var a Attempt
-		if err := rows.Scan(&a.ID, &a.Hash, &a.RunID, &a.Started, &a.Finished, &a.HTTPStatus, &a.Response, &a.Error); err != nil {
+		var details []byte
+		if err := rows.Scan(&a.ID, &a.Hash, &a.RunID, &a.Started, &a.Finished, &a.HTTPStatus, &a.Response, &a.Error, &details); err != nil {
 			return nil, err
+		}
+		if err := json.Unmarshal(details, &a.Details); err != nil {
+			return nil, err
+		}
+		if a.Details.GenerationID == "" {
+			var g openrouter.Generation
+			if json.Unmarshal([]byte(a.Response), &g) == nil {
+				a.Details.GenerationID = g.ID
+			}
 		}
 		out = append(out, a)
 	}
 	return out, rows.Err()
-}
-func (s *Store) MissingUsage() ([]Request, error) {
-	rows, err := s.db.Query("SELECT " + requestColumns + " FROM requests WHERE state='complete'")
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	var out []Request
-	for rows.Next() {
-		r, _, err := scanRequest(rows)
-		if err != nil {
-			return nil, err
-		}
-		u := r.Result.Generation.Usage
-		if r.Result.Generation.ID != "" && (u.Cost == nil || u.Total == nil || u.Prompt == nil || u.Completion == nil) {
-			out = append(out, r)
-		}
-	}
-	return out, rows.Err()
-}
-func (s *Store) Reconcile(r Request, raw []byte) error {
-	b, err := json.Marshal(r.Result)
-	if err != nil {
-		return err
-	}
-	tx, err := s.db.Begin()
-	if err != nil {
-		return err
-	}
-	defer tx.Rollback()
-	_, err = tx.Exec("INSERT INTO reconciliations(hash,created,response) VALUES(?,?,?)", r.Hash, time.Now().UTC().Format(time.RFC3339Nano), raw)
-	if err != nil {
-		return err
-	}
-	_, err = tx.Exec("UPDATE requests SET result=? WHERE hash=?", b, r.Hash)
-	if err != nil {
-		return err
-	}
-	return tx.Commit()
 }

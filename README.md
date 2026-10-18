@@ -22,10 +22,14 @@ set +a
 
 The application does not automatically read `.env`. Keys are never included in stored request bodies, logs, or reports.
 
-Run a small benchmark and generate its report:
+The default configuration evaluates the 80-question humanities 1405 booklet 1. Its source PDF, images, and answer key are in `datasets/humanities-1405/`. Six questions include images; 74 are text-only. The shared 200-question answer key includes 120 keys reserved for later booklets.
+
+The booklet contains 20 mathematics, 30 Persian language/literature, 15 social sciences, and 15 psychology questions. Source spot-checking corrected question 15, option 2 from `2/8` to the PDF's `3/8`. The supplied answer key is unchanged; it has not been independently verified against an official key.
+
+Run a small benchmark against the original sample and generate its report:
 
 ```sh
-./bin/konkour-bench run \
+./bin/konkour-bench run --config benchmark.sample.json \
   --model openai/gpt-6-luna \
   --question sample:2,sample:9
 ./bin/konkour-bench report --run latest --out reports/smoke
@@ -40,7 +44,28 @@ Run all configured models and questions:
 ./bin/konkour-bench report
 ```
 
-Repeating a run reuses completed generations, including malformed answers and refusals. The run summary reports new attempts, cache hits, and new spending. There is no generation token cap or default generation deadline. Use `--timeout 1h` if you want a wall-clock limit. `--concurrency` defaults to four, with at most one active question per model.
+Repeating a run reuses completed generations, including malformed answers and refusals. The run summary reports new attempts, cache hits, and new spending. Generation tokens remain uncapped. Each request now defaults to a one-hour emergency deadline (`--timeout 1h`), with a warning after ten minutes (`--warn-after 10m`). Set either duration to `0` to disable it. The default `--budget-usd 50` stops new dispatch once recorded new spending reaches $50 or a potentially billed attempt has unknown cost. It is not a hard billing cap: concurrent requests can overshoot it, and provider cancellation support varies. Set a separate OpenRouter key credit limit for account protection; use `--budget-usd 0` only to explicitly disable the local spending threshold. `--concurrency` defaults to four, with at most one active question per model.
+
+## React dashboard
+
+Build and start the local dashboard (use Node.js 24 or newer for the frontend toolchain):
+
+```sh
+make app
+```
+
+Open http://127.0.0.1:8080. The React dashboard reads the SQLite results and refreshes every 30 seconds, including while a benchmark is running. It includes sortable model leaderboards with CSV export, cost/token Pareto charts, reasoning effort comparisons, subject accuracy, original questions with LaTeX and images, and a run spending ledger. Incomplete results stay unranked; unknown accounting stays unknown. Viewing the dashboard does not call OpenRouter or require an API key.
+
+After the first build, start it directly:
+
+```sh
+./bin/konkour-bench serve
+./bin/konkour-bench serve --run latest --addr 127.0.0.1:8081
+```
+
+The default uses current questions and compatible recorded history. `--run` selects a saved snapshot, as with `report`. The server binds to localhost by default and has no authentication; keep it local unless you provide access control. `--assets` selects the built frontend directory (default `dashboard/dist`). Offline HTML/CSV/JSON/SVG reports remain available with `report`.
+
+For frontend development, keep `konkour-bench serve` running on port 8080 and run `npm --prefix dashboard run dev` in another terminal. Vite proxies `/api` to the Go server. Run `make dashboard-check` for TypeScript, lint, and component/data tests. `npm --prefix dashboard run format` formats the frontend source. Generated bundles and installed packages are ignored by Git; `package-lock.json` pins the frontend dependencies.
 
 ## Add models or questions
 
@@ -56,7 +81,7 @@ Keep the supplied JSON structure:
 
 Preserve the original Persian, English, or Arabic text and inline LaTeX. JSON backslashes must be escaped. PNG, JPEG, and GIF images are validated and sent unchanged. Missing or corrupt images stop validation; they are never silently removed. Extra answer keys are allowed with a warning so partial booklets work. Every included question needs a key. Missing categories are grouped as `Uncategorized`.
 
-The sample has 15 questions, including two with images, and 24 answer keys. The nine extra keys are intentionally ignored. The sample is a fixture for exercising the benchmark, not a representative evaluation dataset.
+`benchmark.sample.json` selects the original sample. The sample has 15 questions, including two with images, and 24 answer keys. The nine extra keys are intentionally ignored. The sample is a fixture for exercising the benchmark, not a representative evaluation dataset.
 
 After adding questions, rerun the benchmark; unchanged requests remain cached. After correcting keys or categories, regenerate the report without inference:
 
@@ -70,6 +95,8 @@ Without `--run`, reports use the current dataset/key snapshot and compatible rec
 ## Evaluation rules
 
 Every request uses the same concise Persian instruction, original question/options, and labeled images. Categories, exam names, filenames, and answer keys are excluded. The structured response must be exactly an object such as `{"answer": 3}` with one integer from 1 to 4. No prose extraction, JSON repair, tools, or model fallback is used.
+
+New inference requests use streaming; response-header IDs and raw SSE data are saved as they arrive. The final assembled response must pass the same strict answer validation. Heartbeat comments are not evidence of model reasoning progress. A dropped stream, malformed event, or deadline leaves the outcome unknown, even if partial text looks like a valid answer.
 
 All model requests carry `:exacto` and require support for the supplied parameters. Reasoning is enabled; temperature, top-p, and seed are left at provider defaults. The client never sends `max_tokens`, `max_completion_tokens`, or `reasoning.max_tokens`. Provider limits and internal effort translation can still apply.
 
@@ -102,7 +129,7 @@ Pareto comparisons maximize accuracy and minimize cost or total tokens within th
 
 ## Inspect and resume
 
-Run snapshots, request bodies, responses, attempts, and accounting are stored in `data/bench.db`. Request hashes include the API destination, model/routing, prompt, schema, sent effort, and actual image bytes. Internal grading metadata and credentials do not affect the request hash.
+Run snapshots, request bodies, responses, attempts, and accounting are stored in `data/bench.db`. Request hashes include the API destination, model/routing, prompt, schema, sent effort, transport, and actual image bytes. Existing completed non-streaming results are reused through an explicit legacy-cache lookup; uncertain legacy requests still require an explicit retry. Run snapshots record the deadline and spending threshold. Internal grading metadata and credentials do not affect the request hash.
 
 ```sh
 ./bin/konkour-bench inspect --hash REQUEST_HASH
@@ -116,7 +143,47 @@ A connection loss after dispatch or a process crash can leave an outcome unknown
 ./bin/konkour-bench run --retry-unknown --model provider/model
 ```
 
-This can incur duplicate charges. A request still owned by a live process cannot be reclaimed. There is no automatic resampling of completed answers. Use a separate `--db` for an intentionally independent experiment, and keep its report separate.
+This can incur duplicate charges. New runners hold a kernel file lock for the database. A second runner is refused, and process death releases the lock automatically. `status` and reports recover stale pending records as unknown; legacy PID records that cannot be verified remain unverified. Elapsed time is time since dispatch, not proof of ongoing generation or billing. A request still owned by a live process cannot be reclaimed. There is no automatic resampling of completed answers. Use a separate `--db` for an intentionally independent experiment, and keep its report separate.
+
+Check local ownership and saved OpenRouter IDs without making API calls:
+
+```sh
+./bin/konkour-bench status --run latest
+./bin/konkour-bench inspect --attempt 123
+```
+
+`inspect --attempt` returns recorded stream events. `reconcile` retrieves accounting for completed **and interrupted** attempts, including older retries. It never recovers an answer from token/cost metadata or marks an interrupted request correct. For a historical request whose ID was missing, copy the generation ID from OpenRouter Activity:
+
+```sh
+./bin/konkour-bench reconcile --attempt 123 --generation-id gen-EXAMPLE
+```
+
+Manual reconciliation checks the generation ID, model, and creation time against the local attempt. Charges stay attached to that attempt, so reconciling an old retry cannot change a newer answer. Unknown costs remain unknown until the metadata reports a terminal outcome. Reconciliation uses the API destination recorded with the original run.
+
+### Supervised runs on macOS
+
+Prepare a launchd configuration after building the binary. This command does **not** start inference, and the plist contains the env-file path rather than its contents:
+
+```sh
+./bin/konkour-bench supervisor --env-file .env --budget-usd 50 --timeout 1h
+```
+
+When ready to resume, load the prepared job from a terminal:
+
+```sh
+launchctl bootstrap "gui/$(id -u)" "$PWD/data/supervisor/konkour-bench.plist"
+```
+
+launchd owns the worker independently of this chat or terminal session. It runs once and does not restart after completion, a credit failure, or a crash. Logs are in `data/supervisor/runner.log` and `runner-summary.log`. The CLI writes the final or partial report to `--out` on a graceful exit. After a forced kill, use `status` and `report` to recover bookkeeping and rebuild it.
+
+To stop dispatch and cancel the local connections, then unload the job:
+
+```sh
+launchctl kill SIGINT "gui/$(id -u)/ai.konkour-bench.runner"
+launchctl bootout "gui/$(id -u)/ai.konkour-bench.runner"
+```
+
+Stopping the client does not guarantee provider billing stops. Review interrupted attempts before adding `--retry-unknown`. To change the service configuration, use a new `--service-file` path; existing files are not overwritten. The optional `--env-file` supports a literal `OPENROUTER_API_KEY=value` assignment, with optional quotes or `export`, and does not execute shell expressions.
 
 Useful flags include `--config`, `--db`, `--effort minimal,medium,max`, `--question`, and `--log-json`. Commands write summaries to stdout and operational logs to stderr. Use `COMMAND --help` for the full flag list. Keep the database and `.env` private; both are ignored by Git.
 

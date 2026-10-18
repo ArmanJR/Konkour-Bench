@@ -3,6 +3,8 @@
 /data/
 /reports/
 /bin/
+/dashboard/node_modules/
+/dashboard/dist/
 *.db
 *.db-shm
 *.db-wal

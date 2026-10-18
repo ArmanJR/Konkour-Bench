@@ -212,7 +212,7 @@ func TestReconcileMissingAccounting(t *testing.T) {
 			if req.URL.Query().Get("id") != "gen-test" {
 				t.Error("wrong generation ID")
 			}
-			_, _ = w.Write([]byte(`{"data":{"total_cost":0.02,"native_tokens_prompt":10,"native_tokens_completion":30,"native_tokens_reasoning":20,"provider_name":"test"}}`))
+			_, _ = w.Write([]byte(`{"data":{"id":"gen-test","finish_reason":"stop","total_cost":0.02,"native_tokens_prompt":10,"native_tokens_completion":30,"native_tokens_reasoning":20,"provider_name":"test"}}`))
 			return
 		}
 		generations.Add(1)

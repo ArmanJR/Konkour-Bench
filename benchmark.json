@@ -1,5 +1,5 @@
 {
-  "datasets": [{"id": "sample", "questions": "questions.json", "answers": "answers.json"}],
+  "datasets": [{"id": "humanities-1405-booklet-1", "questions": "datasets/humanities-1405/booklet-1.json", "answers": "datasets/humanities-1405/answer-key.json"}],
   "models": [
     "deepseek/deepseek-v4.1-flash-1017",
     "deepseek/deepseek-v4-pro-0813",
