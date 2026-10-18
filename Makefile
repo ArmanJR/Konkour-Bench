@@ -1,0 +1,13 @@
+.PHONY: build test check fmt
+build:
+	go build -o bin/konkour-bench ./cmd/konkour-bench
+test:
+	go test -race ./...
+check:
+	@test -z "$$(gofmt -l cmd internal)" || (gofmt -l cmd internal; exit 1)
+	go vet ./...
+	go test -race ./...
+	go build ./...
+	npx --yes oxlint@1.88.0 internal/report/report.js
+fmt:
+	gofmt -w cmd internal

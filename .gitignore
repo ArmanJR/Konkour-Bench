@@ -1,0 +1,8 @@
+.env
+.DS_Store
+/data/
+/reports/
+/bin/
+*.db
+*.db-shm
+*.db-wal

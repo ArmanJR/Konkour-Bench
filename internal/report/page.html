@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konkour Bench</title>
+<style>
+body{font:15px system-ui,sans-serif;color:#17212b;background:#f5f7f9;margin:24px}h1{margin-bottom:8px}a{color:#175c91}label{display:inline-block;margin:8px 16px 8px 0}select,button{font:inherit;padding:5px}section{background:white;border:1px solid #dce1e7;padding:18px;margin:20px 0;border-radius:6px}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{padding:9px;text-align:left;border-bottom:1px solid #e3e7eb;white-space:nowrap}th button{border:0;background:none;padding:0;font-weight:bold;cursor:pointer}svg{width:100%;height:auto;max-height:750px}.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:20px}.note{color:#536171;font-size:13px}code{overflow-wrap:anywhere}details{margin-top:12px}.correct{color:#16754a}.wrong{color:#ac3030}caption{text-align:left;font-weight:bold;padding:8px 0}noscript{display:block;padding:20px}#heatmap td{white-space:normal}#heatmap th{white-space:normal}
+</style>
+</head>
+<body>
+<h1>Konkour Bench</h1>
+<p>Accuracy, inference cost, and token use on Iranian university entrance exam questions.</p>
+<p class="note">Generated {{.Generated.Format "2006-01-02 15:04 UTC"}} · {{if .RunID}}Run <code>{{.RunID}}</code>{{else}}Current dataset, compatible recorded results{{end}}</p>
+<nav><a href="results.json">JSON results</a> · <a href="leaderboard.csv">CSV leaderboard</a> · <a href="accuracy.svg">Accuracy SVG</a> · <a href="cost.svg">Cost SVG</a> · <a href="tokens.svg">Tokens SVG</a></nav>
+<section>
+<label>Cohort <select id="cohort"><option value="text-only">Text-only</option><option value="full">Full dataset</option><option value="image-only">Image-only</option></select></label>
+<label>Dataset <select id="dataset"><option value="">All datasets</option>{{range .Datasets}}<option>{{.}}</option>{{end}}</select></label>
+<label>Category <select id="category"><option value="">All categories</option>{{range .Categories}}<option dir="auto">{{.}}</option>{{end}}</select></label>
+<label>Model <select id="model"><option value="">All models</option>{{range .Models}}<option>{{.}}</option>{{end}}</select></label>
+<label>Effort <select id="tier"><option value="">All efforts</option><option>minimal</option><option>medium</option><option>max</option></select></label>
+<p class="note">Invalid answers and refusals count as incorrect. Infrastructure failures leave a row incomplete and unranked. Image skips never reduce the full-dataset denominator. Unknown accounting is shown as —. Cached results retain their original billed usage.</p>
+<div class="scroll"><table id="leaderboard"><thead><tr></tr></thead><tbody></tbody></table></div>
+<p id="summary" class="note"></p>
+</section>
+<div class="charts">
+<section><h2>Accuracy</h2><div id="accuracy-chart"></div></section>
+<section><h2>Accuracy and cost</h2><div id="cost-chart"></div></section>
+<section><h2>Accuracy and tokens</h2><div id="tokens-chart"></div></section>
+<section><h2>Effort comparison</h2><div id="effort-chart"></div></section>
+</div>
+<p class="note">Orange points mark Pareto frontiers: no other result has equal or higher accuracy at equal or lower resource use, with at least one strict improvement. Frontiers compare all models and efforts within the selected dataset/category/cohort; model and effort filters only hide points. Token counts use each model’s native tokenizer. Reasoning is already included in completion tokens.</p>
+<section><h2>Category accuracy</h2><div class="scroll" id="heatmap"></div></section>
+<section><h2>Question outcomes</h2><p class="note">Use <code>konkour-bench inspect --hash REQUEST_HASH</code> for the original request, response, and attempt history. Requested tiers and sent values can differ; OpenRouter may translate them internally.</p><div class="scroll"><table id="outcomes"><thead><tr><th>Question</th><th>Category</th><th>Model</th><th>Tier → sent</th><th>Status</th><th>Answer / key</th><th>Provider</th><th>Detail / request hash</th></tr></thead><tbody></tbody></table></div></section>
+<section><h2>Provenance</h2><p>Scoring revision: <code>{{.ScoringRevision}}</code></p><p>Protocol: <code>{{.Protocol}}</code></p><p class="note">Each question has equal weight. A single generation is retained for each exact request. Provider-default sampling is used with no client token limits. Full request/response records remain in the local SQLite database; reports contain outcome and usage data.</p></section>
+<section><h2>Actual run spending</h2><p class="note">New HTTP attempts only; cache hits add no spending. Known cost is a lower bound when any attempt has unknown cost. Retry cost is included in known cost. Without a run filter, this ledger covers all runs in the database.</p><div class="scroll"><table><thead><tr><th>Run</th><th>New attempts</th><th>Known cost USD</th><th>Of which retries USD</th><th>Attempts with unknown cost</th></tr></thead><tbody>{{range .Spending}}<tr><td>{{.RunID}}</td><td>{{.Attempts}}</td><td>{{printf "%.8f" .KnownCost}}</td><td>{{printf "%.8f" .KnownRetryCost}}</td><td>{{.UnknownCost}}</td></tr>{{end}}</tbody></table></div></section>
+<noscript>Enable JavaScript to filter results and view charts. CSV, JSON, and SVG exports remain available offline.</noscript>
+<script id="data" type="application/json">{{.Data}}</script>
+<script>{{.Script}}</script>
+</body></html>
