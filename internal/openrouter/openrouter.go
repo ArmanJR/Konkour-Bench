@@ -78,6 +78,8 @@ type Client struct {
 	HTTP         *http.Client
 }
 
+func (c *Client) Endpoint() string { return c.BaseURL }
+
 func New(baseURL, key string) *Client {
 	return &Client{BaseURL: strings.TrimRight(baseURL, "/"), Key: key, HTTP: &http.Client{Transport: &http.Transport{
 		Proxy: http.ProxyFromEnvironment, DialContext: (&net.Dialer{Timeout: 30 * time.Second, KeepAlive: 30 * time.Second}).DialContext,
@@ -86,6 +88,8 @@ func New(baseURL, key string) *Client {
 }
 
 type HTTPResult struct {
+	// Fatal is used by local backends for failures that must stop dispatch.
+	Fatal        bool            `json:"fatal,omitempty"`
 	Status       int             `json:"status"`
 	Body         json.RawMessage `json:"body"`
 	RetryAfter   time.Duration   `json:"-"`
@@ -230,6 +234,8 @@ func BuildStream(q dataset.Question, model, effort string) ([]byte, error) {
 }
 
 type Usage struct {
+	// CLI estimates are not subscription charges and never enter cost rankings.
+	EstimatedCost     *float64 `json:"estimated_api_cost_usd,omitempty"`
 	Prompt            *int64   `json:"prompt_tokens"`
 	Completion        *int64   `json:"completion_tokens"`
 	Total             *int64   `json:"total_tokens"`

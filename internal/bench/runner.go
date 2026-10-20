@@ -16,6 +16,7 @@ import (
 	"sync"
 	"time"
 
+	"konkour-bench/internal/backbone"
 	"konkour-bench/internal/dataset"
 	"konkour-bench/internal/openrouter"
 	"konkour-bench/internal/storage"
@@ -23,6 +24,15 @@ import (
 
 func Protocol() string {
 	return dataset.Hash([]string{"konkour-bench-v1", openrouter.Prompt, "minimal:low;medium;max:xhigh:high", "provider-defaults", "strict-answer-v1"})
+}
+func ProtocolFor(endpoint string) string {
+	if backbone.IsMixed(endpoint) {
+		return dataset.Hash([]string{Protocol(), "mixed-cli-v1"})
+	}
+	if backbone.IsClaude(endpoint) {
+		return dataset.Hash([]string{Protocol(), "claude-cli-v1"})
+	}
+	return Protocol()
 }
 func RequestHash(base string, body []byte) string {
 	return dataset.Hash(struct {
@@ -41,14 +51,18 @@ type Options struct {
 	budget       *spendingBudget
 }
 type Runner struct {
-	Store  *storage.Store
-	Client *openrouter.Client
-	Log    *slog.Logger
+	Store   *storage.Store
+	Client  *openrouter.Client
+	Backend backbone.Client
+	Log     *slog.Logger
 	// Sleep is injectable so retry tests do not wait for wall-clock time.
 	Sleep func(context.Context, time.Duration) error
 }
 type Summary struct {
-	RunID                                                       string `json:"run_id"`
+	SubscriptionAttempts                                        int     `json:"subscription_attempts,omitempty"`
+	Backend                                                     string  `json:"backend,omitempty"`
+	EstimatedCost                                               float64 `json:"estimated_api_cost_usd,omitempty"`
+	RunID                                                       string  `json:"run_id"`
 	Complete, Cached, Unsupported, Skipped, Failed, NewAttempts int
 	NewCost                                                     *float64 `json:"new_cost_usd"`
 	KnownCost                                                   float64  `json:"known_cost_usd"`
@@ -67,6 +81,15 @@ func Wait(ctx context.Context, d time.Duration) error {
 }
 
 func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Options) (Summary, error) {
+	if r.Backend == nil && r.Client != nil {
+		r.Backend = r.Client
+	}
+	if r.Backend == nil {
+		return Summary{}, fmt.Errorf("inference backend is required")
+	}
+	if backbone.IsClaude(r.Backend.Endpoint()) && opts.BudgetUSD != 0 {
+		return Summary{}, fmt.Errorf("--budget-usd does not apply to subscription usage; use 0 for Claude CLI")
+	}
 	if r.Log == nil {
 		r.Log = slog.Default()
 	}
@@ -130,7 +153,7 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 		return Summary{}, err
 	}
 	defer lock.Close()
-	cat, err := r.Client.Discover(ctx, sel.Models)
+	cat, err := r.Backend.Discover(ctx, sel.Models)
 	if err != nil {
 		return Summary{}, err
 	}
@@ -138,7 +161,7 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	if _, err := rand.Read(random[:]); err != nil {
 		return Summary{}, err
 	}
-	run := storage.Run{ID: time.Now().UTC().Format("20060102T150405") + "-" + hex.EncodeToString(random[:]), Created: time.Now().UTC(), Protocol: Protocol(), Snapshot: snapshot, Catalog: cat, Selection: sel, BaseURL: r.Client.BaseURL, Timeout: opts.Timeout, BudgetUSD: opts.BudgetUSD}
+	run := storage.Run{ID: time.Now().UTC().Format("20060102T150405") + "-" + hex.EncodeToString(random[:]), Created: time.Now().UTC(), Protocol: ProtocolFor(r.Backend.Endpoint()), Snapshot: snapshot, Catalog: cat, Selection: sel, BaseURL: r.Backend.Endpoint(), Timeout: opts.Timeout, BudgetUSD: opts.BudgetUSD}
 	if err := r.Store.AddRun(run); err != nil {
 		return Summary{}, err
 	}
@@ -159,21 +182,38 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 	sem := make(chan struct{}, opts.Concurrency)
+	claudeSem := make(chan struct{}, 1)
+	claudeCtx, cancelClaude := context.WithCancel(ctx)
+	defer cancelClaude()
+	apiCtx, cancelAPI := context.WithCancel(ctx)
+	defer cancelAPI()
 	var wg sync.WaitGroup
 	var mu sync.Mutex
 	var firstErr error
-	summary := Summary{RunID: run.ID}
+	summary := Summary{RunID: run.ID, Backend: backbone.Name(run.BaseURL)}
 	for _, modelID := range sel.Models {
 		wg.Add(1)
 		go func(modelID string) {
 			defer wg.Done()
+			endpoint := backbone.EndpointFor(run.BaseURL, modelID)
+			isCLI := backbone.IsClaude(endpoint)
+			workCtx := ctx
+			workOpts := opts
+			if backbone.IsMixed(run.BaseURL) {
+				if isCLI {
+					workCtx = claudeCtx
+					workOpts.budget = nil
+				} else {
+					workCtx = apiCtx
+				}
+			}
 			model, exists := cat.Models[strings.TrimSuffix(modelID, ":exacto")]
 			for _, q := range questions {
 				for _, tier := range sel.Efforts {
-					if ctx.Err() != nil {
+					if workCtx.Err() != nil {
 						return
 					}
-					j := storage.Job{RunID: run.ID, Question: q.ID(), Model: modelID, Tier: tier}
+					j := storage.Job{RunID: run.ID, Question: q.ID(), Model: modelID, Tier: tier, Backend: backbone.Name(endpoint)}
 					candidates, evidence := model.Candidates(tier)
 					switch {
 					case !exists:
@@ -186,15 +226,39 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 						j.Status = "unsupported"
 						j.Note = evidence
 					default:
+						limitCLI := backbone.IsMixed(run.BaseURL) && isCLI
+						if limitCLI {
+							select {
+							case claudeSem <- struct{}{}:
+							case <-workCtx.Done():
+								return
+							}
+						}
 						select {
 						case sem <- struct{}{}:
-						case <-ctx.Done():
+						case <-workCtx.Done():
+							if limitCLI {
+								<-claudeSem
+							}
 							return
 						}
 						var callErr error
-						j, callErr = r.answer(ctx, q, j, candidates, opts)
+						j, callErr = r.answer(workCtx, q, j, candidates, workOpts)
+						if backbone.IsMixed(run.BaseURL) && j.Status == "fatal" {
+							if isCLI {
+								cancelClaude()
+							} else {
+								cancelAPI()
+							}
+						}
 						<-sem
+						if limitCLI {
+							<-claudeSem
+						}
 						if callErr != nil {
+							if errors.Is(callErr, context.Canceled) && ctx.Err() == nil && workCtx.Err() != nil {
+								return
+							}
 							mu.Lock()
 							if firstErr == nil {
 								firstErr = callErr
@@ -237,10 +301,18 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 					if j.Status == "fatal" {
 						mu.Lock()
 						if firstErr == nil {
-							firstErr = fmt.Errorf("OpenRouter authentication or account error: %s", j.Note)
+							firstErr = fmt.Errorf("inference backend stopped dispatch: %s", j.Note)
 						}
 						mu.Unlock()
-						cancel()
+						if backbone.IsMixed(run.BaseURL) {
+							if isCLI {
+								cancelClaude()
+							} else {
+								cancelAPI()
+							}
+						} else {
+							cancel()
+						}
 						return
 					}
 				}
@@ -256,6 +328,15 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	var cost float64
 	for _, a := range attempts {
 		u := a.Usage()
+		if u.EstimatedCost != nil {
+			summary.EstimatedCost += *u.EstimatedCost
+		}
+		if a.Details.Backend == "claude" {
+			summary.SubscriptionAttempts++
+			if backbone.IsMixed(run.BaseURL) {
+				continue
+			}
+		}
 		if u.Cost != nil {
 			cost += *u.Cost
 		} else {
@@ -272,6 +353,11 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 	if ctx.Err() != nil {
 		return summary, ctx.Err()
 	}
+	if summary.UnknownCostAttempts > 0 {
+		if err := opts.budget.check(ctx); err != nil {
+			return summary, err
+		}
+	}
 	if summary.Failed > 0 {
 		return summary, fmt.Errorf("run has %d unresolved failures; completed generations are cached", summary.Failed)
 	}
@@ -279,13 +365,14 @@ func (r *Runner) Run(ctx context.Context, snapshot dataset.Snapshot, opts Option
 }
 
 func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, candidates []string, opts Options) (storage.Job, error) {
+	endpoint := backbone.EndpointFor(r.Backend.Endpoint(), j.Model)
 	for _, effort := range candidates {
 		j.Effort = effort
-		body, err := openrouter.BuildStream(q, j.Model, effort)
+		body, err := backbone.Build(r.Backend.Endpoint(), q, j.Model, effort, true)
 		if err != nil {
 			return j, err
 		}
-		j.Hash = RequestHash(r.Client.BaseURL, body)
+		j.Hash = RequestHash(endpoint, body)
 		if cached, err := r.Store.Request(j.Hash); err == nil && cached.State == "complete" {
 			j.Status = "complete"
 			j.Cached = true
@@ -295,16 +382,16 @@ func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, 
 		}
 		// Preserve historical completed generations. An uncertain legacy request
 		// must not be bypassed merely by switching transport to streaming.
-		legacy, err := openrouter.Build(q, j.Model, effort)
+		legacy, err := backbone.Build(r.Backend.Endpoint(), q, j.Model, effort, false)
 		if err != nil {
 			return j, err
 		}
-		legacyHash := RequestHash(r.Client.BaseURL, legacy)
+		legacyHash := RequestHash(endpoint, legacy)
 		old, oldErr := r.Store.Request(legacyHash)
 		if oldErr != nil && !errors.Is(oldErr, sql.ErrNoRows) {
 			return j, oldErr
 		}
-		if oldErr == nil {
+		if oldErr == nil && legacyHash != j.Hash {
 			switch old.State {
 			case "complete":
 				j.Hash = legacyHash
@@ -335,7 +422,7 @@ func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, 
 			} else if err != nil && !errors.Is(err, sql.ErrNoRows) {
 				return j, err
 			}
-			if err := opts.budget.check(); err != nil {
+			if err := opts.budget.check(ctx); err != nil {
 				return j, err
 			}
 			if err := ctx.Err(); err != nil {
@@ -377,7 +464,7 @@ func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, 
 					r.Log.Warn("request taking longer than warning threshold", "attempt", req.AttemptID, "question", q.ID(), "model", j.Model, "tier", j.Tier, "threshold", opts.WarnAfter.String())
 				})
 			}
-			response := r.Client.Complete(callCtx, body, func(p openrouter.Progress) error { return r.Store.Progress(req, p) })
+			response := r.Backend.Complete(callCtx, body, func(p openrouter.Progress) error { return r.Store.Progress(req, p) })
 			deadline := errors.Is(callCtx.Err(), context.DeadlineExceeded)
 			if warning != nil {
 				warning.Stop()
@@ -414,18 +501,29 @@ func (r *Runner) answer(ctx context.Context, q dataset.Question, j storage.Job, 
 			if err := r.Store.Finish(req, state, response, result, note); err != nil {
 				return j, err
 			}
-			opts.budget.record(response, state)
+			if state != "complete" {
+				r.Log.Warn("inference attempt failed", "question", q.ID(), "model", j.Model, "tier", j.Tier, "effort", effort, "attempt", attempt+1, "status", response.Status, "state", state, "error", note)
+			}
+			if opts.budget.record(response, state) {
+				r.Log.Info("waiting for generation accounting; new dispatch paused", "attempt", req.AttemptID, "generation", response.GenerationID)
+				cost, err := r.reconcileCost(ctx, req, j.RunID)
+				opts.budget.settle(cost, err)
+				if err != nil {
+					r.Log.Error("automatic accounting recovery failed", "attempt", req.AttemptID, "error", err)
+				} else {
+					r.Log.Info("generation accounting recovered", "attempt", req.AttemptID, "cost_usd", cost)
+				}
+			}
 			if state == "complete" {
 				j.Status = "complete"
 				return j, nil
 			}
-			r.Log.Warn("inference attempt failed", "question", q.ID(), "model", j.Model, "tier", j.Tier, "effort", effort, "attempt", attempt+1, "status", response.Status, "state", state, "error", note)
 			if state == "rejected" {
 				break
 			}
 			j.Status = "infra_error"
 			j.Note = note
-			if response.Status == 401 || response.Status == 402 || response.Status == 403 {
+			if response.Fatal || response.Status == 401 || response.Status == 402 || response.Status == 403 {
 				j.Status = "fatal"
 				return j, nil
 			}

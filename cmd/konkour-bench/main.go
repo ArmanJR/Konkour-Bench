@@ -9,6 +9,7 @@ import (
 	"log/slog"
 	"math"
 	"os"
+	"os/exec"
 	"os/signal"
 	"path/filepath"
 	"runtime"
@@ -17,7 +18,9 @@ import (
 	"syscall"
 	"time"
 
+	"konkour-bench/internal/backbone"
 	"konkour-bench/internal/bench"
+	"konkour-bench/internal/claude"
 	"konkour-bench/internal/dashboard"
 	"konkour-bench/internal/dataset"
 	"konkour-bench/internal/openrouter"
@@ -44,6 +47,15 @@ func list(s string) []string {
 	}
 	return result
 }
+func claudeModels(configured []string) []string {
+	var selected []string
+	for _, id := range configured {
+		if claude.Supports(id) {
+			selected = append(selected, id)
+		}
+	}
+	return selected
+}
 func run(ctx context.Context, args []string) error {
 	if len(args) == 0 {
 		return errors.New("usage: konkour-bench <validate|models|run|status|supervisor|report|serve|inspect|reconcile> [flags]; use COMMAND --help")
@@ -61,11 +73,13 @@ func run(ctx context.Context, args []string) error {
 	config := f.String("config", "benchmark.json", "dataset/model configuration JSON")
 	dbPath := f.String("db", "data/bench.db", "SQLite storage path")
 	base := f.String("base-url", "https://openrouter.ai/api/v1", "OpenRouter API base URL")
+	backend := f.String("backend", "openrouter", "inference backend: openrouter, claude, or mixed (Claude CLI plus OpenRouter)")
+	claudeBin := f.String("claude-bin", "claude", "Claude Code executable path")
 	models := f.String("model", "", "comma-separated configured model IDs (default: all)")
 	efforts := f.String("effort", "", "comma-separated minimal,medium,max (default: all)")
 	questions := f.String("question", "", "comma-separated dataset:number IDs (default: all)")
 	concurrency := f.Int("concurrency", 4, "maximum concurrent calls; one per model")
-	timeout := f.Duration("timeout", time.Hour, "per-request emergency deadline; zero disables it")
+	timeout := f.Duration("timeout", 20*time.Minute, "per-request emergency deadline; zero disables it")
 	warnAfter := f.Duration("warn-after", 10*time.Minute, "log a slow-request warning; zero disables it")
 	budget := f.Float64("budget-usd", 50, "new-attempt spending threshold; stops dispatch, not in-flight billing; zero disables it")
 	envFile := f.String("env-file", "", "read a literal OPENROUTER_API_KEY assignment from this file")
@@ -94,11 +108,41 @@ func run(ctx context.Context, args []string) error {
 	if *timeout < 0 || *warnAfter < 0 || *budget < 0 || math.IsNaN(*budget) || math.IsInf(*budget, 0) {
 		return errors.New("budget and durations must be finite and nonnegative")
 	}
+	if *backend != "openrouter" && *backend != "claude" && *backend != "mixed" {
+		return fmt.Errorf("unknown backend %q", *backend)
+	}
+	if *backend == "mixed" && (command == "report" || command == "serve") && *runID == "" {
+		*base = "mixed://latest"
+	}
+	if *backend == "claude" {
+		explicitBudget, explicitConcurrency := false, false
+		f.Visit(func(v *flag.Flag) {
+			if v.Name == "budget-usd" {
+				explicitBudget = true
+			}
+			if v.Name == "concurrency" {
+				explicitConcurrency = true
+			}
+		})
+		if explicitBudget && *budget != 0 {
+			return errors.New("--budget-usd measures API charges and cannot cap subscription usage; use 0 for Claude CLI")
+		}
+		*budget = 0
+		if !explicitConcurrency {
+			*concurrency = 1
+		}
+		if command == "reconcile" {
+			return errors.New("Claude CLI has no OpenRouter generation accounting to reconcile")
+		}
+		if (command == "report" || command == "serve") && *runID == "" {
+			*base = "claude-cli://latest"
+		}
+	}
 	if command == "supervisor" {
 		if runtime.GOOS != "darwin" {
 			return errors.New("supervisor preparation currently supports macOS launchd")
 		}
-		if *envFile == "" {
+		if *envFile == "" && *backend != "claude" {
 			return errors.New("supervisor requires --env-file; secrets are never embedded in the plist")
 		}
 		abs := func(p string) string {
@@ -116,7 +160,17 @@ func run(ctx context.Context, args []string) error {
 		if err != nil {
 			return err
 		}
-		args := []string{"run", "--config", abs(*config), "--db", abs(*dbPath), "--base-url", *base, "--env-file", abs(*envFile), "--timeout", timeout.String(), "--warn-after", warnAfter.String(), "--budget-usd", strconv.FormatFloat(*budget, 'g', -1, 64), "--concurrency", strconv.Itoa(*concurrency), "--out", abs(*dir), "--log-json"}
+		if *backend != "openrouter" {
+			path, err := exec.LookPath(*claudeBin)
+			if err != nil {
+				return fmt.Errorf("Claude CLI executable: %w", err)
+			}
+			*claudeBin = abs(path)
+		}
+		args := []string{"run", "--config", abs(*config), "--db", abs(*dbPath), "--base-url", *base, "--backend", *backend, "--claude-bin", *claudeBin, "--timeout", timeout.String(), "--warn-after", warnAfter.String(), "--budget-usd", strconv.FormatFloat(*budget, 'g', -1, 64), "--concurrency", strconv.Itoa(*concurrency), "--out", abs(*dir), "--log-json"}
+		if *envFile != "" && *backend != "claude" {
+			args = append(args, "--env-file", abs(*envFile))
+		}
 		for _, pair := range [][2]string{{"--model", *models}, {"--effort", *efforts}, {"--question", *questions}} {
 			if pair[1] != "" {
 				args = append(args, pair[0], pair[1])
@@ -131,7 +185,7 @@ func run(ctx context.Context, args []string) error {
 		return output(map[string]any{"service_file": abs(*serviceFile), "label": supervisor.Label, "started": false})
 	}
 	key := os.Getenv("OPENROUTER_API_KEY")
-	if *envFile != "" && (command == "run" || command == "reconcile") {
+	if *backend != "claude" && *envFile != "" && (command == "run" || command == "reconcile") {
 		var err error
 		key, err = keyFromFile(*envFile)
 		if err != nil {
@@ -139,7 +193,14 @@ func run(ctx context.Context, args []string) error {
 		}
 	}
 	client := openrouter.New(*base, key)
-	if command == "run" || command == "reconcile" {
+	var inference backbone.Client = client
+	if *backend == "claude" {
+		inference = &claude.Client{Binary: *claudeBin}
+	}
+	if *backend == "mixed" {
+		inference = &backbone.Mixed{OpenRouter: client, Claude: &claude.Client{Binary: *claudeBin}}
+	}
+	if *backend != "claude" && (command == "run" || command == "reconcile") {
 		if client.Key == "" {
 			return errors.New("OPENROUTER_API_KEY must be set in the environment (see README for loading .env)")
 		}
@@ -171,7 +232,13 @@ func run(ctx context.Context, args []string) error {
 			if len(selected) == 0 {
 				selected = snap.Config.Models
 			}
-			cat, err := client.Discover(ctx, selected)
+			if *backend == "claude" && *models == "" {
+				selected = claudeModels(selected)
+				if len(selected) == 0 {
+					return errors.New("no supported Claude CLI models in configuration")
+				}
+			}
+			cat, err := inference.Discover(ctx, selected)
 			if err != nil {
 				return err
 			}
@@ -192,8 +259,15 @@ func run(ctx context.Context, args []string) error {
 			return err
 		}
 		defer s.Close()
-		r := bench.Runner{Store: s, Client: client, Log: slog.Default()}
-		summary, runErr := r.Run(ctx, snap, bench.Options{Selection: storage.Selection{Models: list(*models), Efforts: list(*efforts), Questions: list(*questions)}, Concurrency: *concurrency, Timeout: *timeout, WarnAfter: *warnAfter, BudgetUSD: *budget, RetryUnknown: *retryUnknown})
+		selected := list(*models)
+		if *backend == "claude" && *models == "" {
+			selected = claudeModels(snap.Config.Models)
+			if len(selected) == 0 {
+				return errors.New("no supported Claude CLI models in configuration")
+			}
+		}
+		r := bench.Runner{Store: s, Client: client, Backend: inference, Log: slog.Default()}
+		summary, runErr := r.Run(ctx, snap, bench.Options{Selection: storage.Selection{Models: selected, Efforts: list(*efforts), Questions: list(*questions)}, Concurrency: *concurrency, Timeout: *timeout, WarnAfter: *warnAfter, BudgetUSD: *budget, RetryUnknown: *retryUnknown})
 		if summary.RunID != "" {
 			saved, err := s.Run(summary.RunID)
 			if err == nil {
@@ -281,7 +355,7 @@ func run(ctx context.Context, args []string) error {
 			if err != nil {
 				return err
 			}
-			if saved.Protocol != bench.Protocol() {
+			if saved.Protocol != bench.ProtocolFor(saved.BaseURL) {
 				return errors.New("saved run uses another protocol; reproduce it with the matching code version")
 			}
 			snap, sel, *runID, *base = saved.Snapshot, saved.Selection, saved.ID, saved.BaseURL

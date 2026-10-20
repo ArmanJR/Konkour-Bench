@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"konkour-bench/internal/backbone"
 	"konkour-bench/internal/openrouter"
 	"konkour-bench/internal/storage"
 )
@@ -25,6 +26,13 @@ func Reconcile(ctx context.Context, s *storage.Store, c *openrouter.Client) (int
 	var failures []error
 	for _, a := range attempts {
 		if a.Finished == "" || a.Details.GenerationID == "" {
+			continue
+		}
+		run, err := s.Run(a.RunID)
+		if err != nil {
+			return n, err
+		}
+		if backbone.IsClaude(run.BaseURL) || a.Details.Backend == "claude" {
 			continue
 		}
 		u := a.Usage()
@@ -79,8 +87,11 @@ func reconcileAttempt(ctx context.Context, s *storage.Store, c *openrouter.Clien
 	if err != nil {
 		return err
 	}
+	if backbone.IsClaude(run.BaseURL) || a.Details.Backend == "claude" {
+		return fmt.Errorf("Claude CLI attempts cannot be reconciled through OpenRouter")
+	}
 	client := *c
-	client.BaseURL = run.BaseURL
+	client.BaseURL = backbone.EndpointFor(run.BaseURL, "")
 	// Metadata requests must not hang an offline reconciliation indefinitely.
 	callCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
 	defer cancel()

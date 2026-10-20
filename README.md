@@ -1,6 +1,6 @@
 # Konkour Bench
 
-A Go benchmark for four-option Iranian university entrance exam questions, using OpenRouter. Each question is evaluated independently at `minimal`, `medium`, and `max` reasoning effort. Results are cached locally and scored into offline HTML, CSV, JSON, and SVG reports.
+A Go benchmark for four-option Iranian university entrance exam questions, using OpenRouter or the Claude Code CLI with a Claude subscription. Each question is evaluated independently at `minimal`, `medium`, and `max` reasoning effort. Results are cached locally and scored into offline HTML, CSV, JSON, and SVG reports.
 
 ## Quick start
 
@@ -44,7 +44,46 @@ Run all configured models and questions:
 ./bin/konkour-bench report
 ```
 
-Repeating a run reuses completed generations, including malformed answers and refusals. The run summary reports new attempts, cache hits, and new spending. Generation tokens remain uncapped. Each request now defaults to a one-hour emergency deadline (`--timeout 1h`), with a warning after ten minutes (`--warn-after 10m`). Set either duration to `0` to disable it. The default `--budget-usd 50` stops new dispatch once recorded new spending reaches $50 or a potentially billed attempt has unknown cost. It is not a hard billing cap: concurrent requests can overshoot it, and provider cancellation support varies. Set a separate OpenRouter key credit limit for account protection; use `--budget-usd 0` only to explicitly disable the local spending threshold. `--concurrency` defaults to four, with at most one active question per model.
+Repeating a run reuses completed generations, including malformed answers and refusals. The run summary reports new attempts, cache hits, and new spending. Generation tokens remain uncapped. Each request defaults to a 20-minute emergency deadline (`--timeout 20m`), with a warning after ten minutes (`--warn-after 10m`). Set either duration to `0` to disable it. Changing the timeout requires restarting the worker; an existing worker retains the timeout it started with. `--concurrency` defaults to four, with at most one active question per model.
+
+The default `--budget-usd 50` stops new dispatch once recorded new spending reaches $50. If a timed-out request or another response is missing its cost, the worker temporarily pauses new dispatch and automatically retrieves generation accounting, allowing up to five minutes for delayed metadata. Active requests can finish during this wait. Once all pending charges are known and the budget permits, the same run continues automatically; interrupted questions remain unresolved and are not retried. Missing generation IDs or accounting that remains unavailable stop the run with an actionable error. This is not a hard billing cap: concurrent requests can overshoot it, and provider cancellation support varies. Set a separate OpenRouter key credit limit for account protection. `--budget-usd 0` disables the local spending guard and its automatic accounting wait.
+
+## Claude subscription backend
+
+Install Claude Code 2.1.296 or newer and sign in with `claude auth login`. The backend uses your existing subscription login, including its usage limits; it does not need `OPENROUTER_API_KEY`. API-key and third-party provider authentication are not accepted. `--claude-bin /absolute/path/to/claude` selects another installation.
+
+```sh
+./bin/konkour-bench models --backend claude
+./bin/konkour-bench run --backend claude \
+  --model anthropic/claude-sonnet-5.5 --effort medium \
+  --question humanities-1405-booklet-1:1
+./bin/konkour-bench report --run latest --out reports/claude
+./bin/konkour-bench serve --run latest
+```
+
+After changing answer keys or categories, `report --backend claude` rescores the current dataset against compatible cached CLI results without invoking Claude. `serve --backend claude` shows the same view. These commands use the most recent saved Claude CLI version; `--run RUN_ID` instead reproduces a saved run's original snapshot.
+
+For the complete Claude benchmark, use `run --backend claude`. It selects the configured `anthropic/claude-opus-5.5` and `anthropic/claude-sonnet-5.5` models, all questions, and all three tiers. Explicitly selecting another model fails before inference. OpenRouter remains the default backend for existing commands; `benchmark.json` is unchanged.
+
+To benchmark all configured models together, routing Claude to the subscription CLI and everything else to OpenRouter, use:
+
+```sh
+./bin/konkour-bench run --backend mixed --env-file .env --budget-usd 30
+./bin/konkour-bench report --backend mixed --out reports/mixed
+./bin/konkour-bench serve --backend mixed
+```
+
+Mixed runs retain the individual backend cache keys, so completed OpenRouter and CLI answers are reused. Claude's older OpenRouter answers remain a different protocol and are not reused as CLI answers. All tiers are included, with up to four requests overall and at most one Claude CLI request at a time. The dollar budget applies only to OpenRouter. If one backend hits an account or quota error, it stops its own dispatch while the other can continue. Claude never falls back to paid OpenRouter inference. Mixed reports show both backends together; Claude has accuracy/token scores but no cost frontier membership. Subscription attempts are counted separately from unknown OpenRouter charges in the spending ledger. `supervisor --backend mixed` prepares a persistent worker with the same routing; supply `--env-file` for OpenRouter authentication.
+
+Each question starts a fresh `claude -p` process in an empty temporary directory. The question and inline image blocks arrive through stdin; the concise system instruction and JSON schema are explicit arguments. Safe/restricted mode, disabled skills/hooks/MCP, and an empty tool list prevent the model from reading local answer keys or using search. Claude's `StructuredOutput` tool remains available solely for the answer schema. There is no conversation resume or session persistence. The CLI may use multiple internal turns to produce that structured result; this is a distinct evaluation protocol from a direct OpenRouter generation.
+
+The tiers request `low`, `medium`, and `max`, respectively. Explicit effort rejections can use the existing same-band fallbacks. The benchmark sets no token cap; the CLI's own model limits still apply. Claude Code can clamp effort under organization policy, and its stream does not always expose the applied effort, so recorded tiers describe the requested setting. A different generated model is rejected rather than scored under the requested model. `:exacto` is specific to OpenRouter and does not apply to Claude CLI sessions. See the official [headless guide](https://code.claude.com/docs/en/headless), [CLI reference](https://code.claude.com/docs/en/cli-reference), and [effort configuration](https://code.claude.com/docs/en/model-config#adjust-effort-level).
+
+Claude concurrency defaults to **one**; `--concurrency` can raise it, with one active question per model. The same 20-minute emergency timeout applies and terminates the local process group. Authentication, subscription-limit, and unexpected CLI failures stop dispatch. Rerunning reuses completed answers. An interrupted or uncertain request still requires `--retry-unknown` to repeat it. The benchmark does not automatically retry subscription-limit failures or switch to API billing. If your Claude account has paid **extra usage** enabled, disable it in Claude to stay within the subscription; detecting an overage event and stopping locally is not a hard billing cap.
+
+Claude's `total_cost_usd` is an API-price estimate, **not your subscription charge**. It is stored as `estimated_api_cost_usd` in normalized usage and the run summary. Actual cost stays unknown, so these results participate in accuracy/token rankings but not cost Pareto frontiers. `--budget-usd` defaults to zero for Claude and rejects a nonzero value because it cannot cap subscription consumption. Tokens include uncached input, cache creation, cache reads, and output; unavailable reasoning counts remain unknown. The backend, CLI version, invocation arguments, prompt, schema, effort, and image bytes separate its cache from OpenRouter and from other CLI versions.
+
+Use `inspect --hash HASH` for the exact stored invocation and result, and `inspect --attempt ID` for raw CLI events, session/request IDs, and stderr. `reconcile` only handles OpenRouter attempts. For a macOS background worker, `supervisor --backend claude` prepares a launchd job with the resolved CLI executable and needs no `--env-file`; starting the worker remains a separate action. Future backends implement `internal/backbone.Client` and supply deterministic request encoding and capability metadata.
 
 ## React dashboard
 
@@ -94,11 +133,11 @@ Without `--run`, reports use the current dataset/key snapshot and compatible rec
 
 ## Evaluation rules
 
-Every request uses the same concise Persian instruction, original question/options, and labeled images. Categories, exam names, filenames, and answer keys are excluded. The structured response must be exactly an object such as `{"answer": 3}` with one integer from 1 to 4. No prose extraction, JSON repair, tools, or model fallback is used.
+Every request uses the same concise Persian instruction, original question/options, and labeled images. Categories, exam names, filenames, and answer keys are excluded. The structured response must be exactly an object such as `{"answer": 3}` with one integer from 1 to 4. No prose extraction, JSON repair, research tools, or benchmark-selected model fallback is used.
 
 New inference requests use streaming; response-header IDs and raw SSE data are saved as they arrive. The final assembled response must pass the same strict answer validation. Heartbeat comments are not evidence of model reasoning progress. A dropped stream, malformed event, or deadline leaves the outcome unknown, even if partial text looks like a valid answer.
 
-All model requests carry `:exacto` and require support for the supplied parameters. Reasoning is enabled; temperature, top-p, and seed are left at provider defaults. The client never sends `max_tokens`, `max_completion_tokens`, or `reasoning.max_tokens`. Provider limits and internal effort translation can still apply.
+All OpenRouter requests carry `:exacto` and require support for the supplied parameters. Reasoning is enabled; temperature, top-p, and seed are left at provider defaults. The client never sends `max_tokens`, `max_completion_tokens`, or `reasoning.max_tokens`. Provider limits and internal effort translation can still apply.
 
 Effort compatibility is restricted to these bands:
 
@@ -165,7 +204,7 @@ Manual reconciliation checks the generation ID, model, and creation time against
 Prepare a launchd configuration after building the binary. This command does **not** start inference, and the plist contains the env-file path rather than its contents:
 
 ```sh
-./bin/konkour-bench supervisor --env-file .env --budget-usd 50 --timeout 1h
+./bin/konkour-bench supervisor --env-file .env --budget-usd 50 --timeout 20m
 ```
 
 When ready to resume, load the prepared job from a terminal:

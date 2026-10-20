@@ -10,6 +10,7 @@ body{font:15px system-ui,sans-serif;color:#17212b;background:#f5f7f9;margin:24px
 <body>
 <h1>Konkour Bench</h1>
 <p>Accuracy, inference cost, and token use on Iranian university entrance exam questions.</p>
+<p class="note">Backend: {{.Backend}} · {{.CostBasis}}</p>
 <p class="note">Generated {{.Generated.Format "2006-01-02 15:04 UTC"}} · {{if .RunID}}Run <code>{{.RunID}}</code>{{else}}Current dataset, compatible recorded results{{end}}</p>
 <nav><a href="results.json">JSON results</a> · <a href="leaderboard.csv">CSV leaderboard</a> · <a href="accuracy.svg">Accuracy SVG</a> · <a href="cost.svg">Cost SVG</a> · <a href="tokens.svg">Tokens SVG</a></nav>
 <section>

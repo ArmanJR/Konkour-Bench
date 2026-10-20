@@ -67,6 +67,8 @@ export interface Spending {
   attempts_with_unknown_cost: number;
 }
 export interface Report {
+  backend?: "openrouter" | "claude" | "mixed";
+  cost_basis?: string;
   generated: string;
   scoring_revision: string;
   protocol: string;

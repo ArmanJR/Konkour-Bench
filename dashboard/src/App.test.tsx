@@ -24,6 +24,32 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
+it("labels Claude subscription results without claiming Exacto routing", async () => {
+  const data = fixture();
+  data.backend = "claude";
+  data.cost_basis = "subscription usage; API estimates are not charges";
+  vi.mocked(globalThis.fetch).mockResolvedValue({
+    ok: true,
+    json: async () => data,
+  } as Response);
+  window.history.replaceState(null, "", "#spending");
+  render(<App />);
+  await screen.findByText("Claude CLI · subscription");
+  expect(screen.queryByText("Exacto routing")).toBeNull();
+  expect(screen.getByText(/API estimates are not charges/)).toBeTruthy();
+});
+
+it("labels mixed backend results", async () => {
+  const data = fixture();
+  data.backend = "mixed";
+  vi.mocked(globalThis.fetch).mockResolvedValue({
+    ok: true,
+    json: async () => data,
+  } as Response);
+  render(<App />);
+  await screen.findByText("Claude CLI + OpenRouter Exacto");
+});
+
 it("loads real report metrics, changes cohorts, and excludes incomplete rows on request", async () => {
   render(<App />);
   expect(screen.getByRole("status").textContent).toContain(

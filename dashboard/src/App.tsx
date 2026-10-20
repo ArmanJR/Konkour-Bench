@@ -361,6 +361,11 @@ function Spending({ data }: { data: Report }) {
           <dd>{data.scoring_revision}</dd>
           <dt>Evaluation protocol</dt>
           <dd>{data.protocol}</dd>
+          <dt>Backend and cost basis</dt>
+          <dd>
+            {data.backend ?? "openrouter"} ·{" "}
+            {data.cost_basis ?? "reported API charges"}
+          </dd>
           <dt>Results</dt>
           <dd>
             {data.run_id || "Current dataset and compatible recorded history"}
@@ -449,7 +454,13 @@ export default function App() {
             <strong>{page.label}</strong>
           </div>
           <div className="topbar-right">
-            <span className="routing-tag">Exacto routing</span>
+            <span className="routing-tag">
+              {data?.backend === "claude"
+                ? "Claude CLI · subscription"
+                : data?.backend === "mixed"
+                  ? "Claude CLI + OpenRouter Exacto"
+                  : "Exacto routing"}
+            </span>
             <span className="avatar" aria-label="Konkour Bench">
               KB
             </span>

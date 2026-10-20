@@ -236,7 +236,7 @@ func (s *Store) Activity(runID string) ([]Activity, error) {
 }
 
 func (s *Store) StartAttempt(r Request, j Job) error {
-	b, err := json.Marshal(AttemptDetails{Question: j.Question, Tier: j.Tier})
+	b, err := json.Marshal(AttemptDetails{Question: j.Question, Tier: j.Tier, Backend: j.Backend})
 	if err != nil {
 		return err
 	}

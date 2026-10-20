@@ -34,6 +34,7 @@ type Run struct {
 	BudgetUSD float64            `json:"budget_usd,omitempty"`
 }
 type Job struct {
+	Backend   string `json:"backend,omitempty"`
 	AttemptID int64  `json:"attempt_id,omitempty"`
 	RunID     string `json:"run_id"`
 	Question  string `json:"question"`
@@ -71,6 +72,7 @@ type Attempt struct {
 }
 
 type AttemptDetails struct {
+	Backend      string            `json:"backend,omitempty"`
 	GenerationID string            `json:"generation_id,omitempty"`
 	RequestID    string            `json:"request_id,omitempty"`
 	Provider     string            `json:"provider,omitempty"`
@@ -148,6 +150,13 @@ func (s *Store) Run(id string) (Run, error) {
 func (s *Store) LatestRun() (Run, error) {
 	var id string
 	if err := s.db.QueryRow("SELECT id FROM runs ORDER BY rowid DESC LIMIT 1").Scan(&id); err != nil {
+		return Run{}, err
+	}
+	return s.Run(id)
+}
+func (s *Store) LatestRunForProtocol(protocol string) (Run, error) {
+	var id string
+	if err := s.db.QueryRow("SELECT id FROM runs WHERE protocol=? ORDER BY rowid DESC LIMIT 1", protocol).Scan(&id); err != nil {
 		return Run{}, err
 	}
 	return s.Run(id)

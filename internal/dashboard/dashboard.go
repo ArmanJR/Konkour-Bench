@@ -58,7 +58,7 @@ func (s Source) Load() (Document, error) {
 			saved, err = s.Store.Run(runID)
 		}
 		if err == nil {
-			if saved.Protocol != bench.Protocol() {
+			if saved.Protocol != bench.ProtocolFor(saved.BaseURL) {
 				return Document{}, errors.New("saved run uses another protocol")
 			}
 			snap, sel, runID, base = saved.Snapshot, saved.Selection, saved.ID, saved.BaseURL

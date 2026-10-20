@@ -14,7 +14,9 @@ import (
 	"strings"
 	"time"
 
+	"konkour-bench/internal/backbone"
 	"konkour-bench/internal/bench"
+	"konkour-bench/internal/claude"
 	"konkour-bench/internal/dataset"
 	"konkour-bench/internal/openrouter"
 	"konkour-bench/internal/storage"
@@ -61,6 +63,8 @@ type Row struct {
 	Pareto            bool     `json:"pareto_3d"`
 }
 type Document struct {
+	Backend         string            `json:"backend"`
+	CostBasis       string            `json:"cost_basis"`
 	Generated       time.Time         `json:"generated"`
 	ScoringRevision string            `json:"scoring_revision"`
 	Protocol        string            `json:"protocol"`
@@ -76,20 +80,44 @@ type Document struct {
 }
 
 type RunSpending struct {
-	RunID          string  `json:"run_id"`
-	Attempts       int     `json:"attempts"`
-	KnownCost      float64 `json:"known_cost_usd"`
-	KnownRetryCost float64 `json:"known_retry_cost_usd"`
-	UnknownCost    int     `json:"attempts_with_unknown_cost"`
+	SubscriptionAttempts int     `json:"subscription_attempts,omitempty"`
+	RunID                string  `json:"run_id"`
+	Attempts             int     `json:"attempts"`
+	KnownCost            float64 `json:"known_cost_usd"`
+	KnownRetryCost       float64 `json:"known_retry_cost_usd"`
+	UnknownCost          int     `json:"attempts_with_unknown_cost"`
 }
 
 func Build(s *storage.Store, snap dataset.Snapshot, runID, baseURL string, sel storage.Selection) (Document, error) {
-	d := Document{Generated: time.Now().UTC(), ScoringRevision: dataset.Hash(snap), Protocol: bench.Protocol(), RunID: runID, Snapshot: snap}
+	if baseURL == "claude-cli://latest" || baseURL == "mixed://latest" {
+		saved, err := s.LatestRunForProtocol(bench.ProtocolFor(baseURL))
+		if err != nil {
+			return Document{}, fmt.Errorf("load latest %s run for report: %w", backbone.Name(baseURL), err)
+		}
+		baseURL = saved.BaseURL
+	}
+	d := Document{Generated: time.Now().UTC(), ScoringRevision: dataset.Hash(snap), Protocol: bench.ProtocolFor(baseURL), RunID: runID, Snapshot: snap, Backend: "openrouter", CostBasis: "reported API charges"}
+	if backbone.IsClaude(baseURL) {
+		d.Backend = "claude"
+		d.CostBasis = "subscription usage; actual cost unavailable; API cost estimates are not charges and are excluded from cost rankings"
+	}
+	if backbone.IsMixed(baseURL) {
+		d.Backend = "mixed"
+		d.CostBasis = "OpenRouter charges for other models; Claude CLI subscription usage has no reported actual cost and is excluded from cost rankings"
+	}
 	if _, err := s.RecoverStale(); err != nil {
 		return d, err
 	}
 	if len(sel.Models) == 0 {
 		sel.Models = snap.Config.Models
+		if backbone.IsClaude(baseURL) {
+			sel.Models = nil
+			for _, id := range snap.Config.Models {
+				if claude.Supports(id) {
+					sel.Models = append(sel.Models, id)
+				}
+			}
+		}
 	}
 	if len(sel.Efforts) == 0 {
 		sel.Efforts = openrouter.Tiers
@@ -115,20 +143,21 @@ func Build(s *storage.Store, snap dataset.Snapshot, runID, baseURL string, sel s
 			d.Categories = append(d.Categories, q.Category)
 		}
 		for _, model := range sel.Models {
+			endpoint := backbone.EndpointFor(baseURL, model)
 			for _, tier := range sel.Efforts {
 				o := Outcome{Job: storage.Job{Question: q.ID(), Model: model, Tier: tier, Status: "not_run"}, Dataset: q.Dataset, Category: q.Category, Image: q.HasImage(), Expected: q.Correct}
 				for _, j := range lookup[model+"\x00"+tier+"\x00"+q.ID()] {
 					if j.Hash != "" {
-						body, err := openrouter.Build(q, model, j.Effort)
+						body, err := backbone.Build(baseURL, q, model, j.Effort, false)
 						if err != nil {
 							return d, err
 						}
-						if bench.RequestHash(baseURL, body) != j.Hash {
-							streamBody, err := openrouter.BuildStream(q, model, j.Effort)
+						if bench.RequestHash(endpoint, body) != j.Hash {
+							streamBody, err := backbone.Build(baseURL, q, model, j.Effort, true)
 							if err != nil {
 								return d, err
 							}
-							if bench.RequestHash(baseURL, streamBody) != j.Hash {
+							if bench.RequestHash(endpoint, streamBody) != j.Hash {
 								continue
 							}
 						}
@@ -210,6 +239,27 @@ func Build(s *storage.Store, snap dataset.Snapshot, runID, baseURL string, sel s
 	if err != nil {
 		return d, err
 	}
+	// A current-history view has one evaluation backend. Its spending ledger
+	// must not make another backend's charges look like subscription usage.
+	if runID == "" {
+		compatible := map[string]bool{}
+		var filtered []storage.Attempt
+		for _, a := range d.Attempts {
+			match, known := compatible[a.RunID]
+			if !known {
+				r, err := s.Run(a.RunID)
+				if err != nil {
+					return d, err
+				}
+				match = r.Protocol == d.Protocol
+				compatible[a.RunID] = match
+			}
+			if match {
+				filtered = append(filtered, a)
+			}
+		}
+		d.Attempts = filtered
+	}
 	ledger := map[string]*RunSpending{}
 	if runID != "" {
 		ledger[runID] = &RunSpending{RunID: runID}
@@ -221,6 +271,12 @@ func Build(s *storage.Store, snap dataset.Snapshot, runID, baseURL string, sel s
 			ledger[a.RunID] = entry
 		}
 		entry.Attempts++
+		if a.Details.Backend == "claude" {
+			entry.SubscriptionAttempts++
+			if backbone.IsMixed(baseURL) {
+				continue
+			}
+		}
 		u := a.Usage()
 		if u.Cost == nil {
 			entry.UnknownCost++

@@ -118,7 +118,11 @@ func TestBudgetStopsDispatchAfterCostOrUnknown(t *testing.T) {
 	for _, unknown := range []bool{false, true} {
 		t.Run(fmt.Sprint(unknown), func(t *testing.T) {
 			var calls atomic.Int64
-			r, _ := setup(t, true, `["medium"]`, func(w http.ResponseWriter, _ *http.Request) {
+			r, _ := setup(t, true, `["medium"]`, func(w http.ResponseWriter, req *http.Request) {
+				if req.URL.Path == "/generation" {
+					http.Error(w, "accounting unavailable", http.StatusServiceUnavailable)
+					return
+				}
 				calls.Add(1)
 				if unknown {
 					fmt.Fprint(w, `{"id":"gen-no-cost","choices":[{"finish_reason":"stop","message":{"content":"{\"answer\":4}"}}]}`)
