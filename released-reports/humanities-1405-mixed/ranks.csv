@@ -1,0 +1,833 @@
+cohort,dataset,category,model,tier,rank,rank_p05,rank_median,rank_p95,first_share
+full,,,anthropic/claude-opus-5.5,medium,1,1,2,8,0.403
+full,,,google/gemini-3.8-flash,max,1,1,2,6,0.329
+full,,,google/gemini-4-argon,medium,3,1,4,9,0.1585
+full,,,google/gemini-4-argon,max,3,1,4,9,0.1395
+full,,,openai/gpt-6.1-sol,medium,3,1,4,8,0.1415
+full,,,openai/gpt-6.1-sol,max,3,1,4,9,0.188
+full,,,anthropic/claude-opus-5.5,minimal,7,1,6,11,0.077
+full,,,anthropic/claude-opus-5.5,max,8,3,7,12,0.0135
+full,,,google/gemini-3.8-flash,medium,8,2,7,11,0.011
+full,,,google/gemini-3.8-flash,minimal,10,5,10,15,0.001
+full,,,openai/gpt-6.1-sol,minimal,10,5,10,14,0.003
+full,,,x-ai/grok-4.7,minimal,12,6,11,15,0.002
+full,,,deepseek/deepseek-v4.1-flash-1017,max,13,8,13,18,0.0005
+full,,,google/gemini-4-argon,minimal,13,8,13,19,0.0005
+full,,,anthropic/claude-sonnet-5.5,medium,15,11,15,19,0
+full,,,deepseek/deepseek-v4.1-flash-1017,minimal,15,11,15,19,0.0005
+full,,,openai/gpt-6-luna,medium,15,10,15,19,0
+full,,,openai/gpt-6-luna,max,18,13,17,20,0
+full,,,openai/gpt-6-luna,minimal,19,15,19,22,0
+full,,,qwen/qwen3.8-max-0902,minimal,19,15,19,22,0
+full,,,anthropic/claude-sonnet-5.5,minimal,21,18,21,23,0
+full,,,qwen/qwen3.8-27b,minimal,21,17,21,23,0
+full,,,qwen/qwen3.8-27b,medium,23,21,23,23,0
+full,,روان‌شناسی,anthropic/claude-opus-5.5,minimal,1,1,1,3,0.5255
+full,,روان‌شناسی,anthropic/claude-opus-5.5,medium,1,1,1,29,0.523
+full,,روان‌شناسی,anthropic/claude-sonnet-5.5,minimal,1,1,1,3,0.5255
+full,,روان‌شناسی,anthropic/claude-sonnet-5.5,medium,1,1,1,3,0.5255
+full,,روان‌شناسی,anthropic/claude-sonnet-5.5,max,1,1,1,3,0.5255
+full,,روان‌شناسی,deepseek/deepseek-v4-pro-0813,max,1,1,1,3,0.5255
+full,,روان‌شناسی,google/gemini-3.8-flash,max,1,1,1,3,0.5255
+full,,روان‌شناسی,openai/gpt-6-luna,minimal,1,1,1,3,0.5255
+full,,روان‌شناسی,openai/gpt-6-luna,medium,1,1,1,3,0.5255
+full,,روان‌شناسی,openai/gpt-6-luna,max,1,1,1,3,0.5255
+full,,روان‌شناسی,openai/gpt-6.1-sol,medium,1,1,1,3,0.5255
+full,,روان‌شناسی,openai/gpt-6.1-sol,max,1,1,1,19,0.5085
+full,,روان‌شناسی,x-ai/grok-4.7,minimal,1,1,1,3,0.5255
+full,,روان‌شناسی,x-ai/grok-4.7,medium,1,1,1,3,0.5255
+full,,روان‌شناسی,x-ai/grok-4.7,max,1,1,1,3,0.5255
+full,,روان‌شناسی,z-ai/glm-5.3,max,1,1,1,3,0.5255
+full,,روان‌شناسی,anthropic/claude-opus-5.5,max,17,1,17,20,0.107
+full,,روان‌شناسی,deepseek/deepseek-v4-pro-0813,minimal,17,1,17,20,0.107
+full,,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,minimal,17,1,17,20,0.107
+full,,روان‌شناسی,google/gemini-3.8-flash,minimal,17,1,16,31,0.1165
+full,,روان‌شناسی,google/gemini-3.8-flash,medium,17,1,16,31,0.1165
+full,,روان‌شناسی,google/gemini-4-argon,minimal,17,1,17,20,0.107
+full,,روان‌شناسی,google/gemini-4-argon,medium,17,1,17,20,0.107
+full,,روان‌شناسی,google/gemini-4-argon,max,17,1,17,20,0.107
+full,,روان‌شناسی,openai/gpt-6.1-sol,minimal,17,1,17,20,0.107
+full,,روان‌شناسی,qwen/qwen3.8-27b,minimal,17,1,17,20,0.107
+full,,روان‌شناسی,qwen/qwen3.8-max-0902,medium,17,1,17,20,0.107
+full,,روان‌شناسی,qwen/qwen3.8-max-0902,max,17,1,17,20,0.107
+full,,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,max,29,3,29,33,0.0375
+full,,روان‌شناسی,qwen/qwen3.8-27b,medium,29,2,29,33,0.032
+full,,روان‌شناسی,qwen/qwen3.8-27b,max,29,2,29,33,0.032
+full,,روان‌شناسی,qwen/qwen3.8-max-0902,minimal,29,2,29,33,0.0335
+full,,روان‌شناسی,z-ai/glm-5.3,minimal,29,1,29,34,0.063
+full,,روان‌شناسی,z-ai/glm-5.3-flash,minimal,34,3,33,34,0.008
+full,,ریاضی,anthropic/claude-opus-5.5,minimal,1,1,1,1,1
+full,,ریاضی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+full,,ریاضی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+full,,ریاضی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+full,,ریاضی,google/gemini-3.8-flash,medium,1,1,1,1,1
+full,,ریاضی,google/gemini-3.8-flash,max,1,1,1,1,1
+full,,ریاضی,google/gemini-4-argon,max,1,1,1,1,1
+full,,ریاضی,openai/gpt-6-luna,max,1,1,1,1,1
+full,,ریاضی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+full,,ریاضی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+full,,ریاضی,openai/gpt-6.1-sol,max,1,1,1,1,1
+full,,ریاضی,x-ai/grok-4.7,minimal,1,1,1,1,1
+full,,ریاضی,x-ai/grok-4.7,medium,1,1,1,1,1
+full,,ریاضی,x-ai/grok-4.7,max,1,1,1,1,1
+full,,ریاضی,anthropic/claude-sonnet-5.5,minimal,15,1,17,27,0.3865
+full,,ریاضی,anthropic/claude-sonnet-5.5,medium,15,1,17,27,0.3865
+full,,ریاضی,deepseek/deepseek-v4.1-flash-1017,max,15,1,17,26,0.357
+full,,ریاضی,google/gemini-3.8-flash,minimal,15,1,17,28,0.3505
+full,,ریاضی,google/gemini-4-argon,medium,15,1,17,28,0.3505
+full,,ریاضی,openai/gpt-6-luna,minimal,15,1,17,22,0.361
+full,,ریاضی,openai/gpt-6-luna,medium,15,1,17,22,0.361
+full,,ریاضی,qwen/qwen3.8-27b,medium,15,1,17,22,0.361
+full,,ریاضی,qwen/qwen3.8-27b,max,15,1,17,22,0.361
+full,,ریاضی,qwen/qwen3.8-max-0902,medium,15,1,17,26,0.357
+full,,ریاضی,z-ai/glm-5.3-flash,max,15,1,17,22,0.361
+full,,ریاضی,deepseek/deepseek-v4.1-flash-1017,minimal,26,1,23,29,0.1195
+full,,ریاضی,qwen/qwen3.8-27b,minimal,26,1,23,29,0.1195
+full,,ریاضی,qwen/qwen3.8-max-0902,max,26,1,23,30,0.1265
+full,,ریاضی,qwen/qwen3.8-max-0902,minimal,29,19,28,31,0.0365
+full,,ریاضی,z-ai/glm-5.3-flash,minimal,29,15,28,31,0.043
+full,,ریاضی,google/gemini-4-argon,minimal,31,19,30,31,0.011
+full,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,medium,1,1,1,5,0.6215
+full,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,minimal,2,1,2,8,0.2835
+full,,زبان و ادبیات فارسی,google/gemini-4-argon,medium,2,1,2,6,0.2865
+full,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,max,4,2,5,10,0.043
+full,,زبان و ادبیات فارسی,google/gemini-3.8-flash,max,4,1,4,9,0.0925
+full,,زبان و ادبیات فارسی,google/gemini-4-argon,max,4,1,4,10,0.098
+full,,زبان و ادبیات فارسی,google/gemini-3.8-flash,medium,7,2,7,12,0.029
+full,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,medium,7,1,7,12,0.059
+full,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,max,7,1,7,12,0.06
+full,,زبان و ادبیات فارسی,google/gemini-3.8-flash,minimal,10,2,9,15,0.024
+full,,زبان و ادبیات فارسی,google/gemini-4-argon,minimal,11,4,11,17,0.014
+full,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,minimal,11,5,11,18,0.0045
+full,,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,max,13,6,13,17,0.0075
+full,,زبان و ادبیات فارسی,x-ai/grok-4.7,minimal,13,6,13,18,0.001
+full,,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,minimal,15,6,15,20,0.004
+full,,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,medium,16,10,16,20,0
+full,,زبان و ادبیات فارسی,openai/gpt-6-luna,medium,16,9,16,20,0
+full,,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,minimal,16,8,16,20,0.0035
+full,,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,medium,16,9,16,20,0.0015
+full,,زبان و ادبیات فارسی,openai/gpt-6-luna,minimal,20,14,19,21,0
+full,,زبان و ادبیات فارسی,openai/gpt-6-luna,max,21,16,20,22,0
+full,,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,minimal,22,20,22,24,0
+full,,زبان و ادبیات فارسی,qwen/qwen3.8-27b,minimal,22,18,22,24,0
+full,,زبان و ادبیات فارسی,qwen/qwen3.8-27b,medium,24,22,24,24,0
+full,,علوم اجتماعی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+full,,علوم اجتماعی,google/gemini-3.8-flash,max,1,1,1,1,1
+full,,علوم اجتماعی,google/gemini-4-argon,minimal,1,1,1,1,1
+full,,علوم اجتماعی,google/gemini-4-argon,medium,1,1,1,1,1
+full,,علوم اجتماعی,google/gemini-4-argon,max,1,1,1,1,1
+full,,علوم اجتماعی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+full,,علوم اجتماعی,openai/gpt-6.1-sol,max,1,1,1,1,1
+full,,علوم اجتماعی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+full,,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,max,9,1,9,10,0.3555
+full,,علوم اجتماعی,google/gemini-3.8-flash,minimal,9,1,9,21,0.379
+full,,علوم اجتماعی,google/gemini-3.8-flash,medium,9,1,9,10,0.3555
+full,,علوم اجتماعی,openai/gpt-6.1-sol,minimal,9,1,9,10,0.3555
+full,,علوم اجتماعی,qwen/qwen3.8-27b,max,9,1,9,10,0.3555
+full,,علوم اجتماعی,x-ai/grok-4.7,medium,9,1,9,10,0.3555
+full,,علوم اجتماعی,x-ai/grok-4.7,max,9,1,9,10,0.3555
+full,,علوم اجتماعی,anthropic/claude-opus-5.5,medium,16,1,16,24,0.1225
+full,,علوم اجتماعی,anthropic/claude-opus-5.5,max,16,1,16,24,0.1225
+full,,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,minimal,16,1,16,22,0.1175
+full,,علوم اجتماعی,qwen/qwen3.8-27b,minimal,16,1,16,22,0.1175
+full,,علوم اجتماعی,x-ai/grok-4.7,minimal,16,1,16,23,0.107
+full,,علوم اجتماعی,anthropic/claude-opus-5.5,minimal,21,10,21,28,0.032
+full,,علوم اجتماعی,anthropic/claude-sonnet-5.5,medium,21,9,21,28,0.0365
+full,,علوم اجتماعی,openai/gpt-6-luna,medium,21,9,21,26,0.0335
+full,,علوم اجتماعی,openai/gpt-6-luna,max,21,9,21,26,0.035
+full,,علوم اجتماعی,qwen/qwen3.8-27b,medium,21,9,21,26,0.035
+full,,علوم اجتماعی,qwen/qwen3.8-max-0902,minimal,21,9,21,27,0.0345
+full,,علوم اجتماعی,anthropic/claude-sonnet-5.5,minimal,27,16,25,29,0.0095
+full,,علوم اجتماعی,openai/gpt-6-luna,minimal,28,21,28,29,0.002
+full,,علوم اجتماعی,z-ai/glm-5.3-flash,minimal,28,18,27,29,0.002
+full,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,medium,1,1,2,8,0.403
+full,humanities-1405-booklet-1,,google/gemini-3.8-flash,max,1,1,2,6,0.329
+full,humanities-1405-booklet-1,,google/gemini-4-argon,medium,3,1,4,9,0.1585
+full,humanities-1405-booklet-1,,google/gemini-4-argon,max,3,1,4,9,0.1395
+full,humanities-1405-booklet-1,,openai/gpt-6.1-sol,medium,3,1,4,8,0.1415
+full,humanities-1405-booklet-1,,openai/gpt-6.1-sol,max,3,1,4,9,0.188
+full,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,minimal,7,1,6,11,0.077
+full,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,max,8,3,7,12,0.0135
+full,humanities-1405-booklet-1,,google/gemini-3.8-flash,medium,8,2,7,11,0.011
+full,humanities-1405-booklet-1,,google/gemini-3.8-flash,minimal,10,5,10,15,0.001
+full,humanities-1405-booklet-1,,openai/gpt-6.1-sol,minimal,10,5,10,14,0.003
+full,humanities-1405-booklet-1,,x-ai/grok-4.7,minimal,12,6,11,15,0.002
+full,humanities-1405-booklet-1,,deepseek/deepseek-v4.1-flash-1017,max,13,8,13,18,0.0005
+full,humanities-1405-booklet-1,,google/gemini-4-argon,minimal,13,8,13,19,0.0005
+full,humanities-1405-booklet-1,,anthropic/claude-sonnet-5.5,medium,15,11,15,19,0
+full,humanities-1405-booklet-1,,deepseek/deepseek-v4.1-flash-1017,minimal,15,11,15,19,0.0005
+full,humanities-1405-booklet-1,,openai/gpt-6-luna,medium,15,10,15,19,0
+full,humanities-1405-booklet-1,,openai/gpt-6-luna,max,18,13,17,20,0
+full,humanities-1405-booklet-1,,openai/gpt-6-luna,minimal,19,15,19,22,0
+full,humanities-1405-booklet-1,,qwen/qwen3.8-max-0902,minimal,19,15,19,22,0
+full,humanities-1405-booklet-1,,anthropic/claude-sonnet-5.5,minimal,21,18,21,23,0
+full,humanities-1405-booklet-1,,qwen/qwen3.8-27b,minimal,21,17,21,23,0
+full,humanities-1405-booklet-1,,qwen/qwen3.8-27b,medium,23,21,23,23,0
+full,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-opus-5.5,minimal,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-opus-5.5,medium,1,1,1,29,0.523
+full,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-sonnet-5.5,minimal,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-sonnet-5.5,medium,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-sonnet-5.5,max,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4-pro-0813,max,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,google/gemini-3.8-flash,max,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6-luna,minimal,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6-luna,medium,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6-luna,max,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6.1-sol,medium,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6.1-sol,max,1,1,1,19,0.5085
+full,humanities-1405-booklet-1,روان‌شناسی,x-ai/grok-4.7,minimal,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,x-ai/grok-4.7,medium,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,x-ai/grok-4.7,max,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,z-ai/glm-5.3,max,1,1,1,3,0.5255
+full,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-opus-5.5,max,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4-pro-0813,minimal,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,minimal,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,google/gemini-3.8-flash,minimal,17,1,16,31,0.1165
+full,humanities-1405-booklet-1,روان‌شناسی,google/gemini-3.8-flash,medium,17,1,16,31,0.1165
+full,humanities-1405-booklet-1,روان‌شناسی,google/gemini-4-argon,minimal,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,google/gemini-4-argon,medium,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,google/gemini-4-argon,max,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6.1-sol,minimal,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-27b,minimal,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-max-0902,medium,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-max-0902,max,17,1,17,20,0.107
+full,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,max,29,3,29,33,0.0375
+full,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-27b,medium,29,2,29,33,0.032
+full,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-27b,max,29,2,29,33,0.032
+full,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-max-0902,minimal,29,2,29,33,0.0335
+full,humanities-1405-booklet-1,روان‌شناسی,z-ai/glm-5.3,minimal,29,1,29,34,0.063
+full,humanities-1405-booklet-1,روان‌شناسی,z-ai/glm-5.3-flash,minimal,34,3,33,34,0.008
+full,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,minimal,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,medium,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,max,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,max,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,max,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,max,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,minimal,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,medium,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,max,1,1,1,1,1
+full,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,minimal,15,1,17,27,0.3865
+full,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,medium,15,1,17,27,0.3865
+full,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4.1-flash-1017,max,15,1,17,26,0.357
+full,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,minimal,15,1,17,28,0.3505
+full,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,medium,15,1,17,28,0.3505
+full,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,minimal,15,1,17,22,0.361
+full,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,medium,15,1,17,22,0.361
+full,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,medium,15,1,17,22,0.361
+full,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,max,15,1,17,22,0.361
+full,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,medium,15,1,17,26,0.357
+full,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3-flash,max,15,1,17,22,0.361
+full,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4.1-flash-1017,minimal,26,1,23,29,0.1195
+full,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,minimal,26,1,23,29,0.1195
+full,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,max,26,1,23,30,0.1265
+full,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,minimal,29,19,28,31,0.0365
+full,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3-flash,minimal,29,15,28,31,0.043
+full,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,minimal,31,19,30,31,0.011
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,medium,1,1,1,5,0.6215
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,minimal,2,1,2,8,0.2835
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,medium,2,1,2,6,0.2865
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,max,4,2,5,10,0.043
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,max,4,1,4,9,0.0925
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,max,4,1,4,10,0.098
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,medium,7,2,7,12,0.029
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,medium,7,1,7,12,0.059
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,max,7,1,7,12,0.06
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,minimal,10,2,9,15,0.024
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,minimal,11,4,11,17,0.014
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,minimal,11,5,11,18,0.0045
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,max,13,6,13,17,0.0075
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,x-ai/grok-4.7,minimal,13,6,13,18,0.001
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,minimal,15,6,15,20,0.004
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,medium,16,10,16,20,0
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,medium,16,9,16,20,0
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,minimal,16,8,16,20,0.0035
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,medium,16,9,16,20,0.0015
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,minimal,20,14,19,21,0
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,max,21,16,20,22,0
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,minimal,22,20,22,24,0
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-27b,minimal,22,18,22,24,0
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-27b,medium,24,22,24,24,0
+full,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,max,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,minimal,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,medium,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,max,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,max,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+full,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,max,9,1,9,10,0.3555
+full,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,minimal,9,1,9,21,0.379
+full,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,medium,9,1,9,10,0.3555
+full,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,minimal,9,1,9,10,0.3555
+full,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,max,9,1,9,10,0.3555
+full,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,medium,9,1,9,10,0.3555
+full,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,max,9,1,9,10,0.3555
+full,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,medium,16,1,16,24,0.1225
+full,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,max,16,1,16,24,0.1225
+full,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,minimal,16,1,16,22,0.1175
+full,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,minimal,16,1,16,22,0.1175
+full,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,minimal,16,1,16,23,0.107
+full,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,minimal,21,10,21,28,0.032
+full,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,medium,21,9,21,28,0.0365
+full,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,medium,21,9,21,26,0.0335
+full,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,max,21,9,21,26,0.035
+full,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,medium,21,9,21,26,0.035
+full,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-max-0902,minimal,21,9,21,27,0.0345
+full,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,minimal,27,16,25,29,0.0095
+full,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,minimal,28,21,28,29,0.002
+full,humanities-1405-booklet-1,علوم اجتماعی,z-ai/glm-5.3-flash,minimal,28,18,27,29,0.002
+image-only,,,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,,,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,,,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,,,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,,,google/gemini-3.8-flash,minimal,5,1,5,6,0.325
+image-only,,,google/gemini-3.8-flash,medium,5,1,5,6,0.325
+image-only,,,google/gemini-3.8-flash,max,5,1,5,6,0.325
+image-only,,,google/gemini-4-argon,minimal,5,1,5,6,0.325
+image-only,,,google/gemini-4-argon,medium,5,1,5,6,0.325
+image-only,,,google/gemini-4-argon,max,5,1,5,6,0.325
+image-only,,,openai/gpt-6.1-sol,medium,5,1,5,6,0.325
+image-only,,,x-ai/grok-4.7,medium,5,1,5,6,0.325
+image-only,,,anthropic/claude-opus-5.5,minimal,13,1,15,20,0.0715
+image-only,,,anthropic/claude-sonnet-5.5,minimal,13,1,14,23,0.0785
+image-only,,,anthropic/claude-sonnet-5.5,medium,13,1,14,23,0.0785
+image-only,,,deepseek/deepseek-v4.1-flash-1017,minimal,13,1,15,23,0.0915
+image-only,,,deepseek/deepseek-v4.1-flash-1017,max,13,1,15,23,0.0805
+image-only,,,openai/gpt-6-luna,max,13,1,15,20,0.0715
+image-only,,,qwen/qwen3.8-27b,medium,13,1,15,20,0.086
+image-only,,,x-ai/grok-4.7,minimal,13,1,15,20,0.0715
+image-only,,,openai/gpt-6-luna,medium,21,6,20,24,0.0145
+image-only,,,qwen/qwen3.8-27b,minimal,21,6,20,25,0.011
+image-only,,,qwen/qwen3.8-max-0902,max,21,5,20,25,0.0155
+image-only,,,z-ai/glm-5.3-flash,minimal,21,5,20,24,0.018
+image-only,,,openai/gpt-6-luna,minimal,25,17,24,25,0.001
+image-only,,,qwen/qwen3.8-max-0902,minimal,26,25,26,26,0
+image-only,,ریاضی,anthropic/claude-opus-5.5,minimal,1,1,1,1,1
+image-only,,ریاضی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,,ریاضی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,,ریاضی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+image-only,,ریاضی,google/gemini-3.8-flash,minimal,1,1,1,1,1
+image-only,,ریاضی,google/gemini-3.8-flash,medium,1,1,1,1,1
+image-only,,ریاضی,google/gemini-3.8-flash,max,1,1,1,1,1
+image-only,,ریاضی,google/gemini-4-argon,minimal,1,1,1,1,1
+image-only,,ریاضی,google/gemini-4-argon,medium,1,1,1,1,1
+image-only,,ریاضی,google/gemini-4-argon,max,1,1,1,1,1
+image-only,,ریاضی,openai/gpt-6-luna,max,1,1,1,1,1
+image-only,,ریاضی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,,ریاضی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+image-only,,ریاضی,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,,ریاضی,x-ai/grok-4.7,minimal,1,1,1,1,1
+image-only,,ریاضی,x-ai/grok-4.7,medium,1,1,1,1,1
+image-only,,ریاضی,x-ai/grok-4.7,max,1,1,1,1,1
+image-only,,ریاضی,z-ai/glm-5.3-flash,minimal,1,1,1,1,1
+image-only,,ریاضی,anthropic/claude-sonnet-5.5,minimal,19,1,19,28,0.312
+image-only,,ریاضی,anthropic/claude-sonnet-5.5,medium,19,1,19,28,0.312
+image-only,,ریاضی,deepseek/deepseek-v4.1-flash-1017,max,19,1,19,27,0.299
+image-only,,ریاضی,openai/gpt-6-luna,minimal,19,1,19,23,0.298
+image-only,,ریاضی,openai/gpt-6-luna,medium,19,1,19,23,0.298
+image-only,,ریاضی,qwen/qwen3.8-27b,medium,19,1,19,23,0.298
+image-only,,ریاضی,qwen/qwen3.8-27b,max,19,1,19,23,0.298
+image-only,,ریاضی,qwen/qwen3.8-max-0902,medium,19,1,19,27,0.299
+image-only,,ریاضی,z-ai/glm-5.3-flash,max,19,1,19,23,0.298
+image-only,,ریاضی,deepseek/deepseek-v4.1-flash-1017,minimal,28,21,27,29,0.0385
+image-only,,ریاضی,qwen/qwen3.8-27b,minimal,28,21,27,29,0.0385
+image-only,,ریاضی,qwen/qwen3.8-max-0902,max,28,21,28,30,0.0375
+image-only,,ریاضی,qwen/qwen3.8-max-0902,minimal,31,27,30,31,0
+image-only,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,minimal,1,1,1,1,1
+image-only,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,max,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,google/gemini-3.8-flash,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,google/gemini-3.8-flash,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,google/gemini-3.8-flash,max,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,google/gemini-4-argon,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,google/gemini-4-argon,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,google/gemini-4-argon,max,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,openai/gpt-6-luna,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,openai/gpt-6-luna,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,openai/gpt-6-luna,max,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,qwen/qwen3.8-27b,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,qwen/qwen3.8-27b,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,max,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,x-ai/grok-4.7,minimal,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,x-ai/grok-4.7,medium,6,6,6,6,0
+image-only,,زبان و ادبیات فارسی,z-ai/glm-5.3-flash,minimal,6,6,6,6,0
+image-only,,علوم اجتماعی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,,علوم اجتماعی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,,علوم اجتماعی,anthropic/claude-sonnet-5.5,minimal,1,1,1,1,1
+image-only,,علوم اجتماعی,anthropic/claude-sonnet-5.5,medium,1,1,1,1,1
+image-only,,علوم اجتماعی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+image-only,,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,minimal,1,1,1,1,1
+image-only,,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,max,1,1,1,1,1
+image-only,,علوم اجتماعی,google/gemini-3.8-flash,minimal,1,1,1,1,1
+image-only,,علوم اجتماعی,google/gemini-3.8-flash,medium,1,1,1,1,1
+image-only,,علوم اجتماعی,google/gemini-3.8-flash,max,1,1,1,1,1
+image-only,,علوم اجتماعی,google/gemini-4-argon,minimal,1,1,1,1,1
+image-only,,علوم اجتماعی,google/gemini-4-argon,medium,1,1,1,1,1
+image-only,,علوم اجتماعی,google/gemini-4-argon,max,1,1,1,1,1
+image-only,,علوم اجتماعی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,,علوم اجتماعی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+image-only,,علوم اجتماعی,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,,علوم اجتماعی,qwen/qwen3.8-27b,minimal,1,1,1,1,1
+image-only,,علوم اجتماعی,qwen/qwen3.8-27b,medium,1,1,1,1,1
+image-only,,علوم اجتماعی,qwen/qwen3.8-27b,max,1,1,1,1,1
+image-only,,علوم اجتماعی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+image-only,,علوم اجتماعی,x-ai/grok-4.7,medium,1,1,1,1,1
+image-only,,علوم اجتماعی,x-ai/grok-4.7,max,1,1,1,1,1
+image-only,,علوم اجتماعی,anthropic/claude-opus-5.5,minimal,23,1,23,23,0.2585
+image-only,,علوم اجتماعی,openai/gpt-6-luna,medium,23,1,23,23,0.2585
+image-only,,علوم اجتماعی,openai/gpt-6-luna,max,23,1,23,23,0.2585
+image-only,,علوم اجتماعی,x-ai/grok-4.7,minimal,23,1,23,23,0.2585
+image-only,,علوم اجتماعی,z-ai/glm-5.3-flash,max,23,1,23,23,0.2585
+image-only,,علوم اجتماعی,openai/gpt-6-luna,minimal,28,23,28,28,0
+image-only,,علوم اجتماعی,qwen/qwen3.8-max-0902,minimal,28,23,28,28,0
+image-only,,علوم اجتماعی,z-ai/glm-5.3-flash,minimal,28,23,28,28,0
+image-only,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,,google/gemini-3.8-flash,minimal,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,google/gemini-3.8-flash,medium,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,google/gemini-3.8-flash,max,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,google/gemini-4-argon,minimal,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,google/gemini-4-argon,medium,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,google/gemini-4-argon,max,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,openai/gpt-6.1-sol,medium,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,x-ai/grok-4.7,medium,5,1,5,6,0.325
+image-only,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,minimal,13,1,15,20,0.0715
+image-only,humanities-1405-booklet-1,,anthropic/claude-sonnet-5.5,minimal,13,1,14,23,0.0785
+image-only,humanities-1405-booklet-1,,anthropic/claude-sonnet-5.5,medium,13,1,14,23,0.0785
+image-only,humanities-1405-booklet-1,,deepseek/deepseek-v4.1-flash-1017,minimal,13,1,15,23,0.0915
+image-only,humanities-1405-booklet-1,,deepseek/deepseek-v4.1-flash-1017,max,13,1,15,23,0.0805
+image-only,humanities-1405-booklet-1,,openai/gpt-6-luna,max,13,1,15,20,0.0715
+image-only,humanities-1405-booklet-1,,qwen/qwen3.8-27b,medium,13,1,15,20,0.086
+image-only,humanities-1405-booklet-1,,x-ai/grok-4.7,minimal,13,1,15,20,0.0715
+image-only,humanities-1405-booklet-1,,openai/gpt-6-luna,medium,21,6,20,24,0.0145
+image-only,humanities-1405-booklet-1,,qwen/qwen3.8-27b,minimal,21,6,20,25,0.011
+image-only,humanities-1405-booklet-1,,qwen/qwen3.8-max-0902,max,21,5,20,25,0.0155
+image-only,humanities-1405-booklet-1,,z-ai/glm-5.3-flash,minimal,21,5,20,24,0.018
+image-only,humanities-1405-booklet-1,,openai/gpt-6-luna,minimal,25,17,24,25,0.001
+image-only,humanities-1405-booklet-1,,qwen/qwen3.8-max-0902,minimal,26,25,26,26,0
+image-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3-flash,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,minimal,19,1,19,28,0.312
+image-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,medium,19,1,19,28,0.312
+image-only,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4.1-flash-1017,max,19,1,19,27,0.299
+image-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,minimal,19,1,19,23,0.298
+image-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,medium,19,1,19,23,0.298
+image-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,medium,19,1,19,23,0.298
+image-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,max,19,1,19,23,0.298
+image-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,medium,19,1,19,27,0.299
+image-only,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3-flash,max,19,1,19,23,0.298
+image-only,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4.1-flash-1017,minimal,28,21,27,29,0.0385
+image-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,minimal,28,21,27,29,0.0385
+image-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,max,28,21,28,30,0.0375
+image-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,minimal,31,27,30,31,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,max,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,max,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,max,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,max,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-27b,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-27b,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,max,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,x-ai/grok-4.7,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,x-ai/grok-4.7,medium,6,6,6,6,0
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,z-ai/glm-5.3-flash,minimal,6,6,6,6,0
+image-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,minimal,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,medium,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,max,1,1,1,1,1
+image-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,minimal,23,1,23,23,0.2585
+image-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,medium,23,1,23,23,0.2585
+image-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,max,23,1,23,23,0.2585
+image-only,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,minimal,23,1,23,23,0.2585
+image-only,humanities-1405-booklet-1,علوم اجتماعی,z-ai/glm-5.3-flash,max,23,1,23,23,0.2585
+image-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,minimal,28,23,28,28,0
+image-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-max-0902,minimal,28,23,28,28,0
+image-only,humanities-1405-booklet-1,علوم اجتماعی,z-ai/glm-5.3-flash,minimal,28,23,28,28,0
+text-only,,,google/gemini-3.8-flash,max,1,1,2,6,0.3995
+text-only,,,anthropic/claude-opus-5.5,minimal,2,1,3,9,0.207
+text-only,,,anthropic/claude-opus-5.5,medium,2,1,3,10,0.2615
+text-only,,,google/gemini-4-argon,medium,2,1,3,9,0.194
+text-only,,,google/gemini-4-argon,max,2,1,3,8,0.206
+text-only,,,openai/gpt-6.1-sol,medium,2,1,4,8,0.1895
+text-only,,,openai/gpt-6.1-sol,max,7,1,5,11,0.0985
+text-only,,,google/gemini-3.8-flash,medium,8,2,7,12,0.011
+text-only,,,anthropic/claude-opus-5.5,max,9,5,9,15,0.0005
+text-only,,,deepseek/deepseek-v4-pro-0813,max,10,4,11,17,0.0125
+text-only,,,google/gemini-3.8-flash,minimal,10,5,11,19,0.004
+text-only,,,x-ai/grok-4.7,minimal,10,5,10,16,0.004
+text-only,,,openai/gpt-6.1-sol,minimal,13,7,12,19,0
+text-only,,,deepseek/deepseek-v4.1-flash-1017,max,14,9,14,21,0.0005
+text-only,,,google/gemini-4-argon,minimal,15,8,16,24,0.001
+text-only,,,openai/gpt-6-luna,medium,15,8,16,23,0
+text-only,,,anthropic/claude-sonnet-5.5,medium,17,11,18,24,0
+text-only,,,deepseek/deepseek-v4-pro-0813,minimal,17,11,18,23,0
+text-only,,,deepseek/deepseek-v4.1-flash-1017,minimal,17,11,18,24,0
+text-only,,,qwen/qwen3.8-max-0902,minimal,17,9,18,24,0.001
+text-only,,,qwen/qwen3.8-max-0902,medium,17,10,18,24,0.0005
+text-only,,,z-ai/glm-5.3,max,17,12,18,24,0
+text-only,,,openai/gpt-6-luna,minimal,23,14,22,25,0
+text-only,,,openai/gpt-6-luna,max,23,14,22,25,0
+text-only,,,qwen/qwen3.8-27b,minimal,25,20,26,28,0
+text-only,,,anthropic/claude-sonnet-5.5,minimal,26,23,26,29,0
+text-only,,,qwen/qwen3.8-27b,max,26,22,26,29,0
+text-only,,,z-ai/glm-5.3,minimal,28,23,27,29,0
+text-only,,,qwen/qwen3.8-27b,medium,29,26,29,29,0
+text-only,,روان‌شناسی,anthropic/claude-opus-5.5,minimal,1,1,1,3,0.5255
+text-only,,روان‌شناسی,anthropic/claude-opus-5.5,medium,1,1,1,29,0.523
+text-only,,روان‌شناسی,anthropic/claude-sonnet-5.5,minimal,1,1,1,3,0.5255
+text-only,,روان‌شناسی,anthropic/claude-sonnet-5.5,medium,1,1,1,3,0.5255
+text-only,,روان‌شناسی,anthropic/claude-sonnet-5.5,max,1,1,1,3,0.5255
+text-only,,روان‌شناسی,deepseek/deepseek-v4-pro-0813,max,1,1,1,3,0.5255
+text-only,,روان‌شناسی,google/gemini-3.8-flash,max,1,1,1,3,0.5255
+text-only,,روان‌شناسی,openai/gpt-6-luna,minimal,1,1,1,3,0.5255
+text-only,,روان‌شناسی,openai/gpt-6-luna,medium,1,1,1,3,0.5255
+text-only,,روان‌شناسی,openai/gpt-6-luna,max,1,1,1,3,0.5255
+text-only,,روان‌شناسی,openai/gpt-6.1-sol,medium,1,1,1,3,0.5255
+text-only,,روان‌شناسی,openai/gpt-6.1-sol,max,1,1,1,19,0.5085
+text-only,,روان‌شناسی,x-ai/grok-4.7,minimal,1,1,1,3,0.5255
+text-only,,روان‌شناسی,x-ai/grok-4.7,medium,1,1,1,3,0.5255
+text-only,,روان‌شناسی,x-ai/grok-4.7,max,1,1,1,3,0.5255
+text-only,,روان‌شناسی,z-ai/glm-5.3,max,1,1,1,3,0.5255
+text-only,,روان‌شناسی,anthropic/claude-opus-5.5,max,17,1,17,20,0.107
+text-only,,روان‌شناسی,deepseek/deepseek-v4-pro-0813,minimal,17,1,17,20,0.107
+text-only,,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,minimal,17,1,17,20,0.107
+text-only,,روان‌شناسی,google/gemini-3.8-flash,minimal,17,1,16,31,0.1165
+text-only,,روان‌شناسی,google/gemini-3.8-flash,medium,17,1,16,31,0.1165
+text-only,,روان‌شناسی,google/gemini-4-argon,minimal,17,1,17,20,0.107
+text-only,,روان‌شناسی,google/gemini-4-argon,medium,17,1,17,20,0.107
+text-only,,روان‌شناسی,google/gemini-4-argon,max,17,1,17,20,0.107
+text-only,,روان‌شناسی,openai/gpt-6.1-sol,minimal,17,1,17,20,0.107
+text-only,,روان‌شناسی,qwen/qwen3.8-27b,minimal,17,1,17,20,0.107
+text-only,,روان‌شناسی,qwen/qwen3.8-max-0902,medium,17,1,17,20,0.107
+text-only,,روان‌شناسی,qwen/qwen3.8-max-0902,max,17,1,17,20,0.107
+text-only,,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,max,29,3,29,33,0.0375
+text-only,,روان‌شناسی,qwen/qwen3.8-27b,medium,29,2,29,33,0.032
+text-only,,روان‌شناسی,qwen/qwen3.8-27b,max,29,2,29,33,0.032
+text-only,,روان‌شناسی,qwen/qwen3.8-max-0902,minimal,29,2,29,33,0.0335
+text-only,,روان‌شناسی,z-ai/glm-5.3,minimal,29,1,29,34,0.063
+text-only,,روان‌شناسی,z-ai/glm-5.3-flash,minimal,34,3,33,34,0.008
+text-only,,ریاضی,anthropic/claude-opus-5.5,minimal,1,1,1,1,1
+text-only,,ریاضی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+text-only,,ریاضی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+text-only,,ریاضی,anthropic/claude-sonnet-5.5,minimal,1,1,1,1,1
+text-only,,ریاضی,anthropic/claude-sonnet-5.5,medium,1,1,1,1,1
+text-only,,ریاضی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+text-only,,ریاضی,deepseek/deepseek-v4-pro-0813,minimal,1,1,1,1,1
+text-only,,ریاضی,deepseek/deepseek-v4-pro-0813,max,1,1,1,1,1
+text-only,,ریاضی,deepseek/deepseek-v4.1-flash-1017,minimal,1,1,1,1,1
+text-only,,ریاضی,deepseek/deepseek-v4.1-flash-1017,max,1,1,1,1,1
+text-only,,ریاضی,google/gemini-3.8-flash,medium,1,1,1,1,1
+text-only,,ریاضی,google/gemini-3.8-flash,max,1,1,1,1,1
+text-only,,ریاضی,google/gemini-4-argon,max,1,1,1,1,1
+text-only,,ریاضی,openai/gpt-6-luna,minimal,1,1,1,1,1
+text-only,,ریاضی,openai/gpt-6-luna,medium,1,1,1,1,1
+text-only,,ریاضی,openai/gpt-6-luna,max,1,1,1,1,1
+text-only,,ریاضی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+text-only,,ریاضی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+text-only,,ریاضی,openai/gpt-6.1-sol,max,1,1,1,1,1
+text-only,,ریاضی,qwen/qwen3.8-27b,minimal,1,1,1,1,1
+text-only,,ریاضی,qwen/qwen3.8-27b,medium,1,1,1,1,1
+text-only,,ریاضی,qwen/qwen3.8-27b,max,1,1,1,1,1
+text-only,,ریاضی,qwen/qwen3.8-max-0902,minimal,1,1,1,1,1
+text-only,,ریاضی,qwen/qwen3.8-max-0902,medium,1,1,1,1,1
+text-only,,ریاضی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+text-only,,ریاضی,x-ai/grok-4.7,minimal,1,1,1,1,1
+text-only,,ریاضی,x-ai/grok-4.7,medium,1,1,1,1,1
+text-only,,ریاضی,x-ai/grok-4.7,max,1,1,1,1,1
+text-only,,ریاضی,z-ai/glm-5.3,minimal,1,1,1,1,1
+text-only,,ریاضی,z-ai/glm-5.3,max,1,1,1,1,1
+text-only,,ریاضی,z-ai/glm-5.3-flash,max,1,1,1,1,1
+text-only,,ریاضی,google/gemini-3.8-flash,minimal,32,1,32,32,0.3615
+text-only,,ریاضی,google/gemini-4-argon,medium,32,1,32,32,0.3615
+text-only,,ریاضی,z-ai/glm-5.3-flash,minimal,34,32,34,35,0.0325
+text-only,,ریاضی,google/gemini-4-argon,minimal,35,34,35,35,0.0095
+text-only,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,minimal,1,1,2,7,0.467
+text-only,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,medium,1,1,2,6,0.373
+text-only,,زبان و ادبیات فارسی,google/gemini-4-argon,medium,1,1,2,5,0.46
+text-only,,زبان و ادبیات فارسی,google/gemini-3.8-flash,max,4,1,4,8,0.139
+text-only,,زبان و ادبیات فارسی,google/gemini-4-argon,max,4,1,4,10,0.1765
+text-only,,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,max,6,3,6,12,0.006
+text-only,,زبان و ادبیات فارسی,google/gemini-3.8-flash,medium,6,2,6,12,0.045
+text-only,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,medium,6,1,6,12,0.0875
+text-only,,زبان و ادبیات فارسی,google/gemini-3.8-flash,minimal,9,2,9,14,0.034
+text-only,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,max,9,3,9,15,0.0135
+text-only,,زبان و ادبیات فارسی,google/gemini-4-argon,minimal,11,3,11,19,0.0215
+text-only,,زبان و ادبیات فارسی,deepseek/deepseek-v4-pro-0813,max,12,4,13,20,0.0085
+text-only,,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,max,12,5,13,19,0.0085
+text-only,,زبان و ادبیات فارسی,openai/gpt-6.1-sol,minimal,12,7,13,21,0.001
+text-only,,زبان و ادبیات فارسی,x-ai/grok-4.7,minimal,12,6,13,19,0.0015
+text-only,,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,medium,16,10,17,23,0
+text-only,,زبان و ادبیات فارسی,deepseek/deepseek-v4-pro-0813,minimal,16,10,17,23,0.0005
+text-only,,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,minimal,16,9,17,23,0.0015
+text-only,,زبان و ادبیات فارسی,openai/gpt-6-luna,medium,16,9,17,23,0
+text-only,,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,minimal,16,8,17,23,0.0055
+text-only,,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,medium,16,9,17,23,0.0005
+text-only,,زبان و ادبیات فارسی,openai/gpt-6-luna,minimal,22,14,21,25,0
+text-only,,زبان و ادبیات فارسی,z-ai/glm-5.3,max,22,15,22,25,0
+text-only,,زبان و ادبیات فارسی,openai/gpt-6-luna,max,24,17,23,26,0
+text-only,,زبان و ادبیات فارسی,z-ai/glm-5.3,minimal,25,17,24,28,0.0005
+text-only,,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,minimal,26,23,26,29,0
+text-only,,زبان و ادبیات فارسی,qwen/qwen3.8-27b,minimal,26,20,26,29,0
+text-only,,زبان و ادبیات فارسی,qwen/qwen3.8-27b,max,28,23,27,29,0
+text-only,,زبان و ادبیات فارسی,qwen/qwen3.8-27b,medium,29,26,29,29,0
+text-only,,علوم اجتماعی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+text-only,,علوم اجتماعی,google/gemini-3.8-flash,max,1,1,1,1,1
+text-only,,علوم اجتماعی,google/gemini-4-argon,minimal,1,1,1,1,1
+text-only,,علوم اجتماعی,google/gemini-4-argon,medium,1,1,1,1,1
+text-only,,علوم اجتماعی,google/gemini-4-argon,max,1,1,1,1,1
+text-only,,علوم اجتماعی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+text-only,,علوم اجتماعی,openai/gpt-6.1-sol,max,1,1,1,1,1
+text-only,,علوم اجتماعی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+text-only,,علوم اجتماعی,deepseek/deepseek-v4-pro-0813,max,9,1,9,11,0.361
+text-only,,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,max,9,1,9,11,0.361
+text-only,,علوم اجتماعی,google/gemini-3.8-flash,minimal,9,1,9,28,0.3545
+text-only,,علوم اجتماعی,google/gemini-3.8-flash,medium,9,1,9,11,0.361
+text-only,,علوم اجتماعی,openai/gpt-6.1-sol,minimal,9,1,9,11,0.361
+text-only,,علوم اجتماعی,qwen/qwen3.8-27b,max,9,1,9,11,0.361
+text-only,,علوم اجتماعی,qwen/qwen3.8-max-0902,minimal,9,1,9,11,0.361
+text-only,,علوم اجتماعی,x-ai/grok-4.7,minimal,9,1,9,11,0.361
+text-only,,علوم اجتماعی,x-ai/grok-4.7,medium,9,1,9,11,0.361
+text-only,,علوم اجتماعی,x-ai/grok-4.7,max,9,1,9,11,0.361
+text-only,,علوم اجتماعی,z-ai/glm-5.3,max,9,1,9,11,0.361
+text-only,,علوم اجتماعی,anthropic/claude-opus-5.5,minimal,20,1,21,30,0.1185
+text-only,,علوم اجتماعی,anthropic/claude-opus-5.5,medium,20,1,21,30,0.1185
+text-only,,علوم اجتماعی,anthropic/claude-opus-5.5,max,20,1,21,30,0.1185
+text-only,,علوم اجتماعی,deepseek/deepseek-v4-pro-0813,minimal,20,1,20,26,0.127
+text-only,,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,minimal,20,1,20,26,0.127
+text-only,,علوم اجتماعی,openai/gpt-6-luna,medium,20,1,21,29,0.108
+text-only,,علوم اجتماعی,openai/gpt-6-luna,max,20,1,20,26,0.127
+text-only,,علوم اجتماعی,qwen/qwen3.8-27b,minimal,20,1,20,26,0.127
+text-only,,علوم اجتماعی,qwen/qwen3.8-max-0902,medium,20,1,22,33,0.1095
+text-only,,علوم اجتماعی,anthropic/claude-sonnet-5.5,medium,29,9,27,33,0.0335
+text-only,,علوم اجتماعی,openai/gpt-6-luna,minimal,29,9,27,31,0.0345
+text-only,,علوم اجتماعی,qwen/qwen3.8-27b,medium,29,9,27,31,0.0345
+text-only,,علوم اجتماعی,z-ai/glm-5.3-flash,minimal,29,9,28,33,0.033
+text-only,,علوم اجتماعی,anthropic/claude-sonnet-5.5,minimal,33,22,32,34,0.009
+text-only,,علوم اجتماعی,z-ai/glm-5.3,minimal,34,25,34,34,0.003
+text-only,humanities-1405-booklet-1,,google/gemini-3.8-flash,max,1,1,2,6,0.3995
+text-only,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,minimal,2,1,3,9,0.207
+text-only,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,medium,2,1,3,10,0.2615
+text-only,humanities-1405-booklet-1,,google/gemini-4-argon,medium,2,1,3,9,0.194
+text-only,humanities-1405-booklet-1,,google/gemini-4-argon,max,2,1,3,8,0.206
+text-only,humanities-1405-booklet-1,,openai/gpt-6.1-sol,medium,2,1,4,8,0.1895
+text-only,humanities-1405-booklet-1,,openai/gpt-6.1-sol,max,7,1,5,11,0.0985
+text-only,humanities-1405-booklet-1,,google/gemini-3.8-flash,medium,8,2,7,12,0.011
+text-only,humanities-1405-booklet-1,,anthropic/claude-opus-5.5,max,9,5,9,15,0.0005
+text-only,humanities-1405-booklet-1,,deepseek/deepseek-v4-pro-0813,max,10,4,11,17,0.0125
+text-only,humanities-1405-booklet-1,,google/gemini-3.8-flash,minimal,10,5,11,19,0.004
+text-only,humanities-1405-booklet-1,,x-ai/grok-4.7,minimal,10,5,10,16,0.004
+text-only,humanities-1405-booklet-1,,openai/gpt-6.1-sol,minimal,13,7,12,19,0
+text-only,humanities-1405-booklet-1,,deepseek/deepseek-v4.1-flash-1017,max,14,9,14,21,0.0005
+text-only,humanities-1405-booklet-1,,google/gemini-4-argon,minimal,15,8,16,24,0.001
+text-only,humanities-1405-booklet-1,,openai/gpt-6-luna,medium,15,8,16,23,0
+text-only,humanities-1405-booklet-1,,anthropic/claude-sonnet-5.5,medium,17,11,18,24,0
+text-only,humanities-1405-booklet-1,,deepseek/deepseek-v4-pro-0813,minimal,17,11,18,23,0
+text-only,humanities-1405-booklet-1,,deepseek/deepseek-v4.1-flash-1017,minimal,17,11,18,24,0
+text-only,humanities-1405-booklet-1,,qwen/qwen3.8-max-0902,minimal,17,9,18,24,0.001
+text-only,humanities-1405-booklet-1,,qwen/qwen3.8-max-0902,medium,17,10,18,24,0.0005
+text-only,humanities-1405-booklet-1,,z-ai/glm-5.3,max,17,12,18,24,0
+text-only,humanities-1405-booklet-1,,openai/gpt-6-luna,minimal,23,14,22,25,0
+text-only,humanities-1405-booklet-1,,openai/gpt-6-luna,max,23,14,22,25,0
+text-only,humanities-1405-booklet-1,,qwen/qwen3.8-27b,minimal,25,20,26,28,0
+text-only,humanities-1405-booklet-1,,anthropic/claude-sonnet-5.5,minimal,26,23,26,29,0
+text-only,humanities-1405-booklet-1,,qwen/qwen3.8-27b,max,26,22,26,29,0
+text-only,humanities-1405-booklet-1,,z-ai/glm-5.3,minimal,28,23,27,29,0
+text-only,humanities-1405-booklet-1,,qwen/qwen3.8-27b,medium,29,26,29,29,0
+text-only,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-opus-5.5,minimal,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-opus-5.5,medium,1,1,1,29,0.523
+text-only,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-sonnet-5.5,minimal,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-sonnet-5.5,medium,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-sonnet-5.5,max,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4-pro-0813,max,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,google/gemini-3.8-flash,max,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6-luna,minimal,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6-luna,medium,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6-luna,max,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6.1-sol,medium,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6.1-sol,max,1,1,1,19,0.5085
+text-only,humanities-1405-booklet-1,روان‌شناسی,x-ai/grok-4.7,minimal,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,x-ai/grok-4.7,medium,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,x-ai/grok-4.7,max,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,z-ai/glm-5.3,max,1,1,1,3,0.5255
+text-only,humanities-1405-booklet-1,روان‌شناسی,anthropic/claude-opus-5.5,max,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4-pro-0813,minimal,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,minimal,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,google/gemini-3.8-flash,minimal,17,1,16,31,0.1165
+text-only,humanities-1405-booklet-1,روان‌شناسی,google/gemini-3.8-flash,medium,17,1,16,31,0.1165
+text-only,humanities-1405-booklet-1,روان‌شناسی,google/gemini-4-argon,minimal,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,google/gemini-4-argon,medium,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,google/gemini-4-argon,max,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,openai/gpt-6.1-sol,minimal,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-27b,minimal,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-max-0902,medium,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-max-0902,max,17,1,17,20,0.107
+text-only,humanities-1405-booklet-1,روان‌شناسی,deepseek/deepseek-v4.1-flash-1017,max,29,3,29,33,0.0375
+text-only,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-27b,medium,29,2,29,33,0.032
+text-only,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-27b,max,29,2,29,33,0.032
+text-only,humanities-1405-booklet-1,روان‌شناسی,qwen/qwen3.8-max-0902,minimal,29,2,29,33,0.0335
+text-only,humanities-1405-booklet-1,روان‌شناسی,z-ai/glm-5.3,minimal,29,1,29,34,0.063
+text-only,humanities-1405-booklet-1,روان‌شناسی,z-ai/glm-5.3-flash,minimal,34,3,33,34,0.008
+text-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-opus-5.5,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4-pro-0813,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4-pro-0813,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4.1-flash-1017,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,deepseek/deepseek-v4.1-flash-1017,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6-luna,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,openai/gpt-6.1-sol,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-27b,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,x-ai/grok-4.7,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3-flash,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,ریاضی,google/gemini-3.8-flash,minimal,32,1,32,32,0.3615
+text-only,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,medium,32,1,32,32,0.3615
+text-only,humanities-1405-booklet-1,ریاضی,z-ai/glm-5.3-flash,minimal,34,32,34,35,0.0325
+text-only,humanities-1405-booklet-1,ریاضی,google/gemini-4-argon,minimal,35,34,35,35,0.0095
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,minimal,1,1,2,7,0.467
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,medium,1,1,2,6,0.373
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,medium,1,1,2,5,0.46
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,max,4,1,4,8,0.139
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,max,4,1,4,10,0.1765
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-opus-5.5,max,6,3,6,12,0.006
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,medium,6,2,6,12,0.045
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,medium,6,1,6,12,0.0875
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-3.8-flash,minimal,9,2,9,14,0.034
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,max,9,3,9,15,0.0135
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,google/gemini-4-argon,minimal,11,3,11,19,0.0215
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4-pro-0813,max,12,4,13,20,0.0085
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,max,12,5,13,19,0.0085
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6.1-sol,minimal,12,7,13,21,0.001
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,x-ai/grok-4.7,minimal,12,6,13,19,0.0015
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,medium,16,10,17,23,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4-pro-0813,minimal,16,10,17,23,0.0005
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,deepseek/deepseek-v4.1-flash-1017,minimal,16,9,17,23,0.0015
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,medium,16,9,17,23,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,minimal,16,8,17,23,0.0055
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-max-0902,medium,16,9,17,23,0.0005
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,minimal,22,14,21,25,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,z-ai/glm-5.3,max,22,15,22,25,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,openai/gpt-6-luna,max,24,17,23,26,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,z-ai/glm-5.3,minimal,25,17,24,28,0.0005
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,anthropic/claude-sonnet-5.5,minimal,26,23,26,29,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-27b,minimal,26,20,26,29,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-27b,max,28,23,27,29,0
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,qwen/qwen3.8-27b,medium,29,26,29,29,0
+text-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,minimal,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-4-argon,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,medium,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-max-0902,max,1,1,1,1,1
+text-only,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4-pro-0813,max,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,max,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,minimal,9,1,9,28,0.3545
+text-only,humanities-1405-booklet-1,علوم اجتماعی,google/gemini-3.8-flash,medium,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6.1-sol,minimal,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,max,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-max-0902,minimal,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,minimal,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,medium,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,x-ai/grok-4.7,max,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,z-ai/glm-5.3,max,9,1,9,11,0.361
+text-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,minimal,20,1,21,30,0.1185
+text-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,medium,20,1,21,30,0.1185
+text-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-opus-5.5,max,20,1,21,30,0.1185
+text-only,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4-pro-0813,minimal,20,1,20,26,0.127
+text-only,humanities-1405-booklet-1,علوم اجتماعی,deepseek/deepseek-v4.1-flash-1017,minimal,20,1,20,26,0.127
+text-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,medium,20,1,21,29,0.108
+text-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,max,20,1,20,26,0.127
+text-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,minimal,20,1,20,26,0.127
+text-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-max-0902,medium,20,1,22,33,0.1095
+text-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,medium,29,9,27,33,0.0335
+text-only,humanities-1405-booklet-1,علوم اجتماعی,openai/gpt-6-luna,minimal,29,9,27,31,0.0345
+text-only,humanities-1405-booklet-1,علوم اجتماعی,qwen/qwen3.8-27b,medium,29,9,27,31,0.0345
+text-only,humanities-1405-booklet-1,علوم اجتماعی,z-ai/glm-5.3-flash,minimal,29,9,28,33,0.033
+text-only,humanities-1405-booklet-1,علوم اجتماعی,anthropic/claude-sonnet-5.5,minimal,33,22,32,34,0.009
+text-only,humanities-1405-booklet-1,علوم اجتماعی,z-ai/glm-5.3,minimal,34,25,34,34,0.003

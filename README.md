@@ -24,7 +24,7 @@ The application does not automatically read `.env`. Keys are never included in s
 
 The default configuration evaluates the 80-question humanities 1405 booklet 1. Its source PDF, images, and answer key are in `datasets/humanities-1405/`. Six questions include images; 74 are text-only. The shared 200-question answer key includes 120 keys reserved for later booklets.
 
-The booklet contains 20 mathematics, 30 Persian language/literature, 15 social sciences, and 15 psychology questions. Source spot-checking corrected question 15, option 2 from `2/8` to the PDF's `3/8`. The supplied answer key is unchanged; it has not been independently verified against an official key.
+The booklet contains 20 mathematics, 30 Persian language/literature, 15 social sciences, and 15 psychology questions. Literature questions carry section tags in booklet order: literary history and stylistics (21–28), rhetorical devices (29–36), prosody and rhyme (37–44), one integrated question (45), and semantic correspondence (46–50). Source spot-checking corrected question 15, option 2 from `2/8` to the PDF's `3/8`. The supplied answer key is unchanged; it has not been independently verified against an official key.
 
 Run a small benchmark against the original sample and generate its report:
 
@@ -35,7 +35,7 @@ Run a small benchmark against the original sample and generate its report:
 ./bin/konkour-bench report --run latest --out reports/smoke
 ```
 
-Open `reports/smoke/index.html` in a browser. It works offline, with filters, sortable leaderboards, accuracy bars, category heatmaps, effort comparisons, and cost/token Pareto charts. The adjacent CSV, JSON, and SVG files can be shared or analyzed separately. Full transcripts remain in the database.
+Open `reports/smoke/index.html` in a browser. The HTML is self-contained, including charts, Persian questions, images, equations, and fonts. It includes scoped findings, coverage, sortable rankings with accuracy intervals and resampled rank intervals, difficulty-based estimates for configurations with unresolved answers, paired effort comparisons, subject scores and score separation by subject and section, cost/token frontiers, resource distributions, output length of correct versus wrong answers, question difficulty, shared errors, serving-provider comparisons, and run provenance. Adjacent CSV, JSON, and SVG files support further analysis. Full transcripts remain in the database.
 
 Run all configured models and questions:
 
@@ -114,7 +114,7 @@ The configuration contains dataset entries with stable IDs and paths to question
 
 Keep the supplied JSON structure:
 
-- Question records have `number`, `category`, `question`, four `options`, and an optional `image` path.
+- Question records have `number`, `category`, `question`, four `options`, and optional `image` and `section` fields. A section subdivides a category for reporting only; it is never sent to a model.
 - Options have a unique `number` from 1 to 4, optional `text`, and an optional `image` path. An image-only option can have `"text": null`.
 - Answer records have `number` and `correct_option` from 1 to 4.
 
@@ -122,7 +122,7 @@ Preserve the original Persian, English, or Arabic text and inline LaTeX. JSON ba
 
 `benchmark.sample.json` selects the original sample. The sample has 15 questions, including two with images, and 24 answer keys. The nine extra keys are intentionally ignored. The sample is a fixture for exercising the benchmark, not a representative evaluation dataset.
 
-After adding questions, rerun the benchmark; unchanged requests remain cached. After correcting keys or categories, regenerate the report without inference:
+After adding questions, rerun the benchmark; unchanged requests remain cached. After correcting keys, categories, or sections, regenerate the report without inference:
 
 ```sh
 ./bin/konkour-bench validate
@@ -130,6 +130,34 @@ After adding questions, rerun the benchmark; unchanged requests remain cached. A
 ```
 
 Without `--run`, reports use the current dataset/key snapshot and compatible recorded requests. Newly added questions remain uncompleted until evaluated. `report --run RUN_ID` reproduces a saved run’s original dataset, answer keys, and question/model selection. Every report records a scoring revision and protocol fingerprint.
+
+### Analyze a completed benchmark
+
+To combine the mixed benchmark with its resume runs and compatible cached answers:
+
+```sh
+./bin/konkour-bench report --backend mixed --out reports/humanities-1405-mixed
+```
+
+The output folder is a report label, not a saved run ID. Use an actual timestamped ID with `--run` to select a single run snapshot. Report generation uses local records and performs no inference or accounting API calls.
+
+The checked-in [humanities 1405 mixed report](released-reports/humanities-1405-mixed/index.html) includes 13 models, with its exports and [eight reasoning observations](released-reports/humanities-1405-mixed/reasoning-observations.md) alongside it. The default configuration excludes MiMo-v2.6-Pro and MiMo-v2.6-Flash because neither completed an evaluation in this benchmark; historical records remain in the database.
+
+The report starts with the full exam. Cohort, dataset, and subject controls recompute the analysis scope; the model search and effort display filter only hide performance/resource rows, without changing frontier membership. Incomplete configurations remain unranked, with best/worst possible completion bounds where applicable. These bounds are distinct from the 95% Wilson intervals shown for complete scores. Wilson intervals describe an independent-question sampling model, not run-to-run variability or generalization across exams.
+
+Effort comparisons show gains and regressions on questions completed at both settings, and label partial pairs. Question difficulty uses a fixed panel of configurations complete in the selected scope. Review flags identify a strict majority choosing the same non-key option; they do not establish a key error or change grading. The shared-error comparison's “either correct” result is an oracle upper bound, not an ensemble score. Subscription estimates never enter paid cost rankings. Resource quantiles use known measurements on completed answers, with linear interpolation at `(n-1)*p`; original inference timing survives cache reuse.
+
+Five diagnostics use the same complete-configuration panel. Rank intervals come from 2,000 paired question resamples with a fixed seed; ties share the better rank. Unresolved-answer estimates apply only when every missing answer is an unresolved request: a Rasch model fits item difficulty to the panel and ability to the configuration's completed answers. A held-out check refits it for each complete configuration on the same questions, and the same model's other tiers are shown on those questions; the estimate is descriptive and never ranks. Score separation attributes between-configuration variance in total correct to subjects and sections, as cov(group, total) / var(total). Answer length compares output tokens of correct and wrong answers, including a ratio from log tokens with question and configuration fixed effects. Provider comparisons use panel accuracy on the same questions excluding the same model, with intervals clustered by question and shown only with at least 10 answers on each side.
+
+Exports include `leaderboard.csv`, `outcomes.csv`, `questions.csv`, `effort.csv`, `ranks.csv`, `estimates.csv`, `separation.csv`, `length.csv`, and `providers.csv`, plus `results.json` with all scoped analyses. The per-analysis CSVs include cohort/dataset/category columns: select a scope before aggregating, because the same observations appear in multiple scopes. The spending ledger covers new attempts in matching-protocol runs; the provenance table also identifies earlier inference origins reused from cache.
+
+Every diagram has a **Download PNG** button. Images include the current selection, title, units, legends, and interpretation notes, and export at double resolution (bounded for unusually large charts). Export works offline. Pareto diagrams place model names, requested effort, and accuracy beside frontier points without connector lines. Gray markers show the remaining configurations; marker shapes distinguish efforts. Hover or focus a point for exact resource use. Display filters hide points without recomputing frontier membership.
+
+Model-family logos appear alongside names in tables and charts, including exported PNGs. Artwork is embedded, so shared HTML remains offline; unknown model families keep their text labels. Asset sources and update instructions are in [internal/report/logos/README.md](internal/report/logos/README.md).
+
+Charts use an embedded Inter typeface with readable model labels, consistent weights, and letter spacing. The same font travels with PNG exports. Exact model IDs remain in hover details and data exports, and model search accepts both IDs and display names. Font sources and update instructions are in [internal/report/fonts/README.md](internal/report/fonts/README.md).
+
+Report code and templates live in `internal/report/`. The committed math assets are generated from the dashboard's existing pinned KaTeX dependency; after updating that dependency, run `npm --prefix dashboard ci --no-audit --no-fund` and `make report-assets`. Do not edit `math.generated.*` directly. `make check` includes the report's Go and dependency-free JavaScript regression tests.
 
 ## Evaluation rules
 

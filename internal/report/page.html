@@ -1,40 +1,133 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Konkour Bench</title>
-<style>
-body{font:15px system-ui,sans-serif;color:#17212b;background:#f5f7f9;margin:24px}h1{margin-bottom:8px}a{color:#175c91}label{display:inline-block;margin:8px 16px 8px 0}select,button{font:inherit;padding:5px}section{background:white;border:1px solid #dce1e7;padding:18px;margin:20px 0;border-radius:6px}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{padding:9px;text-align:left;border-bottom:1px solid #e3e7eb;white-space:nowrap}th button{border:0;background:none;padding:0;font-weight:bold;cursor:pointer}svg{width:100%;height:auto;max-height:750px}.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:20px}.note{color:#536171;font-size:13px}code{overflow-wrap:anywhere}details{margin-top:12px}.correct{color:#16754a}.wrong{color:#ac3030}caption{text-align:left;font-weight:bold;padding:8px 0}noscript{display:block;padding:20px}#heatmap td{white-space:normal}#heatmap th{white-space:normal}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Konkour Bench results: model accuracy, reasoning effort, question difficulty, reliability, and measured resource use. An offline, reproducible analysis of the selected exam questions.">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="no-referrer">
+<title>{{.Title}} · Konkour Bench</title>
+<style id="chart-fonts">{{.FontStyle}}</style>
+<style>{{.Style}}</style>
+<style>{{.MathStyle}}</style>
 </head>
 <body>
-<h1>Konkour Bench</h1>
-<p>Accuracy, inference cost, and token use on Iranian university entrance exam questions.</p>
-<p class="note">Backend: {{.Backend}} · {{.CostBasis}}</p>
-<p class="note">Generated {{.Generated.Format "2006-01-02 15:04 UTC"}} · {{if .RunID}}Run <code>{{.RunID}}</code>{{else}}Current dataset, compatible recorded results{{end}}</p>
-<nav><a href="results.json">JSON results</a> · <a href="leaderboard.csv">CSV leaderboard</a> · <a href="accuracy.svg">Accuracy SVG</a> · <a href="cost.svg">Cost SVG</a> · <a href="tokens.svg">Tokens SVG</a></nav>
-<section>
-<label>Cohort <select id="cohort"><option value="text-only">Text-only</option><option value="full">Full dataset</option><option value="image-only">Image-only</option></select></label>
-<label>Dataset <select id="dataset"><option value="">All datasets</option>{{range .Datasets}}<option>{{.}}</option>{{end}}</select></label>
-<label>Category <select id="category"><option value="">All categories</option>{{range .Categories}}<option dir="auto">{{.}}</option>{{end}}</select></label>
-<label>Model <select id="model"><option value="">All models</option>{{range .Models}}<option>{{.}}</option>{{end}}</select></label>
-<label>Effort <select id="tier"><option value="">All efforts</option><option>minimal</option><option>medium</option><option>max</option></select></label>
-<p class="note">Invalid answers and refusals count as incorrect. Infrastructure failures leave a row incomplete and unranked. Image skips never reduce the full-dataset denominator. Unknown accounting is shown as —. Cached results retain their original billed usage.</p>
-<div class="scroll"><table id="leaderboard"><thead><tr></tr></thead><tbody></tbody></table></div>
-<p id="summary" class="note"></p>
-</section>
-<div class="charts">
-<section><h2>Accuracy</h2><div id="accuracy-chart"></div></section>
-<section><h2>Accuracy and cost</h2><div id="cost-chart"></div></section>
-<section><h2>Accuracy and tokens</h2><div id="tokens-chart"></div></section>
-<section><h2>Effort comparison</h2><div id="effort-chart"></div></section>
+<a class="skip" href="#main">Skip to report</a>
+<aside class="rail" aria-label="Report navigation">
+<a class="brand" href="#overview"><span class="brand-mark">K</span><span>KONKOUR<br><small>BENCH / RESEARCH</small></span></a>
+<p class="rail-label">RESULTS &amp; ANALYSIS</p>
+<nav>
+<a href="#overview"><span>01</span> Overview</a>
+<a href="#ranking"><span>02</span> Performance</a>
+<a href="#effort"><span>03</span> Reasoning effort</a>
+<a href="#subjects"><span>04</span> Subject breakdown</a>
+<a href="#efficiency"><span>05</span> Cost &amp; resources</a>
+<a href="#questions"><span>06</span> Question explorer</a>
+<a href="#comparison"><span>07</span> Shared errors</a>
+<a href="#reliability"><span>08</span> Run health</a>
+<a href="#methodology"><span>09</span> Method &amp; provenance</a>
+</nav>
+<div class="rail-footer"><span class="offline-dot"></span> Self-contained report<br><small>No network connection required</small></div>
+</aside>
+<main id="main">
+<header class="masthead">
+<div class="eyebrow">KONKOUR BENCH <span>/</span> EXPERIMENT REPORT</div>
+<div class="heading-line"><div><h1>{{.Title}}</h1><p class="subtitle">Accuracy, effort, and the questions behind the scores.</p></div><button id="print" class="secondary" type="button">Print / save PDF</button></div>
+<div class="metadata"><span><b>DATA</b> {{range $i,$v := .Datasets}}{{if $i}}, {{end}}{{$v}}{{end}}</span><span><b>BACKEND</b> {{.Backend}}</span><span><b>GENERATED</b> {{.Generated.Format "02 Jan 2006 · 15:04 UTC"}}</span></div>
+<p class="note">{{if .RunID}}Saved run <code>{{.RunID}}</code>{{else}}Current dataset scored against compatible recorded history, including resumed runs.{{end}}</p>
+<div class="downloads" aria-label="Report exports"><a href="results.json" download>Results JSON ↗</a><a href="leaderboard.csv" download>Leaderboard CSV ↗</a><a href="questions.csv" download>Question analysis CSV ↗</a><a href="effort.csv" download>Effort pairs CSV ↗</a><a href="outcomes.csv" download>Answer-level CSV ↗</a><a href="ranks.csv" download>Rank intervals CSV ↗</a><a href="estimates.csv" download>Unresolved estimates CSV ↗</a><a href="separation.csv" download>Score separation CSV ↗</a><a href="length.csv" download>Answer length CSV ↗</a><a href="providers.csv" download>Providers CSV ↗</a></div>
+</header>
+<div class="scope-bar" aria-label="Analysis scope">
+<label>Cohort<select id="cohort"><option value="full">Full exam</option><option value="text-only">Text-only</option><option value="image-only">Image-only</option></select></label>
+<label>Dataset<select id="dataset"><option value="">All datasets</option>{{range .Datasets}}<option>{{.}}</option>{{end}}</select></label>
+<label>Subject<select id="category"><option value="">All subjects</option>{{range .Categories}}<option dir="auto">{{.}}</option>{{end}}</select></label>
+<button id="reset" class="secondary" type="button">Reset view</button>
+<p id="scope-summary" role="status" aria-live="polite"></p>
 </div>
-<p class="note">Orange points mark Pareto frontiers: no other result has equal or higher accuracy at equal or lower resource use, with at least one strict improvement. Frontiers compare all models and efforts within the selected dataset/category/cohort; model and effort filters only hide points. Token counts use each model’s native tokenizer. Reasoning is already included in completion tokens.</p>
-<section><h2>Category accuracy</h2><div class="scroll" id="heatmap"></div></section>
-<section><h2>Question outcomes</h2><p class="note">Use <code>konkour-bench inspect --hash REQUEST_HASH</code> for the original request, response, and attempt history. Requested tiers and sent values can differ; OpenRouter may translate them internally.</p><div class="scroll"><table id="outcomes"><thead><tr><th>Question</th><th>Category</th><th>Model</th><th>Tier → sent</th><th>Status</th><th>Answer / key</th><th>Provider</th><th>Detail / request hash</th></tr></thead><tbody></tbody></table></div></section>
-<section><h2>Provenance</h2><p>Scoring revision: <code>{{.ScoringRevision}}</code></p><p>Protocol: <code>{{.Protocol}}</code></p><p class="note">Each question has equal weight. A single generation is retained for each exact request. Provider-default sampling is used with no client token limits. Full request/response records remain in the local SQLite database; reports contain outcome and usage data.</p></section>
-<section><h2>Actual run spending</h2><p class="note">New HTTP attempts only; cache hits add no spending. Known cost is a lower bound when any attempt has unknown cost. Retry cost is included in known cost. Without a run filter, this ledger covers all runs in the database.</p><div class="scroll"><table><thead><tr><th>Run</th><th>New attempts</th><th>Known cost USD</th><th>Of which retries USD</th><th>Attempts with unknown cost</th></tr></thead><tbody>{{range .Spending}}<tr><td>{{.RunID}}</td><td>{{.Attempts}}</td><td>{{printf "%.8f" .KnownCost}}</td><td>{{printf "%.8f" .KnownRetryCost}}</td><td>{{.UnknownCost}}</td></tr>{{end}}</tbody></table></div></section>
-<noscript>Enable JavaScript to filter results and view charts. CSV, JSON, and SVG exports remain available offline.</noscript>
+<section id="overview" class="section">
+<div class="section-heading"><span class="section-number">01</span><div><h2>What this run tells us</h2><p>Findings update with the selected cohort, dataset, and subject.</p></div></div>
+<div id="insights" class="insights"></div>
+<div id="coverage" class="coverage-card"></div>
+<p class="callout">These are scores on one fixed exam, with one retained generation per question and setting. Small differences are descriptive. They do not establish a repeatable model ranking or general performance across exams.</p>
+</section>
+<section id="ranking" class="section">
+<div class="section-heading"><span class="section-number">02</span><div><h2>Performance, with uncertainty</h2><p>Equal question weights. Only complete configurations receive a score and rank.</p></div></div>
+<div class="display-controls"><label>Find a model<input id="model-search" type="search" placeholder="Model name or provider"></label><label>Display effort<select id="tier"><option value="">All efforts</option><option>minimal</option><option>medium</option><option>max</option></select></label><span class="note">Display filters affect performance and resource views only. Frontiers always use all configurations in the analysis scope.</span></div>
+<div class="chart-card"><div id="accuracy-chart"></div></div>
+<p class="note">Intervals illustrate uncertainty under independent question sampling, not run-to-run model variance. This exam is not a random sample; shared topics and model errors can violate that assumption. Overlapping intervals are not a paired significance test.</p>
+<div class="chart-card"><div id="rank-chart"></div></div>
+<p class="note">Each resample draws the selected questions with replacement and keeps every configuration's answers paired, so a resample that repeats a hard question repeats it for all configurations. This is the paired comparison the intervals above cannot make. Ranks use competition ranking, so ties share the better rank. Like the Wilson intervals, it treats the exam's questions as exchangeable and does not measure run-to-run variation.</p>
+<div id="leaderboard" class="table-wrap"></div>
+<h3>Unresolved answers</h3>
+<p class="note">Unresolved requests, mostly timeouts, leave a configuration unranked. If they fall on harder questions than the configuration completed, its accuracy on completed answers overstates it. The Rasch estimate fits item difficulty to the complete-configuration panel, fits the configuration's ability to its completed answers, and adds the expected correct answers on the unresolved questions (± one standard deviation, ignoring uncertainty in ability). The held-out check refits the same model for each complete configuration on the same unresolved questions, where true answers are known. Same-model results on those questions show whether they are specifically hard for this model. Configurations with skipped or unsupported answers are not estimated.</p>
+<div class="chart-card"><div id="estimate-chart"></div></div>
+<div id="estimate-table" class="table-wrap"></div>
+<details id="unranked"><summary id="unranked-summary">Unranked configurations</summary><p class="note">Bounds assume every unresolved answer is wrong or correct. They are not confidence intervals. Unsupported tiers and image skips have no score bounds.</p><div id="unranked-table" class="table-wrap"></div></details>
+</section>
+<section id="effort" class="section">
+<div class="section-heading"><span class="section-number">03</span><div><h2>What does more reasoning buy?</h2><p>Track answers gained and lost on the same questions, alongside the resource multiplier.</p></div></div>
+<div class="inline-control"><label>Compare tiers<select id="effort-pair"><option value="medium|max">Medium → max</option><option value="minimal|medium">Minimal → medium</option><option value="minimal|max">Minimal → max</option></select></label><span class="note">Requested tiers may map to different sent values. They are not equal internal thinking budgets across models.</span></div>
+<div class="chart-card"><div id="effort-chart"></div></div>
+<div id="effort-table" class="table-wrap"></div>
+<p class="note">A gain changes a wrong answer to correct; a regression does the reverse. Partial pairs compare only questions completed at both tiers and may be biased by missing difficult questions. Cost and token ratios use that same paired subset. No resampling or causal claim is implied.</p>
+</section>
+<section id="subjects" class="section">
+<div class="section-heading"><span class="section-number">04</span><div><h2>Where performance separates</h2><p>Subject scores keep their own denominators. A complete subject can rank even when the overall exam is incomplete.</p></div></div>
+<div id="subject-mix" class="subject-mix"></div>
+<div class="chart-card"><div id="subjects-chart"></div></div>
+<details><summary>Subject scores as a table</summary><div id="heatmap" class="table-wrap"></div></details>
+<p class="note">The table covers all subjects in the selected dataset and cohort; the global subject filter highlights its column. Each cell shows correct / total and accuracy, or completed / total when unranked. Image-only results involve a small, subject-specific subset and do not isolate vision capability.</p>
+<div class="chart-card"><div id="separation-chart"></div></div>
+<details><summary>Score separation as a table</summary><div id="separation-table" class="table-wrap"></div></details>
+<p class="note">Separation follows the selected scope: with a subject selected, it shows that subject's sections. Variance shares describe which questions drive differences between the complete configurations, not which subjects matter more. Questions answered correctly by every configuration add nothing to the ranking. Sections come from optional dataset tags; the Persian literature sections follow the booklet's section order, and question 45 combines several sections.</p>
+</section>
+<section id="efficiency" class="section">
+<div class="section-heading"><span class="section-number">05</span><div><h2>The price of an answer</h2><p>Compare measured resources at equal scope. Accuracy is not the only constraint.</p></div></div>
+<div class="chart-card"><div id="cost-chart"></div></div><div class="chart-card"><div id="tokens-chart"></div></div>
+<p class="note">Colored markers and the connected line mark the Pareto frontier: no other complete configuration is at least as accurate and uses no more of that resource, with one strict improvement. Frontier points are labeled directly with model name, effort, and accuracy; gray markers show the remaining configurations. Circle = minimal, square = medium, diamond = max. Hover or focus any point for details. Unknown accounting is excluded. Zero-cost points are listed in the table rather than on a log axis.</p>
+<div id="resource-table" class="table-wrap"></div>
+<p class="note">Medians and p90s summarize completed answers with known measurements; the table reports the sample count. Latency is original inference wall time, including CLI overhead, excluding queue time and earlier retries. It is not controlled for provider load. Native tokenizers and the Claude CLI protocol differ. Reasoning is already included in completion tokens; it is never added again.</p>
+<div class="chart-card"><div id="length-chart"></div></div>
+<p id="length-summary" class="callout"></p>
+<p class="note">Output tokens are completion tokens, including reasoning. The within-question ratio comes from a regression of log output tokens on a wrong-answer indicator with question and configuration fixed effects. It compares answers to the same question, so question difficulty alone cannot explain it. Only questions with both correct and wrong answers inform it. The longest decile is each configuration's top 10% of answers by output tokens, rounded up. Length is descriptive here; it has not been validated as an abstention rule. Display filters hide chart rows; the summary uses every complete configuration.</p>
+</section>
+<section id="questions" class="section">
+<div class="section-heading"><span class="section-number">06</span><div><h2>Go from a score to a question</h2><p>Difficulty is measured on a fixed panel of configurations that completed every question in the current scope.</p></div></div>
+<div class="chart-card"><div id="difficulty-chart"></div></div>
+<div class="question-controls"><label>Search questions<input id="question-search" type="search" placeholder="Question number, text, or subject"></label><label>Show<select id="question-filter"><option value="all">All questions</option><option value="review">Consensus disagrees with key</option><option value="hard">Less than half correct</option><option value="image">Contains an image</option></select></label></div>
+<p id="panel-note" class="note"></p>
+<div class="question-layout"><div><div id="question-list" class="question-list" aria-label="Question selection"></div><p id="question-count" class="note" role="status"></p></div><article id="question-detail" class="question-detail" aria-label="Selected question"></article></div>
+<p class="note">Configurations from the same model are correlated; panel counts are descriptive votes, not independent evidence. A review flag requires at least three complete configurations and a strict majority choosing the same non-key option. It does not modify the supplied answer key.</p>
+</section>
+<section id="comparison" class="section">
+<div class="section-heading"><span class="section-number">07</span><div><h2>Do two configurations miss the same things?</h2><p>Compare paired outcomes, complementary strengths, and shared failures.</p></div></div>
+<div class="pair-controls"><label>Configuration A<select id="compare-a"></select></label><label>Configuration B<select id="compare-b"></select></label></div>
+<div id="pair-results"></div>
+<p class="note">Only complete configurations are offered. “Either correct” is an oracle upper bound that knows the key; it is not the accuracy of a deployable ensemble. Comparisons are exploratory, with no multiple-comparison significance claims.</p>
+</section>
+<section id="reliability" class="section">
+<div class="section-heading"><span class="section-number">08</span><div><h2>Coverage, failures, and accounting</h2><p>Capability exclusions, invalid answers, and unresolved requests have different meanings.</p></div></div>
+<div id="health" class="two-up"></div>
+<h3>Serving provider</h3>
+<p class="note">OpenRouter can route one model to different providers over a run. This table lists models served by more than one provider in the scope. Expected accuracy is the complete-panel accuracy on the same questions, excluding every configuration of the same model. Routing changes over time, so providers often serve different question blocks; this adjustment addresses that. It does not adjust for tier mix, so compare the tiers served. The last column compares the provider with the model's other providers pooled; its interval clusters answers by question and needs at least 10 answers on each side. Rows are exploratory, with no multiple-comparison correction.</p>
+<div id="providers" class="table-wrap"></div>
+<h3>New spending by run</h3>
+<p class="note">This ledger covers {{if .RunID}}the saved run{{else}}all runs matching the evaluation protocol{{end}}, which can extend beyond the selected outcomes and filters. Cached answers retain their original inference cost in rankings but add no new spending here. Retry overhead is included in known charges. Unknown paid charges make the known total a lower bound; subscription attempts are counted separately.</p>
+<div id="spending" class="table-wrap"></div>
+</section>
+<section id="methodology" class="section">
+<div class="section-heading"><span class="section-number">09</span><div><h2>Method &amp; provenance</h2><p>Enough context to reproduce the scores and interpret their limits.</p></div></div>
+<div class="method-grid"><div><h3>Scoring protocol</h3><p>Four options, one supplied key. Each question has equal weight. Incorrect, invalid, refused, and truncated completions count as wrong. Unresolved requests leave a configuration unranked. Skipping image questions never shrinks the full-exam denominator.</p><p>The benchmark requests a strict JSON answer, with original question text and image bytes. It supplies no grading metadata or answer key. Sampling uses provider defaults; no client token cap is set. No research tools or automatic resampling are used.</p></div><div><h3>Comparison limits</h3><p>OpenRouter and Claude Code are distinct protocols. Claude can use internal turns to produce structured output. Requested effort can be mapped or clamped by the provider. Reported API-price estimates for subscription usage are not charges and never enter cost rankings.</p><p>The supplied key is the grading reference, not an independently verified official key. This report cannot determine training contamination, repeatability, or generalization beyond the selected exam.</p></div></div>
+<h3>Source runs &amp; inference origins</h3><p class="note">Selected jobs identify the run whose result was used; origin answers identify the run that performed the retained inference. They can differ because of caching. Zero timeout or budget means the corresponding local guard was disabled.</p><div id="sources" class="table-wrap"></div>
+<details><summary>Dataset metadata &amp; validation notes</summary><div id="dataset-metadata"></div></details>
+<div class="fingerprints"><div><b>SCORING REVISION</b><code>{{.ScoringRevision}}</code></div><div><b>PROTOCOL FINGERPRINT</b><code>{{.Protocol}}</code></div><div><b>ANALYSIS SCHEMA</b><code>{{.AnalysisVersion}}</code></div></div>
+<p class="note">Full request/response transcripts remain in the local database. Use <code>konkour-bench inspect --hash REQUEST_HASH</code> with a hash from the question explorer. JSON contains all scoped analyses and original normalized usage; CSV exports are safe to open in spreadsheets. Static text-only charts: <a href="accuracy.svg">accuracy</a> · <a href="cost.svg">cost</a> · <a href="tokens.svg">tokens</a>.</p>
+</section>
+<footer>KONKOUR BENCH <span>Measured results. Explicit limits. Reproducible analysis.</span></footer>
+<noscript><p class="callout">JavaScript is required for the interactive analysis. Open the adjacent CSV, JSON, or SVG exports to inspect the results without it.</p></noscript>
+</main>
 <script id="data" type="application/json">{{.Data}}</script>
+<script>{{.MathScript}}</script>
 <script>{{.Script}}</script>
-</body></html>
+</body>
+</html>

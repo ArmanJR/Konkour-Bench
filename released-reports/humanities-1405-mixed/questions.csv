@@ -1,0 +1,641 @@
+cohort,dataset,category,question,question_category,has_image,expected,panel_configurations,correct,invalid_answers,option_1,option_2,option_3,option_4,review_candidate,question_section
+full,,,humanities-1405-booklet-1:76,روان‌شناسی,false,3,23,2,0,2,1,2,18,true,
+full,,,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,23,3,0,0,3,6,14,true,قرابت معنایی
+full,,,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,23,5,2,4,5,0,12,true,عروض و قافیه
+full,,,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,23,5,2,2,6,5,8,false,ترکیبی
+full,,,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,23,7,0,0,0,7,16,true,
+full,,,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,23,9,0,14,9,0,0,true,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,23,10,0,4,0,9,10,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,23,10,0,0,10,11,2,false,عروض و قافیه
+full,,,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,23,11,0,6,6,0,11,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,23,12,0,0,3,12,8,false,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,23,12,2,5,3,12,1,false,عروض و قافیه
+full,,,humanities-1405-booklet-1:66,روان‌شناسی,false,1,23,12,0,12,0,0,11,false,
+full,,,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,23,14,2,14,1,5,1,false,عروض و قافیه
+full,,,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,23,15,0,1,15,7,0,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,23,15,0,15,1,3,4,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,23,15,0,3,2,3,15,false,عروض و قافیه
+full,,,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,23,15,1,3,0,15,4,false,عروض و قافیه
+full,,,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,23,15,1,2,1,4,15,false,عروض و قافیه
+full,,,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,23,16,0,16,1,5,1,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,23,16,0,6,16,1,0,false,
+full,,,humanities-1405-booklet-1:14,ریاضی,true,4,23,17,1,2,0,3,17,false,
+full,,,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,23,17,0,6,0,0,17,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,23,17,1,3,17,0,2,false,
+full,,,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,23,19,0,19,0,0,4,false,
+full,,,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,23,19,0,1,19,1,2,false,
+full,,,humanities-1405-booklet-1:74,روان‌شناسی,false,4,23,19,0,1,3,0,19,false,
+full,,,humanities-1405-booklet-1:9,ریاضی,true,3,23,19,1,0,2,19,1,false,
+full,,,humanities-1405-booklet-1:1,ریاضی,true,4,23,20,1,2,0,0,20,false,
+full,,,humanities-1405-booklet-1:16,ریاضی,false,4,23,20,0,2,0,1,20,false,
+full,,,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,23,20,0,20,0,1,2,false,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,23,20,1,2,0,20,0,false,عروض و قافیه
+full,,,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,23,21,0,21,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,23,21,0,1,0,21,1,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,23,21,0,21,2,0,0,false,
+full,,,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,23,21,1,1,0,21,0,false,
+full,,,humanities-1405-booklet-1:17,ریاضی,false,2,23,22,0,0,22,0,1,false,
+full,,,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,23,22,0,0,1,0,22,false,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,23,22,0,1,0,22,0,false,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,23,22,0,0,22,1,0,false,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,23,22,0,0,1,22,0,false,تاریخ ادبیات و سبک‌شناسی
+full,,,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,23,22,0,22,0,0,1,false,آرایه‌های ادبی
+full,,,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,23,22,0,1,0,0,22,false,قرابت معنایی
+full,,,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,23,22,0,1,0,22,0,false,قرابت معنایی
+full,,,humanities-1405-booklet-1:5,ریاضی,false,4,23,22,0,0,0,1,22,false,
+full,,,humanities-1405-booklet-1:70,روان‌شناسی,false,2,23,22,0,0,22,0,1,false,
+full,,,humanities-1405-booklet-1:77,روان‌شناسی,false,2,23,22,0,1,22,0,0,false,
+full,,,humanities-1405-booklet-1:8,ریاضی,false,2,23,22,0,0,22,0,1,false,
+full,,,humanities-1405-booklet-1:10,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:11,ریاضی,false,4,23,23,0,0,0,0,23,false,
+full,,,humanities-1405-booklet-1:12,ریاضی,false,2,23,23,0,0,23,0,0,false,
+full,,,humanities-1405-booklet-1:13,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:15,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:18,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:19,ریاضی,false,2,23,23,0,0,23,0,0,false,
+full,,,humanities-1405-booklet-1:2,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:20,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:3,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:4,ریاضی,false,2,23,23,0,0,23,0,0,false,
+full,,,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,23,23,0,23,0,0,0,false,قرابت معنایی
+full,,,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,23,23,0,0,0,0,23,false,قرابت معنایی
+full,,,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,,,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,,,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:6,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,,,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,,,humanities-1405-booklet-1:67,روان‌شناسی,false,4,23,23,0,0,0,0,23,false,
+full,,,humanities-1405-booklet-1:68,روان‌شناسی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:69,روان‌شناسی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:7,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:71,روان‌شناسی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:72,روان‌شناسی,false,4,23,23,0,0,0,0,23,false,
+full,,,humanities-1405-booklet-1:73,روان‌شناسی,false,2,23,23,0,0,23,0,0,false,
+full,,,humanities-1405-booklet-1:75,روان‌شناسی,false,1,23,23,0,23,0,0,0,false,
+full,,,humanities-1405-booklet-1:78,روان‌شناسی,false,3,23,23,0,0,0,23,0,false,
+full,,,humanities-1405-booklet-1:79,روان‌شناسی,false,2,23,23,0,0,23,0,0,false,
+full,,,humanities-1405-booklet-1:80,روان‌شناسی,false,4,23,23,0,0,0,0,23,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:76,روان‌شناسی,false,3,34,3,0,2,1,3,28,true,
+full,,روان‌شناسی,humanities-1405-booklet-1:66,روان‌شناسی,false,1,34,18,0,18,1,0,15,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:74,روان‌شناسی,false,4,34,29,0,2,3,0,29,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:77,روان‌شناسی,false,2,34,31,0,2,31,0,1,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:70,روان‌شناسی,false,2,34,32,0,0,32,0,2,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:71,روان‌شناسی,false,1,34,32,0,32,0,2,0,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:67,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:68,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:69,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:72,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:73,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:75,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:78,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:79,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+full,,روان‌شناسی,humanities-1405-booklet-1:80,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+full,,ریاضی,humanities-1405-booklet-1:14,ریاضی,true,4,31,22,3,2,0,4,22,false,
+full,,ریاضی,humanities-1405-booklet-1:9,ریاضی,true,3,31,26,2,0,2,26,1,false,
+full,,ریاضی,humanities-1405-booklet-1:1,ریاضی,true,4,31,27,2,2,0,0,27,false,
+full,,ریاضی,humanities-1405-booklet-1:16,ریاضی,false,4,31,27,0,3,0,1,27,false,
+full,,ریاضی,humanities-1405-booklet-1:5,ریاضی,false,4,31,29,0,0,0,2,29,false,
+full,,ریاضی,humanities-1405-booklet-1:17,ریاضی,false,2,31,30,0,0,30,0,1,false,
+full,,ریاضی,humanities-1405-booklet-1:4,ریاضی,false,2,31,30,0,1,30,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:8,ریاضی,false,2,31,30,0,0,30,0,1,false,
+full,,ریاضی,humanities-1405-booklet-1:10,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:11,ریاضی,false,4,31,31,0,0,0,0,31,false,
+full,,ریاضی,humanities-1405-booklet-1:12,ریاضی,false,2,31,31,0,0,31,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:13,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,,ریاضی,humanities-1405-booklet-1:15,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:18,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:19,ریاضی,false,2,31,31,0,0,31,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:2,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,,ریاضی,humanities-1405-booklet-1:20,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,,ریاضی,humanities-1405-booklet-1:3,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:6,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,,ریاضی,humanities-1405-booklet-1:7,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,24,3,0,0,3,6,15,true,قرابت معنایی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,24,5,2,4,5,0,13,true,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,24,6,2,2,6,6,8,false,ترکیبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,24,10,0,14,10,0,0,true,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,24,10,0,4,0,10,10,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,24,10,0,0,10,11,3,false,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,24,12,0,0,4,12,8,false,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,24,12,0,6,6,0,12,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,24,12,2,5,4,12,1,false,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,24,14,2,14,1,6,1,false,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,24,15,0,1,15,8,0,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,24,15,1,4,0,15,4,false,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,24,15,1,2,2,4,15,false,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,24,16,0,16,1,3,4,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,24,16,0,3,2,3,16,false,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,24,17,0,6,1,0,17,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,24,17,0,17,1,5,1,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,24,21,0,21,0,1,2,false,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,24,21,1,2,0,21,0,false,عروض و قافیه
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,24,22,0,22,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,24,22,0,1,0,22,1,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,24,23,0,0,1,0,23,false,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,24,23,0,1,0,23,0,false,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,24,23,0,0,23,1,0,false,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,24,23,0,0,1,23,0,false,تاریخ ادبیات و سبک‌شناسی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,24,23,0,23,0,0,1,false,آرایه‌های ادبی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,24,23,0,1,0,0,23,false,قرابت معنایی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,24,23,0,1,0,23,0,false,قرابت معنایی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,24,24,0,24,0,0,0,false,قرابت معنایی
+full,,زبان و ادبیات فارسی,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,24,24,0,0,0,0,24,false,قرابت معنایی
+full,,علوم اجتماعی,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,29,9,0,0,0,9,20,true,
+full,,علوم اجتماعی,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,29,22,1,4,22,0,2,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,29,22,0,6,22,1,0,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,29,24,0,2,24,1,2,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,29,25,0,25,0,0,4,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,29,26,1,1,1,26,0,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,29,27,0,27,2,0,0,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,29,28,0,0,1,28,0,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,29,29,0,29,0,0,0,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,29,29,0,0,0,29,0,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,29,29,0,29,0,0,0,false,
+full,,علوم اجتماعی,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:76,روان‌شناسی,false,3,23,2,0,2,1,2,18,true,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,23,3,0,0,3,6,14,true,قرابت معنایی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,23,5,2,4,5,0,12,true,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,23,5,2,2,6,5,8,false,ترکیبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,23,7,0,0,0,7,16,true,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,23,9,0,14,9,0,0,true,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,23,10,0,4,0,9,10,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,23,10,0,0,10,11,2,false,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,23,11,0,6,6,0,11,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,23,12,0,0,3,12,8,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,23,12,2,5,3,12,1,false,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:66,روان‌شناسی,false,1,23,12,0,12,0,0,11,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,23,14,2,14,1,5,1,false,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,23,15,0,1,15,7,0,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,23,15,0,15,1,3,4,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,23,15,0,3,2,3,15,false,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,23,15,1,3,0,15,4,false,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,23,15,1,2,1,4,15,false,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,23,16,0,16,1,5,1,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,23,16,0,6,16,1,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:14,ریاضی,true,4,23,17,1,2,0,3,17,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,23,17,0,6,0,0,17,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,23,17,1,3,17,0,2,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,23,19,0,19,0,0,4,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,23,19,0,1,19,1,2,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:74,روان‌شناسی,false,4,23,19,0,1,3,0,19,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:9,ریاضی,true,3,23,19,1,0,2,19,1,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:1,ریاضی,true,4,23,20,1,2,0,0,20,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:16,ریاضی,false,4,23,20,0,2,0,1,20,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,23,20,0,20,0,1,2,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,23,20,1,2,0,20,0,false,عروض و قافیه
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,23,21,0,21,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,23,21,0,1,0,21,1,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,23,21,0,21,2,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,23,21,1,1,0,21,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:17,ریاضی,false,2,23,22,0,0,22,0,1,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,23,22,0,0,1,0,22,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,23,22,0,1,0,22,0,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,23,22,0,0,22,1,0,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,23,22,0,0,1,22,0,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,23,22,0,22,0,0,1,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,23,22,0,1,0,0,22,false,قرابت معنایی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,23,22,0,1,0,22,0,false,قرابت معنایی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:5,ریاضی,false,4,23,22,0,0,0,1,22,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:70,روان‌شناسی,false,2,23,22,0,0,22,0,1,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:77,روان‌شناسی,false,2,23,22,0,1,22,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:8,ریاضی,false,2,23,22,0,0,22,0,1,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:10,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:11,ریاضی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:12,ریاضی,false,2,23,23,0,0,23,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:13,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:15,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:18,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:19,ریاضی,false,2,23,23,0,0,23,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:2,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:20,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:3,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:4,ریاضی,false,2,23,23,0,0,23,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,23,23,0,23,0,0,0,false,قرابت معنایی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,23,23,0,0,0,0,23,false,قرابت معنایی
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:6,ریاضی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:67,روان‌شناسی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:68,روان‌شناسی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:69,روان‌شناسی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:7,ریاضی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:71,روان‌شناسی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:72,روان‌شناسی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:73,روان‌شناسی,false,2,23,23,0,0,23,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:75,روان‌شناسی,false,1,23,23,0,23,0,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:78,روان‌شناسی,false,3,23,23,0,0,0,23,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:79,روان‌شناسی,false,2,23,23,0,0,23,0,0,false,
+full,humanities-1405-booklet-1,,humanities-1405-booklet-1:80,روان‌شناسی,false,4,23,23,0,0,0,0,23,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:76,روان‌شناسی,false,3,34,3,0,2,1,3,28,true,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:66,روان‌شناسی,false,1,34,18,0,18,1,0,15,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:74,روان‌شناسی,false,4,34,29,0,2,3,0,29,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:77,روان‌شناسی,false,2,34,31,0,2,31,0,1,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:70,روان‌شناسی,false,2,34,32,0,0,32,0,2,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:71,روان‌شناسی,false,1,34,32,0,32,0,2,0,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:67,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:68,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:69,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:72,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:73,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:75,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:78,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:79,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+full,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:80,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:14,ریاضی,true,4,31,22,3,2,0,4,22,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:9,ریاضی,true,3,31,26,2,0,2,26,1,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:1,ریاضی,true,4,31,27,2,2,0,0,27,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:16,ریاضی,false,4,31,27,0,3,0,1,27,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:5,ریاضی,false,4,31,29,0,0,0,2,29,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:17,ریاضی,false,2,31,30,0,0,30,0,1,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:4,ریاضی,false,2,31,30,0,1,30,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:8,ریاضی,false,2,31,30,0,0,30,0,1,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:10,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:11,ریاضی,false,4,31,31,0,0,0,0,31,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:12,ریاضی,false,2,31,31,0,0,31,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:13,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:15,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:18,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:19,ریاضی,false,2,31,31,0,0,31,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:2,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:20,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:3,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:6,ریاضی,false,1,31,31,0,31,0,0,0,false,
+full,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:7,ریاضی,false,3,31,31,0,0,0,31,0,false,
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,24,3,0,0,3,6,15,true,قرابت معنایی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,24,5,2,4,5,0,13,true,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,24,6,2,2,6,6,8,false,ترکیبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,24,10,0,14,10,0,0,true,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,24,10,0,4,0,10,10,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,24,10,0,0,10,11,3,false,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,24,12,0,0,4,12,8,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,24,12,0,6,6,0,12,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,24,12,2,5,4,12,1,false,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,24,14,2,14,1,6,1,false,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,24,15,0,1,15,8,0,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,24,15,1,4,0,15,4,false,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,24,15,1,2,2,4,15,false,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,24,16,0,16,1,3,4,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,24,16,0,3,2,3,16,false,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,24,17,0,6,1,0,17,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,24,17,0,17,1,5,1,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,24,21,0,21,0,1,2,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,24,21,1,2,0,21,0,false,عروض و قافیه
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,24,22,0,22,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,24,22,0,1,0,22,1,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,24,23,0,0,1,0,23,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,24,23,0,1,0,23,0,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,24,23,0,0,23,1,0,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,24,23,0,0,1,23,0,false,تاریخ ادبیات و سبک‌شناسی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,24,23,0,23,0,0,1,false,آرایه‌های ادبی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,24,23,0,1,0,0,23,false,قرابت معنایی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,24,23,0,1,0,23,0,false,قرابت معنایی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,24,24,0,24,0,0,0,false,قرابت معنایی
+full,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,24,24,0,0,0,0,24,false,قرابت معنایی
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,29,9,0,0,0,9,20,true,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,29,22,1,4,22,0,2,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,29,22,0,6,22,1,0,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,29,24,0,2,24,1,2,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,29,25,0,25,0,0,4,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,29,26,1,1,1,26,0,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,29,27,0,27,2,0,0,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,29,28,0,0,1,28,0,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,29,29,0,29,0,0,0,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,29,29,0,0,0,29,0,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,29,29,0,29,0,0,0,false,
+full,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+image-only,,,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,26,5,3,5,5,0,13,false,عروض و قافیه
+image-only,,,humanities-1405-booklet-1:14,ریاضی,true,4,26,19,2,2,0,3,19,false,
+image-only,,,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,26,19,1,4,19,0,2,false,
+image-only,,,humanities-1405-booklet-1:1,ریاضی,true,4,26,22,2,2,0,0,22,false,
+image-only,,,humanities-1405-booklet-1:9,ریاضی,true,3,26,22,1,0,2,22,1,false,
+image-only,,,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,26,23,1,1,1,23,0,false,
+image-only,,ریاضی,humanities-1405-booklet-1:14,ریاضی,true,4,31,22,3,2,0,4,22,false,
+image-only,,ریاضی,humanities-1405-booklet-1:9,ریاضی,true,3,31,26,2,0,2,26,1,false,
+image-only,,ریاضی,humanities-1405-booklet-1:1,ریاضی,true,4,31,27,2,2,0,0,27,false,
+image-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,27,5,3,5,5,0,14,true,عروض و قافیه
+image-only,,علوم اجتماعی,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,30,22,1,5,22,0,2,false,
+image-only,,علوم اجتماعی,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,30,27,1,1,1,27,0,false,
+image-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,26,5,3,5,5,0,13,false,عروض و قافیه
+image-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:14,ریاضی,true,4,26,19,2,2,0,3,19,false,
+image-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,26,19,1,4,19,0,2,false,
+image-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:1,ریاضی,true,4,26,22,2,2,0,0,22,false,
+image-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:9,ریاضی,true,3,26,22,1,0,2,22,1,false,
+image-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,26,23,1,1,1,23,0,false,
+image-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:14,ریاضی,true,4,31,22,3,2,0,4,22,false,
+image-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:9,ریاضی,true,3,31,26,2,0,2,26,1,false,
+image-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:1,ریاضی,true,4,31,27,2,2,0,0,27,false,
+image-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:39,زبان و ادبیات فارسی,true,2,27,5,3,5,5,0,14,true,عروض و قافیه
+image-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:52,علوم اجتماعی,true,2,30,22,1,5,22,0,2,false,
+image-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:64,علوم اجتماعی,true,3,30,27,1,1,1,27,0,false,
+text-only,,,humanities-1405-booklet-1:76,روان‌شناسی,false,3,29,2,0,2,1,2,24,true,
+text-only,,,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,29,3,0,0,3,9,17,true,قرابت معنایی
+text-only,,,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,29,8,0,0,0,8,21,true,
+text-only,,,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,29,9,3,2,6,9,9,false,ترکیبی
+text-only,,,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,29,11,1,4,0,13,11,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,29,11,2,0,11,12,4,false,عروض و قافیه
+text-only,,,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,29,13,0,16,13,0,0,true,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,29,13,0,6,8,2,13,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,29,13,3,7,5,13,1,false,عروض و قافیه
+text-only,,,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,29,15,0,0,5,15,9,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,29,15,4,15,2,6,2,false,عروض و قافیه
+text-only,,,humanities-1405-booklet-1:66,روان‌شناسی,false,1,29,15,0,15,0,0,14,false,
+text-only,,,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,29,16,2,6,0,16,5,false,عروض و قافیه
+text-only,,,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,29,16,2,3,2,6,16,false,عروض و قافیه
+text-only,,,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,29,17,1,2,17,9,0,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,29,17,2,17,1,4,5,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,29,18,1,5,2,3,18,false,عروض و قافیه
+text-only,,,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,29,20,0,7,20,2,0,false,
+text-only,,,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,29,21,0,21,2,5,1,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,29,22,0,6,1,0,22,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,29,24,0,24,0,1,4,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,29,24,2,2,0,24,1,false,عروض و قافیه
+text-only,,,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,29,24,0,1,24,1,3,false,
+text-only,,,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,29,25,1,25,0,0,3,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,29,25,0,25,0,0,4,false,
+text-only,,,humanities-1405-booklet-1:74,روان‌شناسی,false,4,29,25,0,1,3,0,25,false,
+text-only,,,humanities-1405-booklet-1:16,ریاضی,false,4,29,26,0,2,0,1,26,false,
+text-only,,,humanities-1405-booklet-1:77,روان‌شناسی,false,2,29,26,0,2,26,0,1,false,
+text-only,,,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,29,27,0,0,2,0,27,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,29,27,0,27,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,29,27,0,0,2,27,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,29,27,0,1,0,27,1,false,آرایه‌های ادبی
+text-only,,,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,29,27,0,2,0,0,27,false,قرابت معنایی
+text-only,,,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,29,27,0,1,1,27,0,false,قرابت معنایی
+text-only,,,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,29,27,0,27,2,0,0,false,
+text-only,,,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,29,27,0,27,2,0,0,false,
+text-only,,,humanities-1405-booklet-1:17,ریاضی,false,2,29,28,0,0,28,0,1,false,
+text-only,,,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,29,28,0,1,0,28,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,29,28,0,0,28,1,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,,humanities-1405-booklet-1:5,ریاضی,false,4,29,28,0,0,0,1,28,false,
+text-only,,,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,29,28,0,0,1,28,0,false,
+text-only,,,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,29,28,0,0,1,0,28,false,
+text-only,,,humanities-1405-booklet-1:70,روان‌شناسی,false,2,29,28,0,0,28,0,1,false,
+text-only,,,humanities-1405-booklet-1:71,روان‌شناسی,false,1,29,28,0,28,0,1,0,false,
+text-only,,,humanities-1405-booklet-1:8,ریاضی,false,2,29,28,0,0,28,0,1,false,
+text-only,,,humanities-1405-booklet-1:10,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:11,ریاضی,false,4,29,29,0,0,0,0,29,false,
+text-only,,,humanities-1405-booklet-1:12,ریاضی,false,2,29,29,0,0,29,0,0,false,
+text-only,,,humanities-1405-booklet-1:13,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,,,humanities-1405-booklet-1:15,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:18,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:19,ریاضی,false,2,29,29,0,0,29,0,0,false,
+text-only,,,humanities-1405-booklet-1:2,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,,,humanities-1405-booklet-1:20,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,,,humanities-1405-booklet-1:3,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:4,ریاضی,false,2,29,29,0,0,29,0,0,false,
+text-only,,,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,29,29,0,29,0,0,0,false,قرابت معنایی
+text-only,,,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,29,29,0,0,0,0,29,false,قرابت معنایی
+text-only,,,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+text-only,,,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+text-only,,,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,29,29,0,0,0,29,0,false,
+text-only,,,humanities-1405-booklet-1:6,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+text-only,,,humanities-1405-booklet-1:67,روان‌شناسی,false,4,29,29,0,0,0,0,29,false,
+text-only,,,humanities-1405-booklet-1:68,روان‌شناسی,false,3,29,29,0,0,0,29,0,false,
+text-only,,,humanities-1405-booklet-1:69,روان‌شناسی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:7,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,,,humanities-1405-booklet-1:72,روان‌شناسی,false,4,29,29,0,0,0,0,29,false,
+text-only,,,humanities-1405-booklet-1:73,روان‌شناسی,false,2,29,29,0,0,29,0,0,false,
+text-only,,,humanities-1405-booklet-1:75,روان‌شناسی,false,1,29,29,0,29,0,0,0,false,
+text-only,,,humanities-1405-booklet-1:78,روان‌شناسی,false,3,29,29,0,0,0,29,0,false,
+text-only,,,humanities-1405-booklet-1:79,روان‌شناسی,false,2,29,29,0,0,29,0,0,false,
+text-only,,,humanities-1405-booklet-1:80,روان‌شناسی,false,4,29,29,0,0,0,0,29,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:76,روان‌شناسی,false,3,34,3,0,2,1,3,28,true,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:66,روان‌شناسی,false,1,34,18,0,18,1,0,15,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:74,روان‌شناسی,false,4,34,29,0,2,3,0,29,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:77,روان‌شناسی,false,2,34,31,0,2,31,0,1,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:70,روان‌شناسی,false,2,34,32,0,0,32,0,2,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:71,روان‌شناسی,false,1,34,32,0,32,0,2,0,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:67,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:68,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:69,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:72,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:73,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:75,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:78,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:79,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+text-only,,روان‌شناسی,humanities-1405-booklet-1:80,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+text-only,,ریاضی,humanities-1405-booklet-1:16,ریاضی,false,4,35,31,0,3,0,1,31,false,
+text-only,,ریاضی,humanities-1405-booklet-1:5,ریاضی,false,4,35,33,0,0,0,2,33,false,
+text-only,,ریاضی,humanities-1405-booklet-1:17,ریاضی,false,2,35,34,0,0,34,0,1,false,
+text-only,,ریاضی,humanities-1405-booklet-1:4,ریاضی,false,2,35,34,0,1,34,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:8,ریاضی,false,2,35,34,0,0,34,0,1,false,
+text-only,,ریاضی,humanities-1405-booklet-1:10,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:11,ریاضی,false,4,35,35,0,0,0,0,35,false,
+text-only,,ریاضی,humanities-1405-booklet-1:12,ریاضی,false,2,35,35,0,0,35,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:13,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:15,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:18,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:19,ریاضی,false,2,35,35,0,0,35,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:2,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:20,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:3,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:6,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,,ریاضی,humanities-1405-booklet-1:7,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,29,3,0,0,3,9,17,true,قرابت معنایی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,29,9,3,2,6,9,9,false,ترکیبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,29,11,1,4,0,13,11,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,29,11,2,0,11,12,4,false,عروض و قافیه
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,29,13,0,16,13,0,0,true,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,29,13,0,6,8,2,13,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,29,13,3,7,5,13,1,false,عروض و قافیه
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,29,15,0,0,5,15,9,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,29,15,4,15,2,6,2,false,عروض و قافیه
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,29,16,2,6,0,16,5,false,عروض و قافیه
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,29,16,2,3,2,6,16,false,عروض و قافیه
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,29,17,1,2,17,9,0,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,29,17,2,17,1,4,5,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,29,18,1,5,2,3,18,false,عروض و قافیه
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,29,21,0,21,2,5,1,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,29,22,0,6,1,0,22,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,29,24,0,24,0,1,4,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,29,24,2,2,0,24,1,false,عروض و قافیه
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,29,25,1,25,0,0,3,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,29,27,0,0,2,0,27,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,29,27,0,27,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,29,27,0,0,2,27,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,29,27,0,1,0,27,1,false,آرایه‌های ادبی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,29,27,0,2,0,0,27,false,قرابت معنایی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,29,27,0,1,1,27,0,false,قرابت معنایی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,29,28,0,1,0,28,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,29,28,0,0,28,1,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,29,29,0,29,0,0,0,false,قرابت معنایی
+text-only,,زبان و ادبیات فارسی,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,29,29,0,0,0,0,29,false,قرابت معنایی
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,34,10,0,0,0,10,24,true,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,34,25,0,7,25,2,0,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,34,28,0,2,28,1,3,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,34,30,0,30,0,0,4,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,34,32,0,32,2,0,0,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,34,32,0,0,2,32,0,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,34,32,0,32,2,0,0,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,34,33,0,0,1,0,33,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,34,34,0,0,0,0,34,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,34,34,0,0,0,0,34,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,34,34,0,0,0,34,0,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,34,34,0,34,0,0,0,false,
+text-only,,علوم اجتماعی,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,34,34,0,0,0,0,34,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:76,روان‌شناسی,false,3,29,2,0,2,1,2,24,true,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,29,3,0,0,3,9,17,true,قرابت معنایی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,29,8,0,0,0,8,21,true,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,29,9,3,2,6,9,9,false,ترکیبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,29,11,1,4,0,13,11,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,29,11,2,0,11,12,4,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,29,13,0,16,13,0,0,true,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,29,13,0,6,8,2,13,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,29,13,3,7,5,13,1,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,29,15,0,0,5,15,9,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,29,15,4,15,2,6,2,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:66,روان‌شناسی,false,1,29,15,0,15,0,0,14,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,29,16,2,6,0,16,5,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,29,16,2,3,2,6,16,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,29,17,1,2,17,9,0,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,29,17,2,17,1,4,5,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,29,18,1,5,2,3,18,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,29,20,0,7,20,2,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,29,21,0,21,2,5,1,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,29,22,0,6,1,0,22,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,29,24,0,24,0,1,4,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,29,24,2,2,0,24,1,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,29,24,0,1,24,1,3,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,29,25,1,25,0,0,3,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,29,25,0,25,0,0,4,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:74,روان‌شناسی,false,4,29,25,0,1,3,0,25,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:16,ریاضی,false,4,29,26,0,2,0,1,26,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:77,روان‌شناسی,false,2,29,26,0,2,26,0,1,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,29,27,0,0,2,0,27,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,29,27,0,27,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,29,27,0,0,2,27,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,29,27,0,1,0,27,1,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,29,27,0,2,0,0,27,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,29,27,0,1,1,27,0,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,29,27,0,27,2,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,29,27,0,27,2,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:17,ریاضی,false,2,29,28,0,0,28,0,1,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,29,28,0,1,0,28,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,29,28,0,0,28,1,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:5,ریاضی,false,4,29,28,0,0,0,1,28,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,29,28,0,0,1,28,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,29,28,0,0,1,0,28,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:70,روان‌شناسی,false,2,29,28,0,0,28,0,1,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:71,روان‌شناسی,false,1,29,28,0,28,0,1,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:8,ریاضی,false,2,29,28,0,0,28,0,1,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:10,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:11,ریاضی,false,4,29,29,0,0,0,0,29,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:12,ریاضی,false,2,29,29,0,0,29,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:13,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:15,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:18,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:19,ریاضی,false,2,29,29,0,0,29,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:2,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:20,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:3,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:4,ریاضی,false,2,29,29,0,0,29,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,29,29,0,29,0,0,0,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,29,29,0,0,0,0,29,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,29,29,0,0,0,29,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:6,ریاضی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,29,29,0,0,0,0,29,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:67,روان‌شناسی,false,4,29,29,0,0,0,0,29,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:68,روان‌شناسی,false,3,29,29,0,0,0,29,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:69,روان‌شناسی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:7,ریاضی,false,3,29,29,0,0,0,29,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:72,روان‌شناسی,false,4,29,29,0,0,0,0,29,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:73,روان‌شناسی,false,2,29,29,0,0,29,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:75,روان‌شناسی,false,1,29,29,0,29,0,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:78,روان‌شناسی,false,3,29,29,0,0,0,29,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:79,روان‌شناسی,false,2,29,29,0,0,29,0,0,false,
+text-only,humanities-1405-booklet-1,,humanities-1405-booklet-1:80,روان‌شناسی,false,4,29,29,0,0,0,0,29,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:76,روان‌شناسی,false,3,34,3,0,2,1,3,28,true,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:66,روان‌شناسی,false,1,34,18,0,18,1,0,15,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:74,روان‌شناسی,false,4,34,29,0,2,3,0,29,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:77,روان‌شناسی,false,2,34,31,0,2,31,0,1,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:70,روان‌شناسی,false,2,34,32,0,0,32,0,2,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:71,روان‌شناسی,false,1,34,32,0,32,0,2,0,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:67,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:68,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:69,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:72,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:73,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:75,روان‌شناسی,false,1,34,34,0,34,0,0,0,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:78,روان‌شناسی,false,3,34,34,0,0,0,34,0,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:79,روان‌شناسی,false,2,34,34,0,0,34,0,0,false,
+text-only,humanities-1405-booklet-1,روان‌شناسی,humanities-1405-booklet-1:80,روان‌شناسی,false,4,34,34,0,0,0,0,34,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:16,ریاضی,false,4,35,31,0,3,0,1,31,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:5,ریاضی,false,4,35,33,0,0,0,2,33,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:17,ریاضی,false,2,35,34,0,0,34,0,1,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:4,ریاضی,false,2,35,34,0,1,34,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:8,ریاضی,false,2,35,34,0,0,34,0,1,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:10,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:11,ریاضی,false,4,35,35,0,0,0,0,35,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:12,ریاضی,false,2,35,35,0,0,35,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:13,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:15,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:18,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:19,ریاضی,false,2,35,35,0,0,35,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:2,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:20,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:3,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:6,ریاضی,false,1,35,35,0,35,0,0,0,false,
+text-only,humanities-1405-booklet-1,ریاضی,humanities-1405-booklet-1:7,ریاضی,false,3,35,35,0,0,0,35,0,false,
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:46,زبان و ادبیات فارسی,false,2,29,3,0,0,3,9,17,true,قرابت معنایی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:45,زبان و ادبیات فارسی,false,3,29,9,3,2,6,9,9,false,ترکیبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:31,زبان و ادبیات فارسی,false,4,29,11,1,4,0,13,11,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:42,زبان و ادبیات فارسی,false,2,29,11,2,0,11,12,4,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:26,زبان و ادبیات فارسی,false,2,29,13,0,16,13,0,0,true,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:34,زبان و ادبیات فارسی,false,4,29,13,0,6,8,2,13,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:43,زبان و ادبیات فارسی,false,3,29,13,3,7,5,13,1,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:21,زبان و ادبیات فارسی,false,3,29,15,0,0,5,15,9,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:41,زبان و ادبیات فارسی,false,1,29,15,4,15,2,6,2,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:38,زبان و ادبیات فارسی,false,3,29,16,2,6,0,16,5,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:44,زبان و ادبیات فارسی,false,4,29,16,2,3,2,6,16,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:30,زبان و ادبیات فارسی,false,2,29,17,1,2,17,9,0,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:33,زبان و ادبیات فارسی,false,1,29,17,2,17,1,4,5,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:37,زبان و ادبیات فارسی,false,4,29,18,1,5,2,3,18,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:35,زبان و ادبیات فارسی,false,1,29,21,0,21,2,5,1,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:29,زبان و ادبیات فارسی,false,4,29,22,0,6,1,0,22,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:28,زبان و ادبیات فارسی,false,1,29,24,0,24,0,1,4,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:40,زبان و ادبیات فارسی,false,3,29,24,2,2,0,24,1,false,عروض و قافیه
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:32,زبان و ادبیات فارسی,false,1,29,25,1,25,0,0,3,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:22,زبان و ادبیات فارسی,false,4,29,27,0,0,2,0,27,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:25,زبان و ادبیات فارسی,false,1,29,27,0,27,1,0,1,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:27,زبان و ادبیات فارسی,false,3,29,27,0,0,2,27,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:36,زبان و ادبیات فارسی,false,3,29,27,0,1,0,27,1,false,آرایه‌های ادبی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:47,زبان و ادبیات فارسی,false,4,29,27,0,2,0,0,27,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:49,زبان و ادبیات فارسی,false,3,29,27,0,1,1,27,0,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:23,زبان و ادبیات فارسی,false,3,29,28,0,1,0,28,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:24,زبان و ادبیات فارسی,false,2,29,28,0,0,28,1,0,false,تاریخ ادبیات و سبک‌شناسی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:48,زبان و ادبیات فارسی,false,1,29,29,0,29,0,0,0,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,زبان و ادبیات فارسی,humanities-1405-booklet-1:50,زبان و ادبیات فارسی,false,4,29,29,0,0,0,0,29,false,قرابت معنایی
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:55,علوم اجتماعی,false,3,34,10,0,0,0,10,24,true,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:61,علوم اجتماعی,false,2,34,25,0,7,25,2,0,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:59,علوم اجتماعی,false,2,34,28,0,2,28,1,3,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:58,علوم اجتماعی,false,1,34,30,0,30,0,0,4,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:53,علوم اجتماعی,false,1,34,32,0,32,2,0,0,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:54,علوم اجتماعی,false,3,34,32,0,0,2,32,0,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:63,علوم اجتماعی,false,1,34,32,0,32,2,0,0,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:60,علوم اجتماعی,false,4,34,33,0,0,1,0,33,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:51,علوم اجتماعی,false,4,34,34,0,0,0,0,34,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:56,علوم اجتماعی,false,4,34,34,0,0,0,0,34,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:57,علوم اجتماعی,false,3,34,34,0,0,0,34,0,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:62,علوم اجتماعی,false,1,34,34,0,34,0,0,0,false,
+text-only,humanities-1405-booklet-1,علوم اجتماعی,humanities-1405-booklet-1:65,علوم اجتماعی,false,4,34,34,0,0,0,0,34,false,

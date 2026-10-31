@@ -122,17 +122,20 @@ func TestHumanities1405Booklet(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(s.Questions) != 80 || len(s.Config.Models) != 15 {
+	if len(s.Questions) != 80 || len(s.Config.Models) != 13 {
 		t.Fatalf("unexpected booklet/model count: %d/%d", len(s.Questions), len(s.Config.Models))
 	}
 	wantImages := map[int]bool{1: true, 9: true, 14: true, 39: true, 52: true, 64: true}
-	categories := map[string]int{}
+	categories, sections := map[string]int{}, map[string][]int{}
 	assets := 0
 	for _, q := range s.Questions {
 		if q.Dataset != "humanities-1405-booklet-1" || q.Number < 1 || q.Number > 80 || q.HasImage() != wantImages[q.Number] {
 			t.Fatalf("unexpected question: %s, image=%v", q.ID(), q.HasImage())
 		}
 		categories[q.Category]++
+		if q.Section != "" {
+			sections[q.Section] = append(sections[q.Section], q.Number)
+		}
 		if q.Asset != nil {
 			assets++
 		}
@@ -149,6 +152,16 @@ func TestHumanities1405Booklet(t *testing.T) {
 		if categories[category] != want {
 			t.Errorf("category %s: got %d, want %d", category, categories[category], want)
 		}
+	}
+	// Literature follows the booklet's section order; question 45 combines several sections.
+	for section, want := range map[string][2]int{"تاریخ ادبیات و سبک\u200cشناسی": {21, 28}, "آرایه\u200cهای ادبی": {29, 36}, "عروض و قافیه": {37, 44}, "ترکیبی": {45, 45}, "قرابت معنایی": {46, 50}} {
+		got := sections[section]
+		if len(got) != want[1]-want[0]+1 || got[0] != want[0] || got[len(got)-1] != want[1] {
+			t.Errorf("section %s: got questions %v, want %d-%d", section, got, want[0], want[1])
+		}
+	}
+	if len(sections) != 5 {
+		t.Errorf("unexpected sections: %v", sections)
 	}
 	if assets != 12 || len(s.Warnings) != 1 || !strings.Contains(s.Warnings[0], "120 extra") {
 		t.Fatalf("assets=%d warnings=%v", assets, s.Warnings)

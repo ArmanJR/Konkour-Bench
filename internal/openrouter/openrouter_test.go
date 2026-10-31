@@ -43,6 +43,7 @@ func TestRequestContract(t *testing.T) {
 	}
 	q.Correct = 2
 	q.Category = "changed"
+	q.Section = "changed"
 	q.Dataset = "other"
 	b2, _ := Build(q, "test/model", "max")
 	if string(b) != string(b2) {

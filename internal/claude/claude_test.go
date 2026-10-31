@@ -78,6 +78,7 @@ func TestRequestIsolationAndImages(t *testing.T) {
 	}
 	q.Correct = 1
 	q.Category = "changed"
+	q.Section = "changed"
 	q.Dataset = "changed"
 	again, _ := Build(q, testModel, "max")
 	if string(again) != string(b) {

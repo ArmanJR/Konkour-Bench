@@ -12,8 +12,6 @@
     "qwen/qwen3.8-27b",
     "qwen/qwen3.8-max-0902",
     "x-ai/grok-4.7",
-    "xiaomi/mimo-v2.6-pro",
-    "xiaomi/mimo-v2.6-flash",
     "z-ai/glm-5.3",
     "z-ai/glm-5.3-flash"
   ]

@@ -44,6 +44,7 @@ type Option struct {
 type Question struct {
 	Number   int      `json:"number"`
 	Category string   `json:"category"`
+	Section  string   `json:"section,omitempty"` // Optional subdivision of a category, such as an exam section.
 	Text     string   `json:"question"`
 	Options  []Option `json:"options"`
 	Image    string   `json:"image,omitempty"`
